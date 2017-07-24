@@ -1,0 +1,24 @@
+name: Bits
+version: 1.0
+author: freddedotme
+website: https://bits.team
+main: bits.bits.team.Main
+database: false
+
+commands:
+  bed:
+    description: Teleport to your bed.
+  delwarp:
+    description: Staff only.
+  setwarp:
+    description: Staff only.
+  setguard:
+    description: Staff only.
+  delguard:
+    description: Staff only.
+  guards:
+    description: View all guards.
+  warp:
+    description: Warp to a location.
+  warps:
+    description: View all warps.
