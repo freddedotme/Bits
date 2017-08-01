@@ -63,6 +63,8 @@ class DataGuard
     permission.setPermission("minecraft.command.kick", true);
     permission.setPermission("minecraft.command.ban", true);
     permission.setPermission("minecraft.command.pardon", true);
+    permission.setPermission("coreprotect.lookup", true);
+    permission.setPermission("coreprotect.inspect", true);
   }
 
   void removePermissions(Player player)

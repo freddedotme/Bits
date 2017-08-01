@@ -18,20 +18,22 @@ public class Main extends JavaPlugin
     DataWarp  dataWarp  = new DataWarp(this);     // done
 
     // Event
-    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(dataGuard), this);      // done
-    getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);   // done
-    getServer().getPluginManager().registerEvents(new EventChunkUnload(dataWarp), this);          // done
-    getServer().getPluginManager().registerEvents(new EventSignChange(), this);                   // done
+    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard), this);    // done
+    getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);       // done
+    getServer().getPluginManager().registerEvents(new EventChunkUnload(dataWarp), this);              // done
+    getServer().getPluginManager().registerEvents(new EventSignChange(), this);                       // done
+    getServer().getPluginManager().registerEvents(new EventVotifier(this), this);                     // done
 
     // Commands
-    getCommand("bed").setExecutor(new CommandBed(this));                      // done
-    getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));          // done
-    getCommand("warps").setExecutor(new CommandWarps(dataWarp));              // done
-    getCommand("setwarp").setExecutor(new CommandSetWarp(this, dataWarp));    // done
-    getCommand("delwarp").setExecutor(new CommandDelWarp(this, dataWarp));    // done
-    getCommand("guards").setExecutor(new CommandGuards(dataGuard));           // done
-    getCommand("setguard").setExecutor(new CommandSetGuard(this, dataGuard)); // done
-    getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard)); // done
+    getCommand("bed").setExecutor(new CommandBed(this));                        // done
+    getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));            // done
+    getCommand("warps").setExecutor(new CommandWarps(dataWarp));                // done
+    getCommand("setwarp").setExecutor(new CommandSetWarp(this, dataWarp));      // done
+    getCommand("delwarp").setExecutor(new CommandDelWarp(this, dataWarp));      // done
+    getCommand("guards").setExecutor(new CommandGuards(dataGuard));             // done
+    getCommand("setguard").setExecutor(new CommandSetGuard(this, dataGuard));   // done
+    getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard));   // done
+    getCommand("info").setExecutor(new CommandInfo());                          // done
   }
 
   boolean invalidAction(Player player, String message)

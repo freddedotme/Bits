@@ -1,9 +1,10 @@
 name: Bits
-version: 1.0
+version: 1.4
 author: freddedotme
 website: https://bits.team
 main: bits.bits.team.Main
 database: false
+depends: [Votifier]
 
 commands:
   bed:
@@ -22,3 +23,5 @@ commands:
     description: Warp to a location.
   warps:
     description: View all warps.
+  info:
+    description: Gives you a book about Bits.
