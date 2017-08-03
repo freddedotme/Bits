@@ -36,7 +36,7 @@ public class Main extends JavaPlugin {
     return false;
   }
 
-  void teleport(Player player, Location location) {
+  void teleport(final Player player, final Location location) {
     location.getChunk().load(true);
     player.sendMessage(Data.MSG_TELEPORTING);
     new BukkitRunnable() {
