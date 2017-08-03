@@ -5,20 +5,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSetWarp implements CommandExecutor
-{
-  private Main     main;
+public class CommandSetWarp implements CommandExecutor {
+  private Main main;
   private DataWarp data;
 
-  CommandSetWarp(Main main, DataWarp data)
-  {
+  CommandSetWarp(Main main, DataWarp data) {
     this.main = main;
     this.data = data;
   }
 
   @Override
-  public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
-  {
+  public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
     if (!(commandSender instanceof Player)) return false;
     Player player = (Player) commandSender;
 

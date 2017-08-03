@@ -8,14 +8,12 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-class DataWarp
-{
+class DataWarp {
   private FileManager file;
-  private Main        main;
-  private List<Warp>  warps;
+  private Main main;
+  private List<Warp> warps;
 
-  DataWarp(Main main)
-  {
+  DataWarp(Main main) {
     this.main = main;
 
     file = new FileManager("warps.yml");
@@ -23,16 +21,14 @@ class DataWarp
     fetchFile();
   }
 
-  private void fetchFile()
-  {
+  private void fetchFile() {
     warps = new ArrayList<>();
     if (file.getKeys("warps") == null) return;
 
-    for (String warp : file.getKeys("warps"))
-    {
-      int   x     = (int) file.read("warps." + warp + ".x");
-      int   y     = (int) file.read("warps." + warp + ".y");
-      int   z     = (int) file.read("warps." + warp + ".z");
+    for (String warp : file.getKeys("warps")) {
+      int x = (int) file.read("warps." + warp + ".x");
+      int y = (int) file.read("warps." + warp + ".y");
+      int z = (int) file.read("warps." + warp + ".z");
       World world = main.getServer().getWorld((String) file.read("warps." + warp + ".world"));
 
       Location location = new Location(world, (double) x, (double) y, (double) z);
@@ -41,41 +37,33 @@ class DataWarp
     }
   }
 
-  void addWarp(String name, Location location)
-  {
+  void addWarp(String name, Location location) {
     Warp warp = new Warp(name, location, file);
     warps.add(warp);
   }
 
-  void deleteWarp(Warp warp)
-  {
+  void deleteWarp(Warp warp) {
     warp.delete();
     warps.remove(warp);
   }
 
-  Warp getWarp(String name)
-  {
-    for (Warp warp : warps)
-    {
+  Warp getWarp(String name) {
+    for (Warp warp : warps) {
       if (warp.getName().equalsIgnoreCase(name)) return warp;
     }
     return null;
   }
 
-  boolean isWarpInsideChunk(Chunk chunk)
-  {
-    for (Warp warp : warps)
-    {
+  boolean isWarpInsideChunk(Chunk chunk) {
+    for (Warp warp : warps) {
       if (warp.getLocation().getChunk().equals(chunk)) return true;
     }
     return false;
   }
 
-  void printWarps(Player player)
-  {
+  void printWarps(Player player) {
     player.sendMessage("Warps:");
-    for (Warp warp : warps)
-    {
+    for (Warp warp : warps) {
       player.sendMessage(warp.getName());
     }
   }

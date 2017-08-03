@@ -8,15 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class DataGuard
-{
-  private Main                 main;
-  private FileManager          file;
-  private List<UUID>           guards;
+class DataGuard {
+  private Main main;
+  private FileManager file;
+  private List<UUID> guards;
   private PermissionAttachment permission;
 
-  DataGuard(Main main)
-  {
+  DataGuard(Main main) {
     this.main = main;
 
     file = new FileManager("guards.yml");
@@ -24,41 +22,34 @@ class DataGuard
     fetchFile();
   }
 
-  private void fetchFile()
-  {
+  private void fetchFile() {
     guards = new ArrayList<>();
     if (file.getKeys("guards") == null) return;
 
-    for (String guard : file.getKeys("guards"))
-    {
+    for (String guard : file.getKeys("guards")) {
       UUID uuid = UUID.fromString(guard);
       guards.add(uuid);
     }
   }
 
-  void addGuard(UUID uuid)
-  {
+  void addGuard(UUID uuid) {
     guards.add(uuid);
     file.write("guards." + uuid.toString() + ".active", true);
   }
 
-  void removeGuard(UUID uuid)
-  {
+  void removeGuard(UUID uuid) {
     file.write("guards." + uuid.toString(), null);
     guards.remove(uuid);
   }
 
-  boolean isGuard(UUID uuid)
-  {
-    for (UUID guard : guards)
-    {
+  boolean isGuard(UUID uuid) {
+    for (UUID guard : guards) {
       if (guard.equals(uuid)) return true;
     }
     return false;
   }
 
-  void addPermissions(Player player)
-  {
+  void addPermissions(Player player) {
     permission = player.addAttachment(main);
     permission.setPermission("minecraft.command.kick", true);
     permission.setPermission("minecraft.command.ban", true);
@@ -67,16 +58,13 @@ class DataGuard
     permission.setPermission("coreprotect.inspect", true);
   }
 
-  void removePermissions(Player player)
-  {
+  void removePermissions(Player player) {
     player.removeAttachment(permission);
   }
 
-  void printGuards(Player player)
-  {
+  void printGuards(Player player) {
     player.sendMessage("Guards:");
-    for (UUID guard : guards)
-    {
+    for (UUID guard : guards) {
       OfflinePlayer offlinePlayer = main.getServer().getOfflinePlayer(guard);
       player.sendMessage(offlinePlayer.getName());
     }

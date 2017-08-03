@@ -1,31 +1,25 @@
 package bits.bits.team;
 
-class DataBed
-{
+class DataBed {
   private int sleeping;
 
-  DataBed(int sleeping)
-  {
+  DataBed(int sleeping) {
     this.sleeping = sleeping;
   }
 
-  int getSleeping()
-  {
+  int getSleeping() {
     return sleeping;
   }
 
-  void setSleeping(int sleeping)
-  {
+  void setSleeping(int sleeping) {
     this.sleeping = sleeping;
   }
 
-  void incrementSleeping(int increment)
-  {
+  void incrementSleeping(int increment) {
     sleeping += increment;
   }
 
-  void decreaseSleeping(int decrease)
-  {
+  void decreaseSleeping(int decrease) {
     if (sleeping - decrease >= 0) sleeping -= decrease;
   }
 }

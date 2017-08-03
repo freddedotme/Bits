@@ -12,13 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EventVotifier implements Listener
-{
-  private Main                   main;
+public class EventVotifier implements Listener {
+  private Main main;
   private List<PotionEffectType> effects;
 
-  EventVotifier(Main main)
-  {
+  EventVotifier(Main main) {
     this.main = main;
 
     effects = new ArrayList<>();
@@ -30,17 +28,15 @@ public class EventVotifier implements Listener
   }
 
   @EventHandler
-  public void onVotifier(VotifierEvent e)
-  {
-    Vote   vote = e.getVote();
+  public void onVotifier(VotifierEvent e) {
+    Vote vote = e.getVote();
     String name = vote.getUsername();
     main.getServer().broadcastMessage(Data.MSG_VOTING.replace("{player}", name));
-    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "AdjustBonusClaimBlocks " + name + " 100");
+    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "AdjustBonusClaimBlocks " + name + " 250");
 
     int random = ThreadLocalRandom.current().nextInt(0, effects.size() - 1);
 
-    for (Player player : main.getServer().getOnlinePlayers())
-    {
+    for (Player player : main.getServer().getOnlinePlayers()) {
       player.addPotionEffect(new PotionEffect(effects.get(random), Data.EFFECT_DURATION, 0, false, false));
     }
   }

@@ -7,35 +7,27 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-class FileManager
-{
-  private String            path;
+class FileManager {
+  private String path;
   private FileConfiguration configuration;
-  private File              file;
+  private File file;
 
-  FileManager(String path)
-  {
+  FileManager(String path) {
     this.path = path;
     init();
   }
 
-  private void init()
-  {
+  private void init() {
     String root = Data.ROOT_PATH;
     file = new File(root, path);
 
-    if (!file.exists())
-    {
-      if (file.getParentFile().mkdirs())
-      {
-        try
-        {
-          if (file.createNewFile())
-          {
+    if (!file.exists()) {
+      if (file.getParentFile().mkdirs()) {
+        try {
+          if (file.createNewFile()) {
             configuration = YamlConfiguration.loadConfiguration(file);
           }
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
           e.printStackTrace();
         }
       }
@@ -44,25 +36,20 @@ class FileManager
     configuration = YamlConfiguration.loadConfiguration(file);
   }
 
-  void write(String path, Object value)
-  {
+  void write(String path, Object value) {
     configuration.set(path, value);
-    try
-    {
+    try {
       configuration.save(file);
-    } catch (IOException e)
-    {
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
 
-  Object read(String path)
-  {
+  Object read(String path) {
     return configuration.get(path);
   }
 
-  Set<String> getKeys(String path)
-  {
+  Set<String> getKeys(String path) {
     if (configuration.getConfigurationSection(path) == null) return null;
     return configuration.getConfigurationSection(path).getKeys(false);
   }

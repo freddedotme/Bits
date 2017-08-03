@@ -6,24 +6,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 
-class EventBedEnterLeave implements Listener
-{
-  private Main    main;
+class EventBedEnterLeave implements Listener {
+  private Main main;
   private DataBed data;
 
-  EventBedEnterLeave(Main main, DataBed data)
-  {
+  EventBedEnterLeave(Main main, DataBed data) {
     this.main = main;
     this.data = data;
   }
 
   @EventHandler
-  void onPlayerBedEnter(PlayerBedEnterEvent e)
-  {
+  void onPlayerBedEnter(PlayerBedEnterEvent e) {
     data.incrementSleeping(1);
 
-    int   online = main.getServer().getOnlinePlayers().size();
-    World world  = e.getPlayer().getWorld();
+    int online = main.getServer().getOnlinePlayers().size();
+    World world = e.getPlayer().getWorld();
     if (data.getSleeping() / online >= 0.5) world.setTime(0);
 
     main.getServer().broadcastMessage(Data.MSG_SLEEPING.replace("{sleeping}", String.valueOf(data.getSleeping()))
@@ -31,8 +28,7 @@ class EventBedEnterLeave implements Listener
   }
 
   @EventHandler
-  void onPlayerBedLeave(PlayerBedLeaveEvent e)
-  {
+  void onPlayerBedLeave(PlayerBedLeaveEvent e) {
     data.decreaseSleeping(1);
   }
 }

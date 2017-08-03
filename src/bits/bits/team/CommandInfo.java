@@ -11,19 +11,17 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-class CommandInfo implements CommandExecutor
-{
+class CommandInfo implements CommandExecutor {
   @Override
-  public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings)
-  {
+  public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
     if (!(commandSender instanceof Player)) return false;
     Player player = (Player) commandSender;
 
     ItemStack book = new ItemStack(Material.WRITTEN_BOOK, 1);
 
     BookMeta bookMeta = (BookMeta) book.getItemMeta();
-    bookMeta.setTitle("Bits 101");
-    bookMeta.setAuthor("FredTheLion");
+    bookMeta.setTitle(Data.BOOK_TITLE);
+    bookMeta.setAuthor(Data.BOOK_AUTHOR);
 
     List<String> pages = new ArrayList<>();
 
