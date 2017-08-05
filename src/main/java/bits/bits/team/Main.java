@@ -23,7 +23,7 @@ public class Main extends JavaPlugin {
 
     getServer().getPluginManager().registerEvents(new EventShopBuy(dataShop), this);
     getServer().getPluginManager().registerEvents(new EventShopDelete(dataShop), this);
-    getServer().getPluginManager().registerEvents(new EventShopSetup(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopSetup(this, dataShop), this);
     getServer().getPluginManager().registerEvents(new EventShopStock(dataShop), this);
     getServer().getPluginManager().registerEvents(new EventShopWithdraw(dataShop), this);
 

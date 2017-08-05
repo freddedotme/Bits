@@ -1,5 +1,10 @@
 package bits.bits.team;
 
-public class DataShop {
+import java.util.UUID;
 
+class DataShop {
+
+  boolean isOwner(UUID uuid) {
+    return false;
+  }
 }

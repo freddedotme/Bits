@@ -23,7 +23,7 @@ class Data {
   static String MSG_SLEEPING = "[Server] {sleeping}/{online} player(s) sleeping.";
   static String MSG_RANDOMSPAWN = "Hold on. We're finding a new random spawn location for you.";
   static String MSG_RANDOMSPAWN_LOOKING = "({attempts}/{maxAttempts}) Randomizing a new location.";
-  static String MSG_SHOP_ENABLED = "Shop sign placed. Right-click with the correct item and amount to set the " +
+  static String MSG_SHOP_SETUP = "Shop sign placed. Right-click with the correct item and amount to set the " +
     "selling object. Left-click with the correct item and amount to set the price.";
   static String MSG_SHOP_INCOMPLETE = "Shop is not completed yet.";
   static String BOOK_TITLE = "Bits 101";
