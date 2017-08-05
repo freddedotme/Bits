@@ -1,7 +1,7 @@
 package bits.bits.team.event;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
+import bits.bits.team.Shop;
 import bits.bits.team.data.DataShop;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
@@ -9,7 +9,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -23,46 +22,50 @@ abstract class EventShop implements Listener {
   }
 
   @EventHandler
-  private void onSignChangeEvent(SignChangeEvent e) {
-    if (!e.getLine(0).equals("[Shop]")
-      && !e.getLine(1).isEmpty()
-      && !e.getLine(2).isEmpty()
-      && !e.getLine(3).isEmpty())
-      return;
-
-    Player player = e.getPlayer();
-    player.sendMessage(Data.MSG_SHOP_SETUP);
-  }
-
-  @EventHandler
   private void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
     Block block = e.getClickedBlock();
+
     if (!(block instanceof Sign)) return;
+    Sign sign = (Sign) block.getState();
+
+    Shop shop = data.getShopBySign(sign);
+    if (shop == null) return;
 
     Action action = e.getAction();
     Player player = e.getPlayer();
 
+    boolean isComplete = data.isComplete(shop);
     boolean isOwner = data.isOwner(player.getUniqueId());
 
-    if (action.equals(Action.RIGHT_CLICK_BLOCK) && !isOwner)
-      rightClickAsBuyer(player, (Sign) block.getState(), e.getItem());
-    else if (action.equals(Action.LEFT_CLICK_BLOCK) && !isOwner)
-      leftClickAsBuyer(player, (Sign) block.getState(), e.getItem());
-    else if (action.equals(Action.RIGHT_CLICK_BLOCK) && isOwner)
-      rightClickAsOwner(player, (Sign) block.getState(), e.getItem());
-    else if (action.equals(Action.LEFT_CLICK_BLOCK) && isOwner)
-      leftClickAsOwner(player, (Sign) block.getState(), e.getItem());
+    if (action.equals(Action.RIGHT_CLICK_BLOCK) && !isOwner && isComplete)
+      rightClickAsBuyer(player, shop, sign, e.getItem());
+    else if (action.equals(Action.LEFT_CLICK_BLOCK) && !isOwner && isComplete)
+      leftClickAsBuyer(player, shop, sign, e.getItem());
+    else if (action.equals(Action.RIGHT_CLICK_BLOCK) && isOwner && isComplete)
+      rightClickAsOwnerShopComplete(player, shop, sign, e.getItem());
+    else if (action.equals(Action.LEFT_CLICK_BLOCK) && isOwner && isComplete)
+      leftClickAsOwnerShopComplete(player, shop, sign, e.getItem());
+    else if (action.equals(Action.RIGHT_CLICK_BLOCK) && isOwner && !isComplete)
+      rightClickAsOwnerShopIncomplete(player, shop, sign, e.getItem());
+    else if (action.equals(Action.LEFT_CLICK_BLOCK) && isOwner && !isComplete)
+      leftClickAsOwnerShopIncomplete(player, shop, sign, e.getItem());
   }
 
-  protected void leftClickAsBuyer(Player player, Sign sign, ItemStack item) {
+  protected void leftClickAsBuyer(Player player, Shop shop, Sign sign, ItemStack item) {
   }
 
-  protected void leftClickAsOwner(Player player, Sign sign, ItemStack item) {
+  protected void rightClickAsBuyer(Player player, Shop shop, Sign sign, ItemStack item) {
   }
 
-  protected void rightClickAsOwner(Player player, Sign sign, ItemStack item) {
+  protected void leftClickAsOwnerShopComplete(Player player, Shop shop, Sign sign, ItemStack item) {
   }
 
-  protected void rightClickAsBuyer(Player player, Sign sign, ItemStack item) {
+  protected void rightClickAsOwnerShopComplete(Player player, Shop shop, Sign sign, ItemStack item) {
+  }
+
+  protected void leftClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
+  }
+
+  protected void rightClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
   }
 }

@@ -1,7 +1,7 @@
 package bits.bits.team.data;
 
-import bits.bits.team.FileManager;
 import bits.bits.team.Main;
+import bits.bits.team.file.FileManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;

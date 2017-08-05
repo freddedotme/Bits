@@ -1,8 +1,8 @@
 package bits.bits.team.data;
 
-import bits.bits.team.FileManager;
 import bits.bits.team.Main;
 import bits.bits.team.Warp;
+import bits.bits.team.file.FileManager;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;

@@ -24,11 +24,10 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
 
-    getServer().getPluginManager().registerEvents(new EventShopBuy(dataShop), this);
-    getServer().getPluginManager().registerEvents(new EventShopDelete(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopBuy(this, dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopBreak(this, dataShop), this);
     getServer().getPluginManager().registerEvents(new EventShopSetup(this, dataShop), this);
-    getServer().getPluginManager().registerEvents(new EventShopStock(dataShop), this);
-    getServer().getPluginManager().registerEvents(new EventShopWithdraw(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopStockWithdraw(this, dataShop), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
     getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));

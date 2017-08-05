@@ -25,7 +25,7 @@ public class Data {
   public static String MSG_RANDOMSPAWN_LOOKING = "({attempts}/{maxAttempts}) Randomizing a new location.";
   public static String MSG_SHOP_SETUP = "Shop sign placed. Right-click with the correct item and amount to set the " +
     "selling object. Left-click with the correct item and amount to set the price.";
-  public static String MSG_SHOP_INCOMPLETE = "Shop is not completed yet.";
+  public static String MSG_SHOP_OWNED_BY = "This shop is owned by {player}";
   public static String BOOK_TITLE = "Bits 101";
   public static String BOOK_AUTHOR = "FredTheLion";
 

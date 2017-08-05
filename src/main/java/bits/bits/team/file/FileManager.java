@@ -1,4 +1,4 @@
-package bits.bits.team;
+package bits.bits.team.file;
 
 import bits.bits.team.data.Data;
 import org.bukkit.configuration.file.FileConfiguration;
