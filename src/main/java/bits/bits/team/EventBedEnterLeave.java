@@ -17,11 +17,13 @@ class EventBedEnterLeave implements Listener {
 
   @EventHandler
   void onPlayerBedEnter(PlayerBedEnterEvent e) {
+    World world = e.getPlayer().getWorld();
+    if (!(world.getEnvironment().equals(World.Environment.NORMAL))) return;
+
     data.incrementSleeping(1);
 
     int online = main.getServer().getOnlinePlayers().size();
-    World world = e.getPlayer().getWorld();
-    if (data.getSleeping() / online >= 0.5) world.setTime(0);
+    if ((double) data.getSleeping() / online >= 0.5) world.setTime(0);
 
     main.getServer().broadcastMessage(Data.MSG_SLEEPING.replace("{sleeping}", String.valueOf(data.getSleeping()))
       .replace("{online}", String.valueOf(online)));
