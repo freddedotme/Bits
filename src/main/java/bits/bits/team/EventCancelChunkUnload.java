@@ -4,10 +4,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
-class EventChunkUnload implements Listener {
+class EventCancelChunkUnload implements Listener {
   private DataWarp data;
 
-  EventChunkUnload(DataWarp data) {
+  EventCancelChunkUnload(DataWarp data) {
     this.data = data;
   }
 

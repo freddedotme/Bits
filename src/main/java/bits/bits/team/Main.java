@@ -13,12 +13,19 @@ public class Main extends JavaPlugin {
     DataBed dataBed = new DataBed(0);
     DataGuard dataGuard = new DataGuard(this);
     DataWarp dataWarp = new DataWarp(this);
+    DataShop dataShop = new DataShop();
 
     getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard), this);
     getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);
-    getServer().getPluginManager().registerEvents(new EventChunkUnload(dataWarp), this);
+    getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
+
+    getServer().getPluginManager().registerEvents(new EventShopBuy(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopDelete(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopSetup(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopStock(dataShop), this);
+    getServer().getPluginManager().registerEvents(new EventShopWithdraw(dataShop), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
     getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
