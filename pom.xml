@@ -20,7 +20,7 @@
         </repository>
         <repository>
             <id>votifier-repo</id>
-            <url>http://repo.howaner.de/com/vexsoftware/votifier/1.9/</url>
+            <url>http://repo.howaner.de/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -31,16 +31,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
-            <version>1.12-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.vexsoftware</groupId>
             <artifactId>votifier</artifactId>
             <version>1.9</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.bukkit</groupId>
+                    <artifactId>bukkit</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 </project>
