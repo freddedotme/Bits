@@ -1,15 +1,18 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataGuard;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandDelGuard implements CommandExecutor {
+public class CommandSetGuard implements CommandExecutor {
   private Main main;
   private DataGuard data;
 
-  CommandDelGuard(Main main, DataGuard data) {
+  public CommandSetGuard(Main main, DataGuard data) {
     this.main = main;
     this.data = data;
   }
@@ -28,10 +31,10 @@ public class CommandDelGuard implements CommandExecutor {
     if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
 
     boolean isGuard = data.isGuard(temporary.getUniqueId());
-    if (!isGuard) return main.invalidAction(player, Data.MSG_NOT_A_GUARD);
+    if (isGuard) return main.invalidAction(player, Data.MSG_ALREADY_GUARD);
 
-    data.removeGuard(temporary.getUniqueId());
+    data.addGuard(temporary.getUniqueId());
+    data.addPermissions(player);
     return true;
   }
 }
-

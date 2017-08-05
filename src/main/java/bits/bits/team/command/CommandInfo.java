@@ -1,5 +1,6 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.data.Data;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +12,7 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-class CommandInfo implements CommandExecutor {
+public class CommandInfo implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
     if (!(commandSender instanceof Player)) return false;

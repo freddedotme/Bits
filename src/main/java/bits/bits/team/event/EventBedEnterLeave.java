@@ -1,22 +1,25 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataBed;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerBedLeaveEvent;
 
-class EventBedEnterLeave implements Listener {
+public class EventBedEnterLeave implements Listener {
   private Main main;
   private DataBed data;
 
-  EventBedEnterLeave(Main main, DataBed data) {
+  public EventBedEnterLeave(Main main, DataBed data) {
     this.main = main;
     this.data = data;
   }
 
   @EventHandler
-  void onPlayerBedEnter(PlayerBedEnterEvent e) {
+  public void onPlayerBedEnter(PlayerBedEnterEvent e) {
     World world = e.getPlayer().getWorld();
     if (!(world.getEnvironment().equals(World.Environment.NORMAL))) return;
 
@@ -30,7 +33,7 @@ class EventBedEnterLeave implements Listener {
   }
 
   @EventHandler
-  void onPlayerBedLeave(PlayerBedLeaveEvent e) {
+  public void onPlayerBedLeave(PlayerBedLeaveEvent e) {
     data.decreaseSleeping(1);
   }
 }

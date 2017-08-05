@@ -1,5 +1,7 @@
-package bits.bits.team;
+package bits.bits.team.runnable;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -15,7 +17,7 @@ public class RunnableRandomTeleport extends BukkitRunnable {
   private Player player;
   private int attempts = 0;
 
-  RunnableRandomTeleport(Main main, Player player) {
+  public RunnableRandomTeleport(Main main, Player player) {
     this.main = main;
     this.player = player;
   }

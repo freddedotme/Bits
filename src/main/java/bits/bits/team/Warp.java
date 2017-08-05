@@ -2,12 +2,12 @@ package bits.bits.team;
 
 import org.bukkit.Location;
 
-class Warp {
+public class Warp {
   private String name;
   private Location location;
   private FileManager manager;
 
-  Warp(String name, Location location, FileManager manager) {
+  public Warp(String name, Location location, FileManager manager) {
     this.name = name;
     this.location = location;
     this.manager = manager;
@@ -23,15 +23,15 @@ class Warp {
     manager.write("warps." + name + ".world", world);
   }
 
-  String getName() {
+  public String getName() {
     return name;
   }
 
-  Location getLocation() {
+  public Location getLocation() {
     return location;
   }
 
-  void delete() {
+  public void delete() {
     manager.write("warps." + name, null);
   }
 }

@@ -1,13 +1,15 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.DataShop;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-class EventShopSetup extends EventShop {
+public class EventShopSetup extends EventShop {
 
-  EventShopSetup(Main main, DataShop data) {
+  public EventShopSetup(Main main, DataShop data) {
     super(main, data);
   }
 

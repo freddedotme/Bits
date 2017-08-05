@@ -1,5 +1,8 @@
 package bits.bits.team;
 
+import bits.bits.team.command.*;
+import bits.bits.team.data.*;
+import bits.bits.team.event.*;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -38,12 +41,12 @@ public class Main extends JavaPlugin {
     getCommand("info").setExecutor(new CommandInfo());
   }
 
-  boolean invalidAction(Player player, String message) {
+  public boolean invalidAction(Player player, String message) {
     player.sendMessage(message);
     return false;
   }
 
-  void teleport(final Player player, final Location location) {
+  public void teleport(final Player player, final Location location) {
     location.getChunk().load(true);
     player.sendMessage(Data.MSG_TELEPORTING);
     new BukkitRunnable() {

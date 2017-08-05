@@ -1,5 +1,6 @@
 package bits.bits.team;
 
+import bits.bits.team.data.Data;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -7,12 +8,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
-class FileManager {
+public class FileManager {
   private String path;
   private FileConfiguration configuration;
   private File file;
 
-  FileManager(String path) {
+  public FileManager(String path) {
     this.path = path;
     init();
   }
@@ -36,7 +37,7 @@ class FileManager {
     configuration = YamlConfiguration.loadConfiguration(file);
   }
 
-  void write(String path, Object value) {
+  public void write(String path, Object value) {
     configuration.set(path, value);
     try {
       configuration.save(file);
@@ -45,11 +46,11 @@ class FileManager {
     }
   }
 
-  Object read(String path) {
+  public Object read(String path) {
     return configuration.get(path);
   }
 
-  Set<String> getKeys(String path) {
+  public Set<String> getKeys(String path) {
     if (configuration.getConfigurationSection(path) == null) return null;
     return configuration.getConfigurationSection(path).getKeys(false);
   }

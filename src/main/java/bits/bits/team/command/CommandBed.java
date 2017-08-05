@@ -1,5 +1,7 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,7 +11,7 @@ import org.bukkit.entity.Player;
 public class CommandBed implements CommandExecutor {
   private Main main;
 
-  CommandBed(Main main) {
+  public CommandBed(Main main) {
     this.main = main;
   }
 

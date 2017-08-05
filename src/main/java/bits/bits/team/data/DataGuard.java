@@ -1,5 +1,7 @@
-package bits.bits.team;
+package bits.bits.team.data;
 
+import bits.bits.team.FileManager;
+import bits.bits.team.Main;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
@@ -8,13 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-class DataGuard {
+public class DataGuard {
   private Main main;
   private FileManager file;
   private List<UUID> guards;
   private PermissionAttachment permission;
 
-  DataGuard(Main main) {
+  public DataGuard(Main main) {
     this.main = main;
 
     file = new FileManager("guards.yml");
@@ -32,24 +34,24 @@ class DataGuard {
     }
   }
 
-  void addGuard(UUID uuid) {
+  public void addGuard(UUID uuid) {
     guards.add(uuid);
     file.write("guards." + uuid.toString() + ".active", true);
   }
 
-  void removeGuard(UUID uuid) {
+  public void removeGuard(UUID uuid) {
     file.write("guards." + uuid.toString(), null);
     guards.remove(uuid);
   }
 
-  boolean isGuard(UUID uuid) {
+  public boolean isGuard(UUID uuid) {
     for (UUID guard : guards) {
       if (guard.equals(uuid)) return true;
     }
     return false;
   }
 
-  void addPermissions(Player player) {
+  public void addPermissions(Player player) {
     permission = player.addAttachment(main);
     permission.setPermission("minecraft.command.kick", true);
     permission.setPermission("minecraft.command.ban", true);
@@ -58,11 +60,11 @@ class DataGuard {
     permission.setPermission("coreprotect.inspect", true);
   }
 
-  void removePermissions(Player player) {
+  public void removePermissions(Player player) {
     player.removeAttachment(permission);
   }
 
-  void printGuards(Player player) {
+  public void printGuards(Player player) {
     player.sendMessage("Guards:");
     for (UUID guard : guards) {
       OfflinePlayer offlinePlayer = main.getServer().getOfflinePlayer(guard);

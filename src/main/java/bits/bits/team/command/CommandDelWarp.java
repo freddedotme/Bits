@@ -1,15 +1,19 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.Main;
+import bits.bits.team.Warp;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataWarp;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandSetGuard implements CommandExecutor {
+public class CommandDelWarp implements CommandExecutor {
   private Main main;
-  private DataGuard data;
+  private DataWarp data;
 
-  CommandSetGuard(Main main, DataGuard data) {
+  public CommandDelWarp(Main main, DataWarp data) {
     this.main = main;
     this.data = data;
   }
@@ -24,14 +28,10 @@ public class CommandSetGuard implements CommandExecutor {
     if (strings.length != 1) return main.invalidAction(player, Data.MSG_ARGUMENTS);
     String name = strings[0];
 
-    Player temporary = main.getServer().getPlayer(name);
-    if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
+    Warp warp = data.getWarp(name);
+    if (warp == null) return main.invalidAction(player, Data.MSG_WARP_NOT_FOUND);
 
-    boolean isGuard = data.isGuard(temporary.getUniqueId());
-    if (isGuard) return main.invalidAction(player, Data.MSG_ALREADY_GUARD);
-
-    data.addGuard(temporary.getUniqueId());
-    data.addPermissions(player);
+    data.deleteWarp(warp);
     return true;
   }
 }

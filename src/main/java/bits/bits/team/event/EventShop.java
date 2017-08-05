@@ -1,5 +1,8 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataShop;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

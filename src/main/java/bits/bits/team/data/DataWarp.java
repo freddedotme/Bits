@@ -1,5 +1,8 @@
-package bits.bits.team;
+package bits.bits.team.data;
 
+import bits.bits.team.FileManager;
+import bits.bits.team.Main;
+import bits.bits.team.Warp;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -8,12 +11,12 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
-class DataWarp {
+public class DataWarp {
   private FileManager file;
   private Main main;
   private List<Warp> warps;
 
-  DataWarp(Main main) {
+  public DataWarp(Main main) {
     this.main = main;
 
     file = new FileManager("warps.yml");
@@ -37,31 +40,31 @@ class DataWarp {
     }
   }
 
-  void addWarp(String name, Location location) {
+  public void addWarp(String name, Location location) {
     Warp warp = new Warp(name, location, file);
     warps.add(warp);
   }
 
-  void deleteWarp(Warp warp) {
+  public void deleteWarp(Warp warp) {
     warp.delete();
     warps.remove(warp);
   }
 
-  Warp getWarp(String name) {
+  public Warp getWarp(String name) {
     for (Warp warp : warps) {
       if (warp.getName().equalsIgnoreCase(name)) return warp;
     }
     return null;
   }
 
-  boolean isWarpInsideChunk(Chunk chunk) {
+  public boolean isWarpInsideChunk(Chunk chunk) {
     for (Warp warp : warps) {
       if (warp.getLocation().getChunk().equals(chunk)) return true;
     }
     return false;
   }
 
-  void printWarps(Player player) {
+  public void printWarps(Player player) {
     player.sendMessage("Warps:");
     for (Warp warp : warps) {
       player.sendMessage(warp.getName());

@@ -1,5 +1,7 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 import org.bukkit.entity.Player;
@@ -16,7 +18,7 @@ public class EventVote implements Listener {
   private Main main;
   private List<PotionEffectType> effects;
 
-  EventVote(Main main) {
+  public EventVote(Main main) {
     this.main = main;
 
     effects = new ArrayList<>();

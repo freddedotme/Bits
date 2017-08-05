@@ -1,14 +1,15 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.data.DataGuard;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-class CommandGuards implements CommandExecutor {
+public class CommandGuards implements CommandExecutor {
   private DataGuard data;
 
-  CommandGuards(DataGuard data) {
+  public CommandGuards(DataGuard data) {
     this.data = data;
   }
 

@@ -1,14 +1,15 @@
-package bits.bits.team;
+package bits.bits.team.command;
 
+import bits.bits.team.data.DataWarp;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-class CommandWarps implements CommandExecutor {
+public class CommandWarps implements CommandExecutor {
   private DataWarp data;
 
-  CommandWarps(DataWarp data) {
+  public CommandWarps(DataWarp data) {
     this.data = data;
   }
 

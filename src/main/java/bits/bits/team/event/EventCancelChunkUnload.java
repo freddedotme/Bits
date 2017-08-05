@@ -1,18 +1,19 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.data.DataWarp;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkUnloadEvent;
 
-class EventCancelChunkUnload implements Listener {
+public class EventCancelChunkUnload implements Listener {
   private DataWarp data;
 
-  EventCancelChunkUnload(DataWarp data) {
+  public EventCancelChunkUnload(DataWarp data) {
     this.data = data;
   }
 
   @EventHandler
-  void onChunkUnload(ChunkUnloadEvent e) {
+  public void onChunkUnload(ChunkUnloadEvent e) {
     e.setCancelled(data.isWarpInsideChunk(e.getChunk()));
   }
 }

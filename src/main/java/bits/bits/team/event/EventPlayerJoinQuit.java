@@ -1,5 +1,9 @@
-package bits.bits.team;
+package bits.bits.team.event;
 
+import bits.bits.team.Main;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataGuard;
+import bits.bits.team.runnable.RunnableRandomTeleport;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,11 +14,11 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
-class EventPlayerJoinQuit implements Listener {
+public class EventPlayerJoinQuit implements Listener {
   private Main main;
   private DataGuard data;
 
-  EventPlayerJoinQuit(Main main, DataGuard data) {
+  public EventPlayerJoinQuit(Main main, DataGuard data) {
     this.main = main;
     this.data = data;
   }
