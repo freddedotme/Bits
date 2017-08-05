@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class EventVotifier implements Listener {
+public class EventVote implements Listener {
   private Main main;
   private List<PotionEffectType> effects;
 
-  EventVotifier(Main main) {
+  EventVote(Main main) {
     this.main = main;
 
     effects = new ArrayList<>();

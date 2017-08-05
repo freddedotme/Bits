@@ -7,7 +7,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.MerchantInventory;
 import org.bukkit.inventory.meta.BookMeta;
 
-class EventInventoryClick implements Listener {
+class EventNPCTrade implements Listener {
   @EventHandler
   void onInventoryClick(InventoryClickEvent e) {
     if (!(e.getInventory() instanceof MerchantInventory)) return;

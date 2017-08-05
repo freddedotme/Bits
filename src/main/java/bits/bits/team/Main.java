@@ -17,8 +17,8 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard), this);
     getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);
     getServer().getPluginManager().registerEvents(new EventChunkUnload(dataWarp), this);
-    getServer().getPluginManager().registerEvents(new EventSignChange(), this);
-    getServer().getPluginManager().registerEvents(new EventVotifier(this), this);
+    getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
+    getServer().getPluginManager().registerEvents(new EventVote(this), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
     getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
