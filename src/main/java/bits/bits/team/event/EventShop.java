@@ -3,7 +3,7 @@ package bits.bits.team.event;
 import bits.bits.team.Main;
 import bits.bits.team.Shop;
 import bits.bits.team.data.DataShop;
-import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -23,12 +23,12 @@ abstract class EventShop implements Listener {
 
   @EventHandler
   public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
-    Block block = e.getClickedBlock();
+    BlockState block = e.getClickedBlock().getState();
 
     main.getLogger().info("RUNS0");
 
     if (!(block instanceof Sign)) return;
-    Sign sign = (Sign) block.getState();
+    Sign sign = (Sign) block;
 
     Shop shop = data.getShopBySign(sign);
     if (shop == null) return;

@@ -73,8 +73,8 @@ public class Shop {
 
   private void updateSign() {
     sign.setLine(0, "[Shop]");
-    sign.setLine(1, product.getTypeId() + ":" + product.getAmount());
-    sign.setLine(2, price.getTypeId() + ":" + price.getAmount());
+    if (product != null) sign.setLine(1, product.getTypeId() + ":" + product.getAmount());
+    if (price != null) sign.setLine(2, price.getTypeId() + ":" + price.getAmount());
     sign.setLine(3, String.valueOf(stock));
     sign.update(true);
   }

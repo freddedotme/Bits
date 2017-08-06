@@ -4,7 +4,7 @@ import bits.bits.team.Main;
 import bits.bits.team.Shop;
 import bits.bits.team.data.Data;
 import bits.bits.team.data.DataShop;
-import org.bukkit.Material;
+import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +19,7 @@ public class EventShopSetup extends EventShop {
   }
 
   @Override
+  @EventHandler
   public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
     super.onPlayerInteractEntityEvent(e);
   }
@@ -31,6 +32,8 @@ public class EventShopSetup extends EventShop {
       && !e.getLine(3).isEmpty())
       return;
 
+    e.setLine(0, ChatColor.translateAlternateColorCodes('&', "[&aShop&r]"));
+
     Player player = e.getPlayer();
     player.sendMessage(Data.MSG_SHOP_SETUP);
 
@@ -42,9 +45,7 @@ public class EventShopSetup extends EventShop {
   protected void rightClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
     super.rightClickAsOwnerShopIncomplete(player, shop, sign, item);
 
-    main.getLogger().info("runs");
-
-    if (item.getType().equals(Material.AIR)) return;
+    if (item == null) return;
 
     shop.setProduct(item);
     shop.setStock(item.getAmount());
@@ -56,7 +57,7 @@ public class EventShopSetup extends EventShop {
   protected void leftClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
     super.leftClickAsOwnerShopIncomplete(player, shop, sign, item);
 
-    if (item.getType().equals(Material.AIR)) return;
+    if (item == null) return;
 
     shop.setPrice(item);
     shop.setIncome(item.getAmount());
