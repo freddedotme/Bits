@@ -11,12 +11,18 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class EventShopBreak extends EventShop {
 
   public EventShopBreak(Main main, DataShop data) {
     super(main, data);
+  }
+
+  @Override
+  public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
+    super.onPlayerInteractEntityEvent(e);
   }
 
   @EventHandler

@@ -5,12 +5,18 @@ import bits.bits.team.Shop;
 import bits.bits.team.data.DataShop;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class EventShopBuy extends EventShop {
 
   public EventShopBuy(Main main, DataShop data) {
     super(main, data);
+  }
+
+  @Override
+  public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
+    super.onPlayerInteractEntityEvent(e);
   }
 
   @Override

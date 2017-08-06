@@ -9,12 +9,18 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class EventShopSetup extends EventShop {
 
   public EventShopSetup(Main main, DataShop data) {
     super(main, data);
+  }
+
+  @Override
+  public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
+    super.onPlayerInteractEntityEvent(e);
   }
 
   @EventHandler
@@ -27,11 +33,16 @@ public class EventShopSetup extends EventShop {
 
     Player player = e.getPlayer();
     player.sendMessage(Data.MSG_SHOP_SETUP);
+
+    Shop shop = new Shop(player.getUniqueId(), (Sign) e.getBlock().getState(), null, null, 0, 0);
+    data.addShop(shop);
   }
 
   @Override
   protected void rightClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
     super.rightClickAsOwnerShopIncomplete(player, shop, sign, item);
+
+    main.getLogger().info("runs");
 
     if (item.getType().equals(Material.AIR)) return;
 

@@ -22,8 +22,10 @@ abstract class EventShop implements Listener {
   }
 
   @EventHandler
-  private void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
+  public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
     Block block = e.getClickedBlock();
+
+    main.getLogger().info("RUNS0");
 
     if (!(block instanceof Sign)) return;
     Sign sign = (Sign) block.getState();
@@ -36,6 +38,8 @@ abstract class EventShop implements Listener {
 
     boolean isComplete = data.isComplete(shop);
     boolean isOwner = data.isOwner(player.getUniqueId());
+
+    main.getLogger().info("RUNS");
 
     if (action.equals(Action.RIGHT_CLICK_BLOCK) && !isOwner && isComplete)
       rightClickAsBuyer(player, shop, sign, e.getItem());
