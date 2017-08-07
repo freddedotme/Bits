@@ -17,8 +17,9 @@ public class Main extends JavaPlugin {
     DataGuard dataGuard = new DataGuard(this);
     DataWarp dataWarp = new DataWarp(this);
     DataShop dataShop = new DataShop();
+    DataDonor dataDonor = new DataDonor(this);
 
-    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard), this);
+    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard, dataDonor), this);
     getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);
     getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
@@ -37,6 +38,7 @@ public class Main extends JavaPlugin {
     getCommand("guards").setExecutor(new CommandGuards(dataGuard));
     getCommand("setguard").setExecutor(new CommandSetGuard(this, dataGuard));
     getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard));
+    getCommand("donors").setExecutor(new CommandDonors(dataDonor));
     getCommand("info").setExecutor(new CommandInfo());
   }
 
@@ -54,6 +56,7 @@ public class Main extends JavaPlugin {
         player.teleport(location);
         player.sendMessage(Data.MSG_TELEPORTED);
       }
-    }.runTaskLater(this, Data.TELEPORT_WARMUP);
+    }.runTaskLater(this, (player.hasPermission(Data.PERM_BYPASSCOOLDOWN) ? Data.TELEPORT_WARMUP_DONOR : Data
+      .TELEPORT_WARMUP));
   }
 }

@@ -29,7 +29,11 @@ public class Data {
   public static String BOOK_TITLE = "Bits 101";
   public static String BOOK_AUTHOR = "FredTheLion";
 
+  public static String PERM_COLOREDNAME = "bits.coloredname";
+  public static String PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";
+
   public static int TELEPORT_WARMUP = 100;
+  public static int TELEPORT_WARMUP_DONOR = 50;
   public static int EFFECT_DURATION = 20 * 180;
   public static int WB_MARGIN = 250;
   public static int RANDOMSPAWN_ATTEMPTS = 20;
