@@ -1,0 +1,33 @@
+name: Bits
+version: 1.5
+author: freddedotme
+website: https://bits.team
+main: bits.bits.team.Main
+database: false
+depends: [Votifier]
+
+commands:
+  bed:
+    description: Teleport to your bed.
+  delwarp:
+    description: Staff only.
+  setwarp:
+    description: Staff only.
+  setguard:
+    description: Staff only.
+  delguard:
+    description: Staff only.
+  guards:
+    description: View all guards.
+  donors:
+    description: View all donors.
+  setdonor:
+    description: Staff only.
+  deldonor:
+    description: Staff only.
+  warp:
+    description: Warp to a location.
+  warps:
+    description: View all warps.
+  info:
+    description: Gives you a book about Bits.
