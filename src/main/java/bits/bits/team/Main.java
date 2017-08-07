@@ -39,6 +39,7 @@ public class Main extends JavaPlugin {
     getCommand("setguard").setExecutor(new CommandSetGuard(this, dataGuard));
     getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard));
     getCommand("donors").setExecutor(new CommandDonors(dataDonor));
+    getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataDonor));
     getCommand("info").setExecutor(new CommandInfo());
   }
 

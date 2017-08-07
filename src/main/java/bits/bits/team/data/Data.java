@@ -15,7 +15,9 @@ public class Data {
   public static String MSG_PERMISSION = "Not enough permissions.";
   public static String MSG_PLAYER_NOT_FOUND = "Player not found.";
   public static String MSG_ALREADY_GUARD = "Already a guard.";
+  public static String MSG_ALREADY_DONOR = "Already a donor.";
   public static String MSG_NOT_A_GUARD = "Not a guard.";
+  public static String MSG_NOT_A_DONOR = "Not a donor.";
   public static String MSG_VOTING = "[Server] {player} voted for us over at PMC. A random effect has been " +
     "given to" +
     " all " +
