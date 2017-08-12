@@ -1,5 +1,5 @@
 name: Bits
-version: 1.5
+version: 1.7
 author: freddedotme
 website: https://bits.team
 main: bits.bits.team.Main
@@ -31,3 +31,11 @@ commands:
     description: View all warps.
   info:
     description: Gives you a book about Bits.
+  colorname:
+    description: Set a colored name.
+  vote:
+    description: View the vote address.
+  hat:
+    description: Set the item you currently hold as your hat.
+  donate:
+    description: View the donate address.

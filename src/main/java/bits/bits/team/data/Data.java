@@ -18,7 +18,7 @@ public class Data {
   public static String MSG_ALREADY_DONOR = "Already a donor.";
   public static String MSG_NOT_A_GUARD = "Not a guard.";
   public static String MSG_NOT_A_DONOR = "Not a donor.";
-  public static String MSG_VOTING = "[Server] {player} voted for us over at PMC. A random effect has been " +
+  public static String MSG_VOTING = "[Server] {player} voted for us over at {service}. A random effect has been " +
     "given to" +
     " all " +
     "players. Thank you {player}!";
@@ -30,8 +30,11 @@ public class Data {
   public static String MSG_SHOP_OWNED_BY = "This shop is owned by {player}";
   public static String BOOK_TITLE = "Bits 101";
   public static String BOOK_AUTHOR = "FredTheLion";
+  public static String MSG_INVALID_COLOR = "Color not found.";
+  public static String MSG_VOTE = "Vote URL: www.bits.team/vote";
+  public static String MSG_DONATE = "Donate URL: www.bits.team/donate";
 
-  public static String PERM_COLOREDNAME = "bits.coloredname";
+  public static String PERM_COLOREDNAME = "bits.formatname";
   public static String PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";
 
   public static int TELEPORT_WARMUP = 100;

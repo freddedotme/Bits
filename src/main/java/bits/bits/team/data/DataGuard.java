@@ -43,7 +43,7 @@ public class DataGuard {
   }
 
   public boolean isGuard(UUID uuid) {
-    return (guards.get(uuid) == null);
+    return (guards.containsKey(uuid));
   }
 
   public void addPermissions(Player player) {
@@ -53,12 +53,14 @@ public class DataGuard {
     permission.setPermission("minecraft.command.pardon", true);
     permission.setPermission("coreprotect.lookup", true);
     permission.setPermission("coreprotect.inspect", true);
+    permission.setPermission(Data.PERM_COLOREDNAME, true);
+    permission.setPermission(Data.PERM_BYPASSCOOLDOWN, true);
     guards.put(player.getUniqueId(), permission);
   }
 
   public void removePermissions(Player player) {
     UUID uuid = player.getUniqueId();
-    if (guards.get(uuid) == null) return;
+    if (!guards.containsKey(uuid)) return;
 
     player.removeAttachment(guards.get(uuid));
   }

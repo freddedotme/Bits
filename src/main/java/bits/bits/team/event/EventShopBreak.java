@@ -11,7 +11,6 @@ import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class EventShopBreak extends EventShop {
@@ -20,14 +19,9 @@ public class EventShopBreak extends EventShop {
     super(main, data);
   }
 
-  @Override
-  public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
-    super.onPlayerInteractEntityEvent(e);
-  }
-
   @EventHandler
   public void onBlockBreak(BlockBreakEvent e) {
-    if (!(e.getBlock() instanceof Sign)) return;
+    if (!(e.getBlock().getState() instanceof Sign)) return;
     Sign sign = (Sign) e.getBlock().getState();
 
     Shop shop = data.getShopBySign(sign);
@@ -39,14 +33,24 @@ public class EventShopBreak extends EventShop {
       World world = player.getWorld();
       Location location = player.getLocation();
 
-      ItemStack product = shop.getProduct();
-      ItemStack price = shop.getPrice();
+      ItemStack product;
+      ItemStack price;
 
-      for (int i = 0; i < shop.getStock() % product.getAmount(); i++)
-        world.dropItem(location, product);
+      if (shop.getProduct() != null && shop.getStock() > 0) {
+        product = shop.getProduct();
 
-      for (int i = 0; i < shop.getIncome() % price.getAmount(); i++)
-        world.dropItem(location, price);
+        int limit = shop.getStock() / product.getAmount();
+        for (int i = 0; i < limit; i++)
+          world.dropItem(location, product);
+      }
+
+      if (shop.getPrice() != null && shop.getIncome() > 0) {
+        price = shop.getPrice();
+
+        int limit = shop.getIncome() / price.getAmount();
+        for (int i = 0; i < limit; i++)
+          world.dropItem(location, price);
+      }
 
       data.deleteShop(shop);
     }

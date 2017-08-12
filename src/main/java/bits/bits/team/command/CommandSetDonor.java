@@ -34,7 +34,7 @@ public class CommandSetDonor implements CommandExecutor {
     if (isDonor) return main.invalidAction(player, Data.MSG_ALREADY_DONOR);
 
     data.addDonor(temporary.getUniqueId());
-    data.addPermissions(player);
+    data.addPermissions(temporary);
     return true;
   }
 }

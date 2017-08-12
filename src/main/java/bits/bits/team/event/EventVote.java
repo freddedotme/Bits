@@ -27,13 +27,19 @@ public class EventVote implements Listener {
     effects.add(PotionEffectType.HEALTH_BOOST);
     effects.add(PotionEffectType.DAMAGE_RESISTANCE);
     effects.add(PotionEffectType.LUCK);
+    effects.add(PotionEffectType.INCREASE_DAMAGE);
+    effects.add(PotionEffectType.SPEED);
+    effects.add(PotionEffectType.JUMP);
+    effects.add(PotionEffectType.REGENERATION);
+    effects.add(PotionEffectType.WATER_BREATHING);
   }
 
   @EventHandler
   public void onVotifier(VotifierEvent e) {
     Vote vote = e.getVote();
     String name = vote.getUsername();
-    main.getServer().broadcastMessage(Data.MSG_VOTING.replace("{player}", name));
+    String service = vote.getServiceName();
+    main.getServer().broadcastMessage(Data.MSG_VOTING.replace("{player}", name).replace("{service}", service));
     main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "AdjustBonusClaimBlocks " + name + " 250");
 
     int random = ThreadLocalRandom.current().nextInt(0, effects.size() - 1);

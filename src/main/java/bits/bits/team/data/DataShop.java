@@ -1,5 +1,6 @@
 package bits.bits.team.data;
 
+import bits.bits.team.Main;
 import bits.bits.team.Shop;
 import org.bukkit.block.Sign;
 
@@ -8,9 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 public class DataShop {
+  private Main main;
   private List<Shop> shops;
 
-  public DataShop() {
+  public DataShop(Main main) {
     shops = new ArrayList<>();
   }
 

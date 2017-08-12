@@ -26,26 +26,23 @@ public class EventShopSetup extends EventShop {
 
   @EventHandler
   private void onSignChangeEvent(SignChangeEvent e) {
-    if (!e.getLine(0).equals("[Shop]")
-      && !e.getLine(1).isEmpty()
-      && !e.getLine(2).isEmpty()
-      && !e.getLine(3).isEmpty())
-      return;
+    if (!e.getLine(0).equals("[Shop]")) return;
 
     e.setLine(0, ChatColor.translateAlternateColorCodes('&', "[&aShop&r]"));
 
     Player player = e.getPlayer();
     player.sendMessage(Data.MSG_SHOP_SETUP);
 
-    Shop shop = new Shop(player.getUniqueId(), (Sign) e.getBlock().getState(), null, null, 0, 0);
+    Shop shop = new Shop(player.getUniqueId(), (Sign) e.getBlock().getState(), null, null, 0, 0, true);
     data.addShop(shop);
   }
 
   @Override
   protected void rightClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
+    main.getLogger().info("rightClickAsOwnerShopIncomplete");
     super.rightClickAsOwnerShopIncomplete(player, shop, sign, item);
 
-    if (item == null) return;
+    if (item == null || shop.getProduct() != null) return;
 
     shop.setProduct(item);
     shop.setStock(item.getAmount());
@@ -55,13 +52,12 @@ public class EventShopSetup extends EventShop {
 
   @Override
   protected void leftClickAsOwnerShopIncomplete(Player player, Shop shop, Sign sign, ItemStack item) {
+    main.getLogger().info("leftClickAsOwnerShopIncomplete");
     super.leftClickAsOwnerShopIncomplete(player, shop, sign, item);
 
-    if (item == null) return;
+    if (item == null || shop.getPrice() != null) return;
 
     shop.setPrice(item);
     shop.setIncome(item.getAmount());
-
-    player.getInventory().removeItem(item);
   }
 }

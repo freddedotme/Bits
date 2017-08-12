@@ -34,7 +34,7 @@ public class CommandSetGuard implements CommandExecutor {
     if (isGuard) return main.invalidAction(player, Data.MSG_ALREADY_GUARD);
 
     data.addGuard(temporary.getUniqueId());
-    data.addPermissions(player);
+    data.addPermissions(temporary);
     return true;
   }
 }

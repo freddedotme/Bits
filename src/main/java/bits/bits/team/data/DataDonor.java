@@ -43,7 +43,7 @@ public class DataDonor {
   }
 
   public boolean isDonor(UUID uuid) {
-    return (donors.get(uuid) == null);
+    return (donors.containsKey(uuid));
   }
 
   public void addPermissions(Player player) {
@@ -55,13 +55,15 @@ public class DataDonor {
 
   public void removePermissions(Player player) {
     UUID uuid = player.getUniqueId();
-    if (donors.get(uuid) == null) return;
+    if (!donors.containsKey(uuid)) return;
 
     player.removeAttachment(donors.get(uuid));
   }
 
   public void printDonors(Player player) {
-    player.sendMessage("Donors (thanks a lot):");
+    player.sendMessage("As a donor you can color your name as well as your teleport cooldown is shorten to 2.5 " +
+      "seconds (5 seconds normally).");
+    player.sendMessage("Donors:");
     for (UUID donor : donors.keySet()) {
       OfflinePlayer offlinePlayer = main.getServer().getOfflinePlayer(donor);
       player.sendMessage(offlinePlayer.getName());

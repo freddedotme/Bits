@@ -1,5 +1,6 @@
 package bits.bits.team;
 
+import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 import org.bukkit.inventory.ItemStack;
 
@@ -10,14 +11,16 @@ public class Shop {
   private Sign sign;
   private ItemStack product, price;
   private int stock, income;
+  private boolean init;
 
-  public Shop(UUID owner, Sign sign, ItemStack product, ItemStack price, int stock, int income) {
+  public Shop(UUID owner, Sign sign, ItemStack product, ItemStack price, int stock, int income, boolean init) {
     this.owner = owner;
     this.sign = sign;
     this.product = product;
     this.price = price;
     this.stock = stock;
     this.income = income;
+    this.init = init;
   }
 
   public UUID getOwner() {
@@ -69,13 +72,24 @@ public class Shop {
 
   public void setIncome(int income) {
     this.income = income;
+    updateSign();
+  }
+
+  public boolean isInit() {
+    return init;
+  }
+
+  public void setInit(boolean init) {
+    this.init = init;
   }
 
   private void updateSign() {
-    sign.setLine(0, "[Shop]");
-    if (product != null) sign.setLine(1, product.getTypeId() + ":" + product.getAmount());
-    if (price != null) sign.setLine(2, price.getTypeId() + ":" + price.getAmount());
-    sign.setLine(3, String.valueOf(stock));
+    sign.setLine(0, ChatColor.translateAlternateColorCodes('&', "[&aShop&r]"));
+    if (product != null)
+      sign.setLine(1, product.getTypeId() + ":" + product.getData().getData() + ":" + product.getAmount());
+    if (price != null)
+      sign.setLine(2, price.getTypeId() + ":" + price.getData().getData() + ":" + price.getAmount());
+    sign.setLine(3, String.valueOf(stock) + ":" + String.valueOf(income));
     sign.update(true);
   }
 }

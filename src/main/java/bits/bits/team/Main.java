@@ -16,7 +16,7 @@ public class Main extends JavaPlugin {
     DataBed dataBed = new DataBed(0);
     DataGuard dataGuard = new DataGuard(this);
     DataWarp dataWarp = new DataWarp(this);
-    DataShop dataShop = new DataShop();
+    DataShop dataShop = new DataShop(this);
     DataDonor dataDonor = new DataDonor(this);
 
     getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard, dataDonor), this);
@@ -41,6 +41,10 @@ public class Main extends JavaPlugin {
     getCommand("donors").setExecutor(new CommandDonors(dataDonor));
     getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataDonor));
     getCommand("info").setExecutor(new CommandInfo());
+    getCommand("colorname").setExecutor(new CommandColorName(this));
+    getCommand("vote").setExecutor(new CommandVote());
+    getCommand("hat").setExecutor(new CommandHat());
+    getCommand("donate").setExecutor(new CommandDonate());
   }
 
   public boolean invalidAction(Player player, String message) {

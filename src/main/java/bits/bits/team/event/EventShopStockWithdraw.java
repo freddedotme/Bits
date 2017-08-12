@@ -5,6 +5,7 @@ import bits.bits.team.Shop;
 import bits.bits.team.data.DataShop;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -14,6 +15,7 @@ public class EventShopStockWithdraw extends EventShop {
     super(main, data);
   }
 
+  @EventHandler
   @Override
   public void onPlayerInteractEntityEvent(PlayerInteractEvent e) {
     super.onPlayerInteractEntityEvent(e);
@@ -21,10 +23,16 @@ public class EventShopStockWithdraw extends EventShop {
 
   @Override
   protected void rightClickAsOwnerShopComplete(Player player, Shop shop, Sign sign, ItemStack item) {
+    if (shop.isInit()) {
+      shop.setInit(false);
+      return;
+    }
+
+    main.getLogger().info("rightClickAsOwnerShopComplete");
     super.rightClickAsOwnerShopComplete(player, shop, sign, item);
 
     ItemStack product = shop.getProduct();
-    if (!shop.getProduct().isSimilar(item) && product.getAmount() > item.getAmount()) return;
+    if (!shop.getProduct().isSimilar(item) || product.getAmount() > item.getAmount()) return;
 
     shop.setStock(shop.getStock() + product.getAmount());
     player.getInventory().removeItem(product);
@@ -32,6 +40,12 @@ public class EventShopStockWithdraw extends EventShop {
 
   @Override
   protected void leftClickAsOwnerShopComplete(Player player, Shop shop, Sign sign, ItemStack item) {
+    if (shop.isInit()) {
+      shop.setInit(false);
+      return;
+    }
+
+    main.getLogger().info("leftClickAsOwnerShopComplete");
     super.leftClickAsOwnerShopComplete(player, shop, sign, item);
 
     ItemStack price = shop.getPrice();
