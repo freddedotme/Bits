@@ -18,10 +18,7 @@ public class Data {
   public static String MSG_ALREADY_DONOR = "Already a donor.";
   public static String MSG_NOT_A_GUARD = "Not a guard.";
   public static String MSG_NOT_A_DONOR = "Not a donor.";
-  public static String MSG_VOTING = "[Server] {player} voted for us over at {service}. A random effect has been " +
-    "given to" +
-    " all " +
-    "players. Thank you {player}!";
+  public static String MSG_VOTING = "[Server] {player} voted at {service}. Do /vote to vote.";
   public static String MSG_SLEEPING = "[Server] {sleeping}/{online} player(s) sleeping.";
   public static String MSG_RANDOMSPAWN = "Hold on. We're finding a new random spawn location for you.";
   public static String MSG_RANDOMSPAWN_LOOKING = "({attempts}/{maxAttempts}) Randomizing a new location.";

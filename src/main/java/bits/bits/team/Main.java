@@ -34,12 +34,14 @@ public class Main extends JavaPlugin {
     getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard));
     getCommand("donors").setExecutor(new CommandDonors(dataDonor));
     getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataDonor));
+    getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataDonor));
     getCommand("info").setExecutor(new CommandInfo());
     getCommand("colorname").setExecutor(new CommandColorName(this));
     getCommand("vote").setExecutor(new CommandVote());
     getCommand("hat").setExecutor(new CommandHat());
     getCommand("donate").setExecutor(new CommandDonate());
     getCommand("seen").setExecutor(new CommandSeen(this));
+    getCommand("joined").setExecutor(new CommandJoined(this));
   }
 
   public boolean invalidAction(Player player, String message) {

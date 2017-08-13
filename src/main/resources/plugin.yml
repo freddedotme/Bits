@@ -1,7 +1,7 @@
 name: Bits
 version: 1.8
 author: freddedotme
-website: https://bits.team
+website: https://www.bits.team
 main: bits.bits.team.Main
 database: false
 depends: [Votifier]
@@ -18,7 +18,7 @@ commands:
   setwarp:
     description: Staff only.
     aliases: sw
-    usage: "/sw <player"
+    usage: "/sw <player>"
   setguard:
     description: Staff only.
     aliases: sg
@@ -26,7 +26,7 @@ commands:
   delguard:
     description: Staff only.
     aliases: dg
-    usage: "/dg <player"
+    usage: "/dg <player>"
   guards:
     description: View all guards.
     aliases: gs
@@ -75,3 +75,7 @@ commands:
     description: View when a player last played.
     aliases: s
     usage: "/s <player>"
+  joined:
+    description: View when a player first played.
+    aliases: j
+    usage: "/j <player>"

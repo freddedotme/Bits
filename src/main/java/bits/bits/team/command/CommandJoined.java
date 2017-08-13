@@ -15,10 +15,10 @@ import java.util.Date;
  * Author: freddedotme
  * Created: 2017-08-13
  */
-public class CommandSeen implements CommandExecutor {
+public class CommandJoined implements CommandExecutor {
   private Main main;
 
-  public CommandSeen(Main main) {
+  public CommandJoined(Main main) {
     this.main = main;
   }
 
@@ -34,7 +34,7 @@ public class CommandSeen implements CommandExecutor {
     if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
 
     Calendar lastSeen = Calendar.getInstance();
-    lastSeen.setTime(new Date(temporary.getLastPlayed()));
+    lastSeen.setTime(new Date(temporary.getFirstPlayed()));
 
     int YYYY = lastSeen.get(Calendar.YEAR);
     int MM = lastSeen.get(Calendar.MONTH) + 1;
@@ -46,7 +46,7 @@ public class CommandSeen implements CommandExecutor {
     int ss = lastSeen.get(Calendar.SECOND);
     String time = String.format("%02d:%02d:%02d", HH, mm, ss);
 
-    String message = temporary.getName() + " was last seen at " + time + " on " + date + ".";
+    String message = temporary.getName() + " first joined our server at " + time + " on " + date + ".";
     player.sendMessage(message);
 
     return true;

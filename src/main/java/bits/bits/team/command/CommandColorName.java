@@ -60,6 +60,7 @@ public class CommandColorName implements CommandExecutor {
         invalidColor = false;
         player.setDisplayName(colors.get(color) + player.getName() + ChatColor.RESET);
         player.setPlayerListName(colors.get(color) + player.getName() + ChatColor.RESET);
+        player.sendMessage("You colored your name " + color + ".");
       }
     }
 
