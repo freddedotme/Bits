@@ -39,6 +39,7 @@ public class Main extends JavaPlugin {
     getCommand("vote").setExecutor(new CommandVote());
     getCommand("hat").setExecutor(new CommandHat());
     getCommand("donate").setExecutor(new CommandDonate());
+    getCommand("seen").setExecutor(new CommandSeen(this));
   }
 
   public boolean invalidAction(Player player, String message) {

@@ -1,5 +1,5 @@
 name: Bits
-version: 1.7
+version: 1.8
 author: freddedotme
 website: https://bits.team
 main: bits.bits.team.Main
@@ -9,33 +9,69 @@ depends: [Votifier]
 commands:
   bed:
     description: Teleport to your bed.
+    aliases: b
+    usage: "/b"
   delwarp:
     description: Staff only.
+    aliases: dw
+    usage: "/dw <player>"
   setwarp:
     description: Staff only.
+    aliases: sw
+    usage: "/sw <player"
   setguard:
     description: Staff only.
+    aliases: sg
+    usage: "/sg <player>"
   delguard:
     description: Staff only.
+    aliases: dg
+    usage: "/dg <player"
   guards:
     description: View all guards.
+    aliases: gs
+    usage: "/gs"
   donors:
     description: View all donors.
+    aliases: ds
+    usage: "/ds"
   setdonor:
     description: Staff only.
+    aliases: sd
+    usage: "/sd"
   deldonor:
     description: Staff only.
+    aliases: dd
+    usage: "/dd"
   warp:
     description: Warp to a location.
+    aliases: w
+    usage: "/w <warp>"
   warps:
     description: View all warps.
+    aliases: ws
+    usage: "/ws"
   info:
     description: Gives you a book about Bits.
+    aliases: i
+    usage: "/i"
   colorname:
     description: Set a colored name.
+    aliases: cn
+    usage: "/cn <color>"
   vote:
     description: View the vote address.
+    aliases: v
+    usage: "/v"
   hat:
     description: Set the item you currently hold as your hat.
+    aliases: h
+    usage: "/h"
   donate:
     description: View the donate address.
+    aliases: d
+    usage: "/d"
+  seen:
+    description: View when a player last played.
+    aliases: s
+    usage: "/s <player>"
