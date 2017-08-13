@@ -45,8 +45,7 @@ commands:
     usage: "/dd"
   warp:
     description: Warp to a location.
-    aliases: w
-    usage: "/w <warp>"
+    usage: "/warp <warp>"
   warps:
     description: View all warps.
     aliases: ws

@@ -2,6 +2,7 @@ package bits.bits.team.command;
 
 import bits.bits.team.Main;
 import bits.bits.team.data.Data;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,7 +31,11 @@ public class CommandSeen implements CommandExecutor {
     if (strings.length != 1) return main.invalidAction(player, Data.MSG_ARGUMENTS);
     String name = strings[0];
 
-    Player temporary = main.getServer().getPlayer(name);
+    OfflinePlayer temporary = null;
+    for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
+      if (op.getName().equalsIgnoreCase(name)) temporary = op;
+    }
+
     if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
 
     Calendar lastSeen = Calendar.getInstance();
