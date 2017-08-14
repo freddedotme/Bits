@@ -1,7 +1,6 @@
 package bits.bits.team.command;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,7 +21,7 @@ public class CommandBed implements CommandExecutor {
     Player player = (Player) commandSender;
     Location bed = player.getBedSpawnLocation();
 
-    if (bed == null) return main.invalidAction(player, Data.MSG_NO_BED);
+    if (bed == null) return main.invalidAction(player, main.d().NEGATIVE_NO_BED);
 
     main.teleport(player, bed);
     return true;

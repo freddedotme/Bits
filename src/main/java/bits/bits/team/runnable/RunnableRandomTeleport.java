@@ -1,7 +1,6 @@
 package bits.bits.team.runnable;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -24,7 +23,7 @@ public class RunnableRandomTeleport extends BukkitRunnable {
 
   @Override
   public void run() {
-    if (attempts >= Data.RANDOMSPAWN_ATTEMPTS) this.cancel();
+    if (attempts >= main.d().RANDOMSPAWN_ATTEMPTS) this.cancel();
 
     attempts++;
 
@@ -35,7 +34,7 @@ public class RunnableRandomTeleport extends BukkitRunnable {
     Location center = worldBorder.getCenter();
     double x = center.getBlockX();
     double z = center.getBlockZ();
-    double margin = Data.WB_MARGIN;
+    double margin = main.d().WB_MARGIN;
 
     double maxX = (x + size / 2) - margin;
     double minX = (x - size / 2) + margin;
@@ -49,8 +48,8 @@ public class RunnableRandomTeleport extends BukkitRunnable {
       @Override
       public void run() {
         if (!player.isOnline()) stop();
-        player.sendMessage(Data.MSG_RANDOMSPAWN_LOOKING.replace("{attempts}", String.valueOf(attempts)).replace
-          ("{maxAttempts}", String.valueOf(Data.RANDOMSPAWN_ATTEMPTS)));
+        player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN_LOOKING.replace("{attempts}", String.valueOf(attempts)).replace
+          ("{maxAttempts}", String.valueOf(main.d().RANDOMSPAWN_ATTEMPTS)));
 
         Block randBlock = bits.getHighestBlockAt((int) randX, (int) randZ).getRelative(0, -1, 0);
 

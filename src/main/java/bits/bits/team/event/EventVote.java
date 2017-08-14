@@ -1,7 +1,6 @@
 package bits.bits.team.event;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
 import com.vexsoftware.votifier.model.Vote;
 import com.vexsoftware.votifier.model.VotifierEvent;
 import org.bukkit.entity.Player;
@@ -39,13 +38,13 @@ public class EventVote implements Listener {
     Vote vote = e.getVote();
     String name = vote.getUsername();
     String service = vote.getServiceName();
-    main.getServer().broadcastMessage(Data.MSG_VOTING.replace("{player}", name).replace("{service}", service));
+    main.getServer().broadcastMessage(main.d().MSG_VOTING.replace("{player}", name).replace("{service}", service));
     main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "AdjustBonusClaimBlocks " + name + " 250");
 
     int random = ThreadLocalRandom.current().nextInt(0, effects.size() - 1);
 
     for (Player player : main.getServer().getOnlinePlayers()) {
-      player.addPotionEffect(new PotionEffect(effects.get(random), Data.EFFECT_DURATION, 0, false, false));
+      player.addPotionEffect(new PotionEffect(effects.get(random), main.d().EFFECT_DURATION, 0, false, false));
     }
   }
 }

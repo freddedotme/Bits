@@ -5,17 +5,19 @@ import bits.bits.team.data.Data;
 import bits.bits.team.data.DataUser;
 import bits.bits.team.data.DataWarp;
 import bits.bits.team.event.*;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class Main extends JavaPlugin {
+  private Data data;
+
   @Override
   public void onEnable() {
     super.onEnable();
 
+    data = new Data();
     DataWarp dataWarp = new DataWarp(this);
     DataUser dataUser = new DataUser(this);
 
@@ -39,13 +41,17 @@ public class Main extends JavaPlugin {
     getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataUser));
     getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataUser));
 
-    getCommand("info").setExecutor(new CommandInfo());
+    getCommand("info").setExecutor(new CommandInfo(this));
     getCommand("colorname").setExecutor(new CommandColorName(this, dataUser));
-    getCommand("vote").setExecutor(new CommandVote());
+    getCommand("vote").setExecutor(new CommandVote(this));
     getCommand("hat").setExecutor(new CommandHat());
-    getCommand("donate").setExecutor(new CommandDonate());
+    getCommand("donate").setExecutor(new CommandDonate(this));
     getCommand("seen").setExecutor(new CommandSeen(this));
     getCommand("joined").setExecutor(new CommandJoined(this));
+  }
+
+  public Data d() {
+    return data;
   }
 
   public boolean invalidAction(Player player, String message) {
@@ -55,18 +61,14 @@ public class Main extends JavaPlugin {
 
   public void teleport(final Player player, final Location location) {
     location.getChunk().load(true);
-    player.sendMessage(Data.MSG_TELEPORTING);
+    player.sendMessage(data.NEUTRAL_TELEPORTING);
     new BukkitRunnable() {
       @Override
       public void run() {
         player.teleport(location);
-        player.sendMessage(Data.MSG_TELEPORTED);
+        player.sendMessage(data.POSITIVE_TELEPORTED);
       }
-    }.runTaskLater(this, (player.hasPermission(Data.PERM_BYPASSCOOLDOWN) ? Data.TELEPORT_WARMUP_DONOR : Data
+    }.runTaskLater(this, (player.hasPermission(data.PERM_BYPASSCOOLDOWN) ? data.TELEPORT_WARMUP_DONOR : data
       .TELEPORT_WARMUP));
-  }
-
-  public String cc(String message) {
-    return ChatColor.translateAlternateColorCodes('&', message);
   }
 }

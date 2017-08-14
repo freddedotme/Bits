@@ -2,7 +2,6 @@ package bits.bits.team.command;
 
 import bits.bits.team.Main;
 import bits.bits.team.User;
-import bits.bits.team.data.Data;
 import bits.bits.team.data.DataUser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -44,13 +43,16 @@ public class CommandColorName implements CommandExecutor {
     if (!(commandSender instanceof Player)) return false;
     Player player = (Player) commandSender;
 
-    if (strings.length != 1) return main.invalidAction(player, Data.MSG_ARGUMENTS);
+    User user = data.getUser(player.getUniqueId());
+    if (user == null) return main.invalidAction(player, main.d().NEGATIVE_ERROR);
+
+    if (!user.isDonor() && !user.isGuard()) return main.invalidAction(player, main.d().NEGATIVE_PERMISSION);
+
+    if (strings.length != 1) return main.invalidAction(player, main.d().NEGATIVE_ARGUMENTS);
     String value = strings[0];
 
-    if (!(player.hasPermission(Data.PERM_COLOREDNAME))) return main.invalidAction(player, Data.MSG_PERMISSION);
-
     if (value.equalsIgnoreCase("list")) {
-      player.sendMessage("Available colors:");
+      player.sendMessage(main.d().HEADER_COLORS);
       for (String color : colors.keySet()) {
         player.sendMessage(color);
       }
@@ -62,17 +64,12 @@ public class CommandColorName implements CommandExecutor {
     for (String color : colors.keySet()) {
       if (color.equalsIgnoreCase(value)) {
         invalidColor = false;
-        player.setDisplayName(main.cc(colors.get(color) + player.getName() + "&r"));
-        player.setPlayerListName(main.cc(colors.get(color) + player.getName() + "&r"));
-        player.sendMessage("You colored your name " + color + ".");
 
-        User user = data.getUser(player.getUniqueId());
-        if (user == null) return false;
-
+        player.sendMessage(main.d().POSITIVE_COLOR_CHANGE.replace("{color}", color));
         user.setPrefix(colors.get(color));
       }
     }
 
-    return !invalidColor || main.invalidAction(player, Data.MSG_INVALID_COLOR);
+    return !invalidColor || main.invalidAction(player, main.d().NEGATIVE_INVALID_COLOR);
   }
 }

@@ -1,7 +1,6 @@
 package bits.bits.team.command;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -28,7 +27,7 @@ public class CommandJoined implements CommandExecutor {
     if (!(commandSender instanceof Player)) return false;
     Player player = (Player) commandSender;
 
-    if (strings.length != 1) return main.invalidAction(player, Data.MSG_ARGUMENTS);
+    if (strings.length != 1) return main.invalidAction(player, main.d().NEGATIVE_ARGUMENTS);
     String name = strings[0];
 
     OfflinePlayer temporary = null;
@@ -36,7 +35,7 @@ public class CommandJoined implements CommandExecutor {
       if (op.getName().equalsIgnoreCase(name)) temporary = op;
     }
 
-    if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
+    if (temporary == null) return main.invalidAction(player, main.d().NEGATIVE_PLAYER_NOT_FOUND);
 
     Calendar lastSeen = Calendar.getInstance();
     lastSeen.setTime(new Date(temporary.getFirstPlayed()));
@@ -51,7 +50,8 @@ public class CommandJoined implements CommandExecutor {
     int ss = lastSeen.get(Calendar.SECOND);
     String time = String.format("%02d:%02d:%02d", HH, mm, ss);
 
-    String message = temporary.getName() + " first joined our server at " + time + " on " + date + ".";
+    String message = main.d().NEUTRAL_JOINED.replace("{player}", temporary.getName()).replace("{time}", time).replace
+      ("{date}", date);
     player.sendMessage(message);
 
     return true;

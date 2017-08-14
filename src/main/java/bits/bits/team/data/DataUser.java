@@ -6,6 +6,7 @@ import bits.bits.team.file.FileManager;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,12 +23,13 @@ public class DataUser {
   public DataUser(Main main) {
     this.main = main;
 
-    file = new FileManager("users.yml");
+    file = new FileManager(main, "users.yml");
     file.write("version", main.getDescription().getVersion());
     fetchFile();
   }
 
   private void fetchFile() {
+    users = new ArrayList<>();
     if (file.getKeys("users") == null) return;
 
     for (String user : file.getKeys("users")) {
@@ -38,12 +40,12 @@ public class DataUser {
       boolean guard = (boolean) file.read(root + ".guard");
       String prefix = (String) file.read(root + ".prefix");
 
-      users.add(new User(main, uuid, donor, guard, prefix, null));
+      users.add(new User(file, main, uuid, donor, guard, prefix, null));
     }
   }
 
   public void addUser(UUID uuid, boolean donor, boolean guard, String prefix) {
-    users.add(new User(main, uuid, donor, guard, prefix, null));
+    users.add(new User(file, main, uuid, donor, guard, prefix, null));
 
     String root = "users." + uuid.toString();
     file.write(root + ".donor", donor);
@@ -68,8 +70,8 @@ public class DataUser {
   }
 
   public void printDonors(Player player) {
+    player.sendMessage(main.d().HEADER_DONORS);
     for (User user : users) {
-      player.sendMessage(main.cc(Data.HEADER_DONORS));
       if (user.isDonor()) {
         OfflinePlayer offlinePlayer = main.getServer().getOfflinePlayer(user.getUuid());
         player.sendMessage(offlinePlayer.getName());
@@ -78,8 +80,8 @@ public class DataUser {
   }
 
   public void printGuards(Player player) {
+    player.sendMessage(main.d().HEADER_GUARDS);
     for (User user : users) {
-      player.sendMessage(main.cc(Data.HEADER_GUARDS));
       if (user.isGuard()) {
         OfflinePlayer offlinePlayer = main.getServer().getOfflinePlayer(user.getUuid());
         player.sendMessage(offlinePlayer.getName());

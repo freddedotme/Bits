@@ -1,7 +1,6 @@
 package bits.bits.team.event;
 
 import bits.bits.team.Main;
-import bits.bits.team.data.Data;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,7 +25,7 @@ public class EventBedEnterLeave implements Listener {
     int online = main.getServer().getOnlinePlayers().size();
     if ((double) sleeping / online >= 0.5) world.setTime(0);
 
-    main.getServer().broadcastMessage(Data.MSG_SLEEPING.replace("{sleeping}", String.valueOf(sleeping))
+    main.getServer().broadcastMessage(main.d().MSG_SLEEPING.replace("{sleeping}", String.valueOf(sleeping))
       .replace("{online}", String.valueOf(online)));
   }
 

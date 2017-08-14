@@ -1,6 +1,6 @@
 package bits.bits.team.file;
 
-import bits.bits.team.data.Data;
+import bits.bits.team.Main;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -9,17 +9,19 @@ import java.io.IOException;
 import java.util.Set;
 
 public class FileManager {
+  private Main main;
   private String path;
   private FileConfiguration configuration;
   private File file;
 
-  public FileManager(String path) {
+  public FileManager(Main main, String path) {
+    this.main = main;
     this.path = path;
     init();
   }
 
   private void init() {
-    String root = Data.ROOT_PATH;
+    String root = main.d().ROOT_PATH;
     file = new File(root, path);
 
     if (!file.exists()) {

@@ -19,7 +19,7 @@ public class DataWarp {
   public DataWarp(Main main) {
     this.main = main;
 
-    file = new FileManager("warps.yml");
+    file = new FileManager(main, "warps.yml");
     file.write("version", main.getDescription().getVersion());
     fetchFile();
   }
@@ -65,7 +65,7 @@ public class DataWarp {
   }
 
   public void printWarps(Player player) {
-    player.sendMessage("Warps:");
+    player.sendMessage(main.d().HEADER_WARPS);
     for (Warp warp : warps) {
       player.sendMessage(warp.getName());
     }

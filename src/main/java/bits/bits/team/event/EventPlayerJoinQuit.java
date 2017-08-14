@@ -2,7 +2,6 @@ package bits.bits.team.event;
 
 import bits.bits.team.Main;
 import bits.bits.team.User;
-import bits.bits.team.data.Data;
 import bits.bits.team.data.DataUser;
 import bits.bits.team.runnable.RunnableRandomTeleport;
 import org.bukkit.Material;
@@ -31,21 +30,24 @@ public class EventPlayerJoinQuit implements Listener {
 
     User user = data.getUser(uuid);
 
-    if (user == null) {
-      e.setJoinMessage(Data.MSG_JOIN_NEW.replace("{player}", player.getName()));
-      player.sendMessage(Data.MSG_RANDOMSPAWN);
+    if (!player.hasPlayedBefore()) {
+      e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{player}", player.getName()));
+      player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN);
       new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
 
       player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
       player.performCommand("info");
+    }
 
+    if (user == null) {
       data.addUser(uuid, false, false, "&f");
       data.getUser(uuid).join();
     }
     else {
       user.join();
-      e.setJoinMessage(Data.MSG_JOIN.replace("{player}", player.getDisplayName()));
     }
+
+    if (player.hasPlayedBefore()) e.setJoinMessage(main.d().MSG_JOIN.replace("{player}", player.getDisplayName()));
   }
 
   @EventHandler
@@ -56,6 +58,6 @@ public class EventPlayerJoinQuit implements Listener {
     User user = data.getUser(uuid);
     if (user != null) user.quit();
 
-    e.setQuitMessage(Data.MSG_QUIT.replace("{player}", e.getPlayer().getDisplayName()));
+    e.setQuitMessage(main.d().MSG_QUIT.replace("{player}", e.getPlayer().getDisplayName()));
   }
 }

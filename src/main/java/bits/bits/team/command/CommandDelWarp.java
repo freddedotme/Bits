@@ -2,7 +2,6 @@ package bits.bits.team.command;
 
 import bits.bits.team.Main;
 import bits.bits.team.Warp;
-import bits.bits.team.data.Data;
 import bits.bits.team.data.DataWarp;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,13 +22,13 @@ public class CommandDelWarp implements CommandExecutor {
     if (!(commandSender instanceof Player)) return false;
     Player player = (Player) commandSender;
 
-    if (!player.isOp()) return main.invalidAction(player, Data.MSG_PERMISSION);
+    if (!player.isOp()) return main.invalidAction(player, main.d().NEGATIVE_PERMISSION);
 
-    if (strings.length != 1) return main.invalidAction(player, Data.MSG_ARGUMENTS);
+    if (strings.length != 1) return main.invalidAction(player, main.d().NEGATIVE_ARGUMENTS);
     String name = strings[0];
 
     Warp warp = data.getWarp(name);
-    if (warp == null) return main.invalidAction(player, Data.MSG_WARP_NOT_FOUND);
+    if (warp == null) return main.invalidAction(player, main.d().NEGATIVE_WARP_NOT_FOUND);
 
     data.deleteWarp(warp);
     return true;
