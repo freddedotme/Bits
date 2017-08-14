@@ -1,9 +1,9 @@
 package bits.bits.team.event;
 
 import bits.bits.team.Main;
+import bits.bits.team.User;
 import bits.bits.team.data.Data;
-import bits.bits.team.data.DataDonor;
-import bits.bits.team.data.DataGuard;
+import bits.bits.team.data.DataUser;
 import bits.bits.team.runnable.RunnableRandomTeleport;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -17,13 +17,11 @@ import java.util.UUID;
 
 public class EventPlayerJoinQuit implements Listener {
   private Main main;
-  private DataGuard data0;
-  private DataDonor data1;
+  private DataUser data;
 
-  public EventPlayerJoinQuit(Main main, DataGuard data0, DataDonor data1) {
+  public EventPlayerJoinQuit(Main main, DataUser data) {
     this.main = main;
-    this.data0 = data0;
-    this.data1 = data1;
+    this.data = data;
   }
 
   @EventHandler
@@ -31,19 +29,22 @@ public class EventPlayerJoinQuit implements Listener {
     Player player = e.getPlayer();
     UUID uuid = player.getUniqueId();
 
-    if (data0.isGuard(uuid)) data0.addPermissions(player);
-    if (data1.isDonor(uuid)) data1.addPermissions(player);
+    User user = data.getUser(uuid);
 
-    if (!player.hasPlayedBefore()) {
+    if (user == null) {
       e.setJoinMessage(Data.MSG_JOIN_NEW.replace("{player}", player.getName()));
       player.sendMessage(Data.MSG_RANDOMSPAWN);
       new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
 
       player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
       player.performCommand("info");
+
+      data.addUser(uuid, false, false, "&f");
+      data.getUser(uuid).join();
     }
     else {
-      e.setJoinMessage(Data.MSG_JOIN.replace("{player}", player.getName()));
+      user.join();
+      e.setJoinMessage(Data.MSG_JOIN.replace("{player}", player.getDisplayName()));
     }
   }
 
@@ -52,9 +53,9 @@ public class EventPlayerJoinQuit implements Listener {
     Player player = e.getPlayer();
     UUID uuid = player.getUniqueId();
 
-    e.setQuitMessage(Data.MSG_QUIT.replace("{player}", e.getPlayer().getName()));
+    User user = data.getUser(uuid);
+    if (user != null) user.quit();
 
-    if (data0.isGuard(uuid)) data0.removePermissions(player);
-    if (data1.isDonor(uuid)) data1.removePermissions(player);
+    e.setQuitMessage(Data.MSG_QUIT.replace("{player}", e.getPlayer().getDisplayName()));
   }
 }

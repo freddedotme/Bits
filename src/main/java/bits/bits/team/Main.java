@@ -1,8 +1,11 @@
 package bits.bits.team;
 
 import bits.bits.team.command.*;
-import bits.bits.team.data.*;
+import bits.bits.team.data.Data;
+import bits.bits.team.data.DataUser;
+import bits.bits.team.data.DataWarp;
 import bits.bits.team.event.*;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -13,30 +16,31 @@ public class Main extends JavaPlugin {
   public void onEnable() {
     super.onEnable();
 
-    DataBed dataBed = new DataBed(0);
-    DataGuard dataGuard = new DataGuard(this);
     DataWarp dataWarp = new DataWarp(this);
-    DataDonor dataDonor = new DataDonor(this);
+    DataUser dataUser = new DataUser(this);
 
-    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataGuard, dataDonor), this);
-    getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this, dataBed), this);
+    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser), this);
+    getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
     getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
+
     getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
     getCommand("warps").setExecutor(new CommandWarps(dataWarp));
     getCommand("setwarp").setExecutor(new CommandSetWarp(this, dataWarp));
     getCommand("delwarp").setExecutor(new CommandDelWarp(this, dataWarp));
-    getCommand("guards").setExecutor(new CommandGuards(dataGuard));
-    getCommand("setguard").setExecutor(new CommandSetGuard(this, dataGuard));
-    getCommand("delguard").setExecutor(new CommandDelGuard(this, dataGuard));
-    getCommand("donors").setExecutor(new CommandDonors(dataDonor));
-    getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataDonor));
-    getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataDonor));
+
+    getCommand("guards").setExecutor(new CommandGuards(dataUser));
+    getCommand("donors").setExecutor(new CommandDonors(dataUser));
+    getCommand("setguard").setExecutor(new CommandSetGuard(this, dataUser));
+    getCommand("delguard").setExecutor(new CommandDelGuard(this, dataUser));
+    getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataUser));
+    getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataUser));
+
     getCommand("info").setExecutor(new CommandInfo());
-    getCommand("colorname").setExecutor(new CommandColorName(this));
+    getCommand("colorname").setExecutor(new CommandColorName(this, dataUser));
     getCommand("vote").setExecutor(new CommandVote());
     getCommand("hat").setExecutor(new CommandHat());
     getCommand("donate").setExecutor(new CommandDonate());
@@ -60,5 +64,9 @@ public class Main extends JavaPlugin {
       }
     }.runTaskLater(this, (player.hasPermission(Data.PERM_BYPASSCOOLDOWN) ? Data.TELEPORT_WARMUP_DONOR : Data
       .TELEPORT_WARMUP));
+  }
+
+  public String cc(String message) {
+    return ChatColor.translateAlternateColorCodes('&', message);
   }
 }

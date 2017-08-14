@@ -30,13 +30,15 @@ public class Data {
   public static String MSG_INVALID_COLOR = "Color not found.";
   public static String MSG_VOTE = "Vote URL: www.bits.team/vote";
   public static String MSG_DONATE = "Donate URL: www.bits.team/donate";
-
+  public static String MSG_ERROR = "Error occurred, contact owner.";
   public static String PERM_COLOREDNAME = "bits.formatname";
   public static String PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";
-
   public static int TELEPORT_WARMUP = 100;
   public static int TELEPORT_WARMUP_DONOR = 50;
   public static int EFFECT_DURATION = 20 * 180;
   public static int WB_MARGIN = 250;
   public static int RANDOMSPAWN_ATTEMPTS = 20;
+  private static String HEADER_COLOR = "&6";
+  public static String HEADER_DONORS = HEADER_COLOR + "Donors:";
+  public static String HEADER_GUARDS = HEADER_COLOR + "Guards:";
 }

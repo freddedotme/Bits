@@ -2,7 +2,6 @@ package bits.bits.team.event;
 
 import bits.bits.team.Main;
 import bits.bits.team.data.Data;
-import bits.bits.team.data.DataBed;
 import org.bukkit.World;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,11 +10,10 @@ import org.bukkit.event.player.PlayerBedLeaveEvent;
 
 public class EventBedEnterLeave implements Listener {
   private Main main;
-  private DataBed data;
+  private int sleeping = 0;
 
-  public EventBedEnterLeave(Main main, DataBed data) {
+  public EventBedEnterLeave(Main main) {
     this.main = main;
-    this.data = data;
   }
 
   @EventHandler
@@ -23,17 +21,17 @@ public class EventBedEnterLeave implements Listener {
     World world = e.getPlayer().getWorld();
     if (!(world.getEnvironment().equals(World.Environment.NORMAL))) return;
 
-    data.incrementSleeping(1);
+    sleeping++;
 
     int online = main.getServer().getOnlinePlayers().size();
-    if ((double) data.getSleeping() / online >= 0.5) world.setTime(0);
+    if ((double) sleeping / online >= 0.5) world.setTime(0);
 
-    main.getServer().broadcastMessage(Data.MSG_SLEEPING.replace("{sleeping}", String.valueOf(data.getSleeping()))
+    main.getServer().broadcastMessage(Data.MSG_SLEEPING.replace("{sleeping}", String.valueOf(sleeping))
       .replace("{online}", String.valueOf(online)));
   }
 
   @EventHandler
   public void onPlayerBedLeave(PlayerBedLeaveEvent e) {
-    data.decreaseSleeping(1);
+    sleeping--;
   }
 }

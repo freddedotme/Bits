@@ -1,8 +1,9 @@
 package bits.bits.team.command;
 
 import bits.bits.team.Main;
+import bits.bits.team.User;
 import bits.bits.team.data.Data;
-import bits.bits.team.data.DataGuard;
+import bits.bits.team.data.DataUser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,9 +11,9 @@ import org.bukkit.entity.Player;
 
 public class CommandSetGuard implements CommandExecutor {
   private Main main;
-  private DataGuard data;
+  private DataUser data;
 
-  public CommandSetGuard(Main main, DataGuard data) {
+  public CommandSetGuard(Main main, DataUser data) {
     this.main = main;
     this.data = data;
   }
@@ -30,11 +31,12 @@ public class CommandSetGuard implements CommandExecutor {
     Player temporary = main.getServer().getPlayer(name);
     if (temporary == null) return main.invalidAction(player, Data.MSG_PLAYER_NOT_FOUND);
 
-    boolean isGuard = data.isGuard(temporary.getUniqueId());
-    if (isGuard) return main.invalidAction(player, Data.MSG_ALREADY_GUARD);
+    User user = data.getUser(temporary.getUniqueId());
+    if (user == null) return main.invalidAction(player, Data.MSG_ERROR);
 
-    data.addGuard(temporary.getUniqueId());
-    data.addPermissions(temporary);
+    if (user.isGuard()) return main.invalidAction(player, Data.MSG_ALREADY_GUARD);
+
+    user.setGuard(true);
     return true;
   }
 }

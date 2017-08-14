@@ -1,15 +1,15 @@
 package bits.bits.team.command;
 
-import bits.bits.team.data.DataDonor;
+import bits.bits.team.data.DataUser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class CommandDonors implements CommandExecutor {
-  private DataDonor data;
+  private DataUser data;
 
-  public CommandDonors(DataDonor data) {
+  public CommandDonors(DataUser data) {
     this.data = data;
   }
 

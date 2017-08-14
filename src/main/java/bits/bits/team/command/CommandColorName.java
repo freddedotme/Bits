@@ -1,8 +1,9 @@
 package bits.bits.team.command;
 
 import bits.bits.team.Main;
+import bits.bits.team.User;
 import bits.bits.team.data.Data;
-import org.bukkit.ChatColor;
+import bits.bits.team.data.DataUser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,27 +13,30 @@ import java.util.HashMap;
 
 public class CommandColorName implements CommandExecutor {
   private Main main;
-  private HashMap<String, ChatColor> colors;
+  private DataUser data;
+  private HashMap<String, String> colors;
 
-  public CommandColorName(Main main) {
+  public CommandColorName(Main main, DataUser data) {
     this.main = main;
+    this.data = data;
 
     colors = new HashMap<>();
-    colors.put("black", ChatColor.BLACK);
-    colors.put("dark_blue", ChatColor.DARK_BLUE);
-    colors.put("dark_green", ChatColor.DARK_GREEN);
-    colors.put("dark_aqua", ChatColor.DARK_AQUA);
-    colors.put("dark_red", ChatColor.DARK_RED);
-    colors.put("dark_purple", ChatColor.DARK_PURPLE);
-    colors.put("gold", ChatColor.GOLD);
-    colors.put("gray", ChatColor.GRAY);
-    colors.put("dark_gray", ChatColor.DARK_GRAY);
-    colors.put("blue", ChatColor.BLUE);
-    colors.put("green", ChatColor.GREEN);
-    colors.put("aqua", ChatColor.AQUA);
-    colors.put("red", ChatColor.RED);
-    colors.put("light_purple", ChatColor.LIGHT_PURPLE);
-    colors.put("yellow", ChatColor.YELLOW);
+    colors.put("black", "&0");
+    colors.put("dark_blue", "&1");
+    colors.put("dark_green", "&2");
+    colors.put("dark_aqua", "&3");
+    colors.put("dark_red", "&4");
+    colors.put("dark_purple", "&5");
+    colors.put("gold", "&6");
+    colors.put("gray", "&7");
+    colors.put("dark_gray", "&8");
+    colors.put("blue", "&9");
+    colors.put("green", "&a");
+    colors.put("aqua", "&b");
+    colors.put("red", "&c");
+    colors.put("light_purple", "&d");
+    colors.put("yellow", "&e");
+    colors.put("white", "&f");
   }
 
   @Override
@@ -58,9 +62,14 @@ public class CommandColorName implements CommandExecutor {
     for (String color : colors.keySet()) {
       if (color.equalsIgnoreCase(value)) {
         invalidColor = false;
-        player.setDisplayName(colors.get(color) + player.getName() + ChatColor.RESET);
-        player.setPlayerListName(colors.get(color) + player.getName() + ChatColor.RESET);
+        player.setDisplayName(main.cc(colors.get(color) + player.getName() + "&r"));
+        player.setPlayerListName(main.cc(colors.get(color) + player.getName() + "&r"));
         player.sendMessage("You colored your name " + color + ".");
+
+        User user = data.getUser(player.getUniqueId());
+        if (user == null) return false;
+
+        user.setPrefix(colors.get(color));
       }
     }
 
