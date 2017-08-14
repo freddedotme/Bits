@@ -30,15 +30,6 @@ public class EventPlayerJoinQuit implements Listener {
 
     User user = data.getUser(uuid);
 
-    if (!player.hasPlayedBefore()) {
-      e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{player}", player.getName()));
-      player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN);
-      new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
-
-      player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
-      player.performCommand("info");
-    }
-
     if (user == null) {
       data.addUser(uuid, false, false, "&f");
       data.getUser(uuid).join();
@@ -47,7 +38,17 @@ public class EventPlayerJoinQuit implements Listener {
       user.join();
     }
 
-    if (player.hasPlayedBefore()) e.setJoinMessage(main.d().MSG_JOIN.replace("{player}", player.getDisplayName()));
+    if (!player.hasPlayedBefore()) {
+      e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{player}", player.getName()));
+      player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN);
+      new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
+
+      player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
+      player.performCommand("info");
+    }
+    else {
+      e.setJoinMessage(main.d().MSG_JOIN.replace("{player}", player.getDisplayName()));
+    }
   }
 
   @EventHandler
