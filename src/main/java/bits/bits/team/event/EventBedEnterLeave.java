@@ -25,7 +25,9 @@ public class EventBedEnterLeave implements Listener {
     int online = main.getServer().getOnlinePlayers().size();
     if ((double) sleeping / online >= 0.5) world.setTime(0);
 
-    main.getServer().broadcastMessage(main.d().MSG_SLEEPING.replace("{sleeping}", String.valueOf(sleeping))
+    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "broadcast " + main.d().MSG_SLEEPING
+      .replace("{sleeping}",
+        String.valueOf(sleeping))
       .replace("{online}", String.valueOf(online)));
   }
 

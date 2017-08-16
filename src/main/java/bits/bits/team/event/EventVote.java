@@ -38,7 +38,9 @@ public class EventVote implements Listener {
     Vote vote = e.getVote();
     String name = vote.getUsername();
     String service = vote.getServiceName();
-    main.getServer().broadcastMessage(main.d().MSG_VOTING.replace("{player}", name).replace("{service}", service));
+    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "broadcast " + main.d().MSG_VOTING.replace
+      ("{player}",
+        name).replace("{service}", service));
     main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "AdjustBonusClaimBlocks " + name + " 250");
 
     int random = ThreadLocalRandom.current().nextInt(0, effects.size() - 1);
