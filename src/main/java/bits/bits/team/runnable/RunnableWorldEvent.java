@@ -8,6 +8,7 @@ import org.bukkit.World;
 import org.bukkit.WorldBorder;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
@@ -142,7 +143,8 @@ public class RunnableWorldEvent extends BukkitRunnable {
 
           for (EntityType monster : event.getMonsters().keySet()) {
             for (int i = 0; i < event.getMonsters().get(monster); i++) {
-              bits.spawnEntity(location, monster);
+              LivingEntity entity = (LivingEntity) bits.spawnEntity(location, monster);
+              entity.setRemoveWhenFarAway(false);
             }
           }
         }
