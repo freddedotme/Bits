@@ -57,8 +57,8 @@ public class Data {
     MSG_JOIN = "+ {player}";
     MSG_JOIN_NEW = "+ [NEW] {player}";
     MSG_QUIT = "- {player}";
-    MSG_VOTING = "[Server] {player} voted at {service}. Do /vote to vote.";
-    MSG_SLEEPING = "[Server] {sleeping}/{online} player(s) sleeping.";
+    MSG_VOTING = "&a{player} voted at {service}. Do /vote to vote.";
+    MSG_SLEEPING = "&e{sleeping}/{online} player(s) sleeping.";
 
     BOOK_TITLE = "Bits 101";
     BOOK_AUTHOR = "FredTheLion";
