@@ -51,7 +51,7 @@ public class Main extends JavaPlugin {
     getCommand("joined").setExecutor(new CommandJoined(this));
     getCommand("broadcast").setExecutor(new CommandBroadcast(this, dataUser));
 
-    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 0, 200);
+    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 360000);
   }
 
   public Data d() {

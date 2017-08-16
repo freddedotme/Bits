@@ -40,7 +40,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null) {
     });
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.GIANT, 10);
 
     events.add(new WorldEvent(
@@ -50,7 +50,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null
     ));
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.CREEPER, 30);
 
     events.add(new WorldEvent(
@@ -60,7 +60,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null
     ));
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.WOLF, 45);
 
     events.add(new WorldEvent(
@@ -70,7 +70,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null
     ));
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.LLAMA, 25);
 
     events.add(new WorldEvent(
@@ -80,7 +80,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null
     ));
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.DONKEY, 20);
 
     events.add(new WorldEvent(
@@ -90,7 +90,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
       null
     ));
 
-    monsters.clear();
+    monsters = new HashMap<>();
     monsters.put(EntityType.WITCH, 20);
 
     events.add(new WorldEvent(
@@ -135,7 +135,7 @@ public class RunnableWorldEvent extends BukkitRunnable {
           WorldEvent event = events.get(random);
           Location location = new Location(bits, randX, randBlock.getY() + 1, randZ);
 
-          String target = "(X:" + location.getX() + ", Z:" + location.getZ() + ")";
+          String target = "(X:" + location.getBlockX() + ", Z:" + location.getBlockZ() + ")";
 
           main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "broadcast " + event.getAnnouncement
             ().replace("{location}", target));

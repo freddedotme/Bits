@@ -36,6 +36,8 @@ public class Data {
   public String NEGATIVE_NOT_DONOR;
   public String NEGATIVE_INVALID_COLOR;
   public String NEGATIVE_ERROR;
+  public String NEGATIVE_THE_END;
+  public String NEGATIVE_NETHER;
 
   public String POSITIVE_TELEPORTED;
   public String POSITIVE_VOTE;
@@ -85,7 +87,8 @@ public class Data {
     NEGATIVE_NOT_GUARD = cc(NEGATIVE + "Not a guard.");
     NEGATIVE_NOT_DONOR = cc(NEGATIVE + "Not a donor.");
     NEGATIVE_INVALID_COLOR = cc(NEGATIVE + "Color not found.");
-    NEGATIVE_ERROR = cc(NEGATIVE + "Error occurred, contact owner.");
+    NEGATIVE_THE_END = cc(NEGATIVE + "You need to visit the End before using a warp there.");
+    NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");
