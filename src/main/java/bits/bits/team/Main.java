@@ -5,6 +5,7 @@ import bits.bits.team.data.Data;
 import bits.bits.team.data.DataUser;
 import bits.bits.team.data.DataWarp;
 import bits.bits.team.event.*;
+import bits.bits.team.runnable.RunnableWorldEvent;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,6 +49,9 @@ public class Main extends JavaPlugin {
     getCommand("donate").setExecutor(new CommandDonate(this));
     getCommand("seen").setExecutor(new CommandSeen(this));
     getCommand("joined").setExecutor(new CommandJoined(this));
+    getCommand("broadcast").setExecutor(new CommandBroadcast(this, dataUser));
+
+    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 0, 200);
   }
 
   public Data d() {

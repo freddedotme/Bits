@@ -89,6 +89,8 @@ public class User {
     permissions.setPermission("minecraft.command.ban", true);
     permissions.setPermission("minecraft.command.kick", true);
     permissions.setPermission("minecraft.command.pardon", true);
+    permissions.setPermission("coreprotect.lookup", true);
+    permissions.setPermission("coreprotect.inspect", true);
   }
 
   private void addDonorPermissions() {

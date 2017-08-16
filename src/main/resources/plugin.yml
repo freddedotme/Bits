@@ -78,3 +78,6 @@ commands:
     description: View when a player first played.
     aliases: j
     usage: "/j <player>"
+  broadcast:
+    description: Broadcast a message.
+    usage: "/broadcast <messages>"
