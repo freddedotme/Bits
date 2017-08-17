@@ -23,8 +23,6 @@ public class EventFishSlap implements Listener {
     if (!(e.getEntity() instanceof Player)) return;
     Player entity = (Player) e.getEntity();
 
-    e.setCancelled(true);
-
     if (damager.getLocation().getWorld().getEnvironment() != World.Environment.NORMAL) return;
 
     ItemStack item = damager.getInventory().getItemInMainHand();

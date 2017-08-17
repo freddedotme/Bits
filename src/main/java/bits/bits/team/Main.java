@@ -28,6 +28,7 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
     getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
+    getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
 
