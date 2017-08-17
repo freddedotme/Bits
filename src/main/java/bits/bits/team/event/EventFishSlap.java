@@ -13,7 +13,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class EventFishSlap implements Listener {
 
-  public void onPlayer(EntityDamageByEntityEvent e) {
+  public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
     if (!(e.getDamager() instanceof Player)) return;
     Player damager = (Player) e.getDamager();
 
@@ -23,7 +23,7 @@ public class EventFishSlap implements Listener {
     ItemStack item = damager.getInventory().getItemInMainHand();
     ItemStack fish = new ItemStack(Material.RAW_FISH);
 
-    if (!item.isSimilar(fish)) return;
+    if (item != null || !item.isSimilar(fish)) return;
 
     // Albin do magic below
   }
