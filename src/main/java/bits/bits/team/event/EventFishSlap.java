@@ -23,7 +23,7 @@ public class EventFishSlap implements Listener {
     ItemStack item = damager.getInventory().getItemInMainHand();
     ItemStack fish = new ItemStack(Material.RAW_FISH);
 
-    if (item != null || !item.isSimilar(fish)) return;
+    if (item == null || !item.isSimilar(fish)) return;
 
     // Albin do magic below
   }
