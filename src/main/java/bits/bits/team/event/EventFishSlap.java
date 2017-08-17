@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 /**
  * Bits
@@ -24,10 +25,19 @@ public class EventFishSlap implements Listener {
     ItemStack fish = new ItemStack(Material.RAW_FISH, 1);
 
     if (item == null || !item.isSimilar(fish)) return;
-
-    // Albin area start -----
-
-    // Albin area end -----
+    
+    double horizontalPower = 2; // length of XZ velocity
+    double verticalPower = 0.5; // length of Y velocity
+    
+    Vector launch = damager.getEyeLocation()
+                           .getDirection()
+                           .setY(0)
+                           .normalize()
+                           .multiply(horizontalPower)
+                           .setY(verticalPower);
+    
+    entity.setVelocity(entity.getVelocity()
+                             .add(launch));
 
     damager.getInventory().removeItem(fish);
   }
