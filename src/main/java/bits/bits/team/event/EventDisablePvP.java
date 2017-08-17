@@ -14,15 +14,13 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 public class EventDisablePvP implements Listener {
   @EventHandler
   public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
-  	// Player attacks player
-	if(!(e.getDamager() instanceof Player)
-	  || !(e.getEntity() instanceof Player)) return;
-
-	// Player shoots player
-	if(!(e.getDamager() instanceof Projectile)
-	  || !(((Projectile)e.getDamager()).getShooter() instanceof Player)
-	  || !(e.getEntity() instanceof Player)) return;
-	
-	e.setCancelled(true);
+	if(e.getEntity() instanceof Player)
+    {
+      // If damager is a player, or the damager is a projectile shot by a player
+      if(e.getDamager() instanceof Player
+	    || (e.getDamager() instanceof Projectile
+	      && ((Projectile) e.getDamager()).getShooter() instanceof Player))
+      	e.setCancelled(true);
+    }
   }
 }
