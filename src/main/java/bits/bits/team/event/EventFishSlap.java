@@ -21,7 +21,7 @@ public class EventFishSlap implements Listener {
     Player entity = (Player) e.getEntity();
 
     ItemStack item = damager.getInventory().getItemInMainHand();
-    ItemStack fish = new ItemStack(Material.RAW_FISH);
+    ItemStack fish = new ItemStack(Material.RAW_FISH, 1);
 
     if (item == null || !item.isSimilar(fish)) return;
 
