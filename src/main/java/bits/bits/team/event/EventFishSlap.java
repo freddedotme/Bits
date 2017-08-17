@@ -25,6 +25,10 @@ public class EventFishSlap implements Listener {
 
     if (item == null || !item.isSimilar(fish)) return;
 
-    // Albin do magic below
+    // Albin area start -----
+
+    // Albin area end -----
+
+    damager.getInventory().removeItem(fish);
   }
 }
