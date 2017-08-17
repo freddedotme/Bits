@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 
 /**
  * Bits
- * Author: freddedotme
+ * Authors: freddedotme, AlbinEriksson
  * Created: 2017-08-17
  */
 public class EventFishSlap implements Listener {
