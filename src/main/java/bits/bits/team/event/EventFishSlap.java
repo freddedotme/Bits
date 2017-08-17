@@ -2,6 +2,7 @@ package bits.bits.team.event;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
@@ -13,7 +14,7 @@ import org.bukkit.util.Vector;
  * Created: 2017-08-17
  */
 public class EventFishSlap implements Listener {
-
+  @EventHandler
   public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
     if (!(e.getDamager() instanceof Player)) return;
     Player damager = (Player) e.getDamager();
