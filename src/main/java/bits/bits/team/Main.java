@@ -27,6 +27,7 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
+    getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
 
