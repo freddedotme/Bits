@@ -44,6 +44,10 @@ public class EventPlayerJoinQuit implements Listener {
       new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
 
       player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
+      player.getInventory().addItem(new ItemStack(Material.BED, 1));
+      player.getInventory().addItem(new ItemStack(Material.GOLD_SPADE, 1));
+      player.getInventory().addItem(new ItemStack(Material.STONE_AXE, 1));
+
       player.performCommand("info");
     }
     else {
