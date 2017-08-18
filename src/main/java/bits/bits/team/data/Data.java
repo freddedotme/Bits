@@ -38,6 +38,7 @@ public class Data {
   public String NEGATIVE_ERROR;
   public String NEGATIVE_THE_END;
   public String NEGATIVE_NETHER;
+  public String NEGATIVE_RTP;
 
   public String POSITIVE_TELEPORTED;
   public String POSITIVE_VOTE;
@@ -89,6 +90,7 @@ public class Data {
     NEGATIVE_INVALID_COLOR = cc(NEGATIVE + "Color not found.");
     NEGATIVE_THE_END = cc(NEGATIVE + "You need to visit the End before using a warp there.");
     NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
+    NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 24 hours between each random teleport.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");

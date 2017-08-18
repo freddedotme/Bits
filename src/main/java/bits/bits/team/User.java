@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -18,10 +19,11 @@ public class User {
   private UUID uuid;
   private boolean donor, guard;
   private String prefix;
+  private Date randomTeleport;
   private PermissionAttachment permissions;
   private String root;
 
-  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix,
+  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix, Date randomTeleport,
               PermissionAttachment permissions) {
     this.file = file;
     this.main = main;
@@ -77,6 +79,14 @@ public class User {
 
     player.setDisplayName(ChatColor.translateAlternateColorCodes('&', prefix + player.getName() + "&r"));
     player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', prefix + player.getName() + "&r"));
+  }
+
+  public Date getRandomTeleport() {
+    return randomTeleport;
+  }
+
+  public void setRandomTeleport(Date randomTeleport) {
+    this.randomTeleport = randomTeleport;
   }
 
   private void addGuardPermissions() {

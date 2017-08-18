@@ -81,3 +81,7 @@ commands:
   broadcast:
     description: Broadcast a message.
     usage: "/broadcast <messages>"
+  randomteleport:
+    description: Teleports you to a random location.
+    aliases: rtp
+    usage: "/rtp"
