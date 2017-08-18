@@ -32,9 +32,13 @@ public class CommandInfo implements CommandExecutor {
 
     List<String> pages = new ArrayList<>();
 
-    pages.add("Hello there!\nMy name is Fred ");
-    pages.add("Okey, on this server we have some simple commands and here's the list:\n\n/bed\n/warp, " +
-      "/warps\n/hat\n/vote\n/discord\n/donate");
+    pages.add("Introduction\n\nWelcome to Bits! Bits is a Minecraft community which focuses mainly on survival. The " +
+      "server started on 2017-07-12.");
+    pages.add("Plugins\n\nWe use CoreProtect (rollback), GriefPrevention (claiming), a custom Discord integration " +
+      "plugin (made by AlbinTheLion) and a custom plugin Bits which adds a few features to the server (made by me).");
+    pages.add("Rules\n\nYou find our rules at: www.bits.team\n\nDiscord\n\nWe have a discord server. Write /discord " +
+      "to get an invite link.");
+
     bookMeta.setPages(pages);
     book.setItemMeta(bookMeta);
 

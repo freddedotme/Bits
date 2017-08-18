@@ -85,3 +85,7 @@ commands:
     description: Teleports you to a random location.
     aliases: rtp
     usage: "/rtp"
+  playerhead:
+    description: Gives you a playerhead with a certain name.
+    aliases: ph
+    usage: "/ph <player>"
