@@ -40,12 +40,12 @@ public class DataUser {
       boolean guard = (boolean) file.read(root + ".guard");
       String prefix = (String) file.read(root + ".prefix");
 
-      users.add(new User(file, main, uuid, donor, guard, prefix, null, null));
+      users.add(new User(file, main, uuid, donor, guard, prefix, null));
     }
   }
 
   public void addUser(UUID uuid, boolean donor, boolean guard, String prefix) {
-    users.add(new User(file, main, uuid, donor, guard, prefix, null, null));
+    users.add(new User(file, main, uuid, donor, guard, prefix, null));
 
     String root = "users." + uuid.toString();
     file.write(root + ".donor", donor);

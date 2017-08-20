@@ -54,6 +54,7 @@ public class Main extends JavaPlugin {
     getCommand("broadcast").setExecutor(new CommandBroadcast(this, dataUser));
     getCommand("randomteleport").setExecutor(new CommandRandomTeleport(this, dataUser));
     getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
+    getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
 
     new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 360000);
   }

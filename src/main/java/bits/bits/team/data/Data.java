@@ -24,6 +24,7 @@ public class Data {
   public String NEUTRAL_RANDOMSPAWN_LOOKING;
   public String NEUTRAL_JOINED;
   public String NEUTRAL_SEEN;
+  public String NEUTRAL_BEAMEDTO;
 
   public String NEGATIVE_NO_BED;
   public String NEGATIVE_ARGUMENTS;
@@ -40,11 +41,17 @@ public class Data {
   public String NEGATIVE_NETHER;
   public String NEGATIVE_RTP;
   public String NEGATIVE_PLAYERHEAD;
+  public String NEGATIVE_BEAM;
+  public String NEGATIVE_BEAMEDFROM;
+  public String NEGATIVE_BEAMEDTO;
 
   public String POSITIVE_TELEPORTED;
   public String POSITIVE_VOTE;
   public String POSITIVE_DONATE;
   public String POSITIVE_COLOR_CHANGE;
+  public String POSITIVE_BEAM_SENT;
+  public String POSITIVE_BEAM_CANCELLED;
+  public String POSITIVE_BEAM_ACCEPTED;
 
   public String PERM_COLOREDNAME;
   public String PERM_BYPASSCOOLDOWN;
@@ -77,6 +84,7 @@ public class Data {
     NEUTRAL_RANDOMSPAWN_LOOKING = cc(NEUTRAL + "({attempts}/{maxAttempts}) Randomizing a new location.");
     NEUTRAL_JOINED = cc(NEUTRAL + "{player} first joined our server at {time} on {date}.");
     NEUTRAL_SEEN = cc(NEUTRAL + "{player} was last seen at {time} on {date}.");
+    NEUTRAL_BEAMEDTO = cc(NEUTRAL + "{player} has sent a beam request to you. Write /beam accept to accept it.");
 
     String NEGATIVE = "&c";
     NEGATIVE_NO_BED = cc(NEGATIVE + "You don't have a bed.");
@@ -93,12 +101,18 @@ public class Data {
     NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
     NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 24 hours between each random teleport.");
     NEGATIVE_PLAYERHEAD = cc(NEGATIVE + "It costs 1 diamond to get a playerhead.");
+    NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 5 minutes between each beam.");
+    NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");
+    NEGATIVE_BEAMEDTO = cc(NEGATIVE + "You haven no pending beam requests.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");
     POSITIVE_VOTE = cc(POSITIVE + "Vote URL: www.bits.team/vote");
     POSITIVE_DONATE = cc(POSITIVE + "Donate URL: www.bits.team/donate");
     POSITIVE_COLOR_CHANGE = cc(POSITIVE + "You colored your name {color}.");
+    POSITIVE_BEAM_SENT = cc(POSITIVE + "Beam request sent.");
+    POSITIVE_BEAM_CANCELLED = cc(POSITIVE + "Beam request cancelled.");
+    POSITIVE_BEAM_ACCEPTED = cc(POSITIVE + "Beam request accepted.");
 
     PERM_COLOREDNAME = "bits.formatname";
     PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";

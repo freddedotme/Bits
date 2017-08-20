@@ -20,10 +20,12 @@ public class User {
   private boolean donor, guard;
   private String prefix;
   private Date randomTeleport;
+  private Date beam;
+  private UUID beamedFrom, beamedTo;
   private PermissionAttachment permissions;
   private String root;
 
-  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix, Date randomTeleport,
+  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix,
               PermissionAttachment permissions) {
     this.file = file;
     this.main = main;
@@ -87,6 +89,30 @@ public class User {
 
   public void setRandomTeleport(Date randomTeleport) {
     this.randomTeleport = randomTeleport;
+  }
+
+  public Date getBeam() {
+    return beam;
+  }
+
+  public void setBeam(Date beam) {
+    this.beam = beam;
+  }
+
+  public UUID getBeamedFrom() {
+    return beamedFrom;
+  }
+
+  public void setBeamedFrom(UUID beamedFrom) {
+    this.beamedFrom = beamedFrom;
+  }
+
+  public UUID getBeamedTo() {
+    return beamedTo;
+  }
+
+  public void setBeamedTo(UUID beamedTo) {
+    this.beamedTo = beamedTo;
   }
 
   private void addGuardPermissions() {
