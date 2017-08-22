@@ -44,6 +44,7 @@ public class Data {
   public String NEGATIVE_BEAM;
   public String NEGATIVE_BEAMEDFROM;
   public String NEGATIVE_BEAMEDTO;
+  public String NEGATIVE_BEAMWORLDS;
 
   public String POSITIVE_TELEPORTED;
   public String POSITIVE_VOTE;
@@ -101,9 +102,10 @@ public class Data {
     NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
     NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 24 hours between each random teleport.");
     NEGATIVE_PLAYERHEAD = cc(NEGATIVE + "It costs 1 diamond to get a playerhead.");
-    NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 5 minutes between each beam.");
+    NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 2 minutes between each beam.");
     NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");
     NEGATIVE_BEAMEDTO = cc(NEGATIVE + "You haven no pending beam requests.");
+    NEGATIVE_BEAMWORLDS = cc(NEGATIVE + "You need to be in the same world as your target.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");

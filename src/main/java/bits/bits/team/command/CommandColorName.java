@@ -3,10 +3,13 @@ package bits.bits.team.command;
 import bits.bits.team.Main;
 import bits.bits.team.User;
 import bits.bits.team.data.DataUser;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 
 import java.util.HashMap;
 
@@ -14,6 +17,7 @@ public class CommandColorName implements CommandExecutor {
   private Main main;
   private DataUser data;
   private HashMap<String, String> colors;
+  private Scoreboard scoreboard;
 
   public CommandColorName(Main main, DataUser data) {
     this.main = main;
@@ -36,6 +40,13 @@ public class CommandColorName implements CommandExecutor {
     colors.put("light_purple", "&d");
     colors.put("yellow", "&e");
     colors.put("white", "&f");
+
+    scoreboard = main.getServer().getScoreboardManager().getNewScoreboard();
+
+    for (String color : colors.keySet()) {
+      Team team = scoreboard.registerNewTeam(color);
+      team.setPrefix(ChatColor.translateAlternateColorCodes('&', colors.get(color)));
+    }
   }
 
   @Override
@@ -67,6 +78,8 @@ public class CommandColorName implements CommandExecutor {
 
         player.sendMessage(main.d().POSITIVE_COLOR_CHANGE.replace("{color}", color));
         user.setPrefix(colors.get(color));
+
+        scoreboard.getTeam(color).addEntry(player.getName());
       }
     }
 

@@ -71,8 +71,16 @@ public class CommandBeam implements CommandExecutor {
     else {
       if (!user.isDonor() && !user.isGuard()) return main.invalidAction(player, main.d().NEGATIVE_PERMISSION);
 
+      Date beam = user.getBeam();
+
+      if (beam != null && new Date().getTime() - beam.getTime() < 120000)
+        return main.invalidAction(player, main.d().NEGATIVE_BEAM);
+
       Player temporary = main.getServer().getPlayer(argument);
       if (temporary == null) return main.invalidAction(player, main.d().NEGATIVE_PLAYER_NOT_FOUND);
+
+      if (!player.getWorld().equals(temporary.getWorld()))
+        return main.invalidAction(player, main.d().NEGATIVE_BEAMWORLDS);
 
       user.setBeamedTo(temporary.getUniqueId());
 

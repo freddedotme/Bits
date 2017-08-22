@@ -9,6 +9,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class DataWarp {
@@ -37,17 +38,20 @@ public class DataWarp {
       Location location = new Location(world, (double) x, (double) y, (double) z);
 
       warps.add(new Warp(warp, location, file));
+      sort();
     }
   }
 
   public void addWarp(String name, Location location) {
     Warp warp = new Warp(name, location, file);
     warps.add(warp);
+    sort();
   }
 
   public void deleteWarp(Warp warp) {
     warp.delete();
     warps.remove(warp);
+    sort();
   }
 
   public Warp getWarp(String name) {
@@ -69,5 +73,9 @@ public class DataWarp {
     for (Warp warp : warps) {
       player.sendMessage(warp.getName());
     }
+  }
+
+  private void sort() {
+    warps.sort(Comparator.comparing(Warp::getName));
   }
 }
