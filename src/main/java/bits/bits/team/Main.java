@@ -7,6 +7,8 @@ import bits.bits.team.data.DataWarp;
 import bits.bits.team.event.*;
 import bits.bits.team.runnable.RunnableWorldEvent;
 import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -71,11 +73,16 @@ public class Main extends JavaPlugin {
   public void teleport(final Player player, final Location location) {
     location.getChunk().load(true);
     player.sendMessage(data.NEUTRAL_TELEPORTING);
+    player.getWorld().spawnParticle(Particle.PORTAL, player.getLocation(), 250, 0.5, 0.5, 0.5);
+    player.playSound(player.getLocation(), Sound.BLOCK_PORTAL_TRIGGER, 0.2F, 1.5F);
     new BukkitRunnable() {
       @Override
       public void run() {
         player.teleport(location);
         player.sendMessage(data.POSITIVE_TELEPORTED);
+        player.getWorld().spawnParticle(Particle.PORTAL, player.getLocation(), 250, 0.5, 0.5, 0.5);
+        player.getWorld().spawnParticle(Particle.PORTAL, player.getLocation(), 50, 0.1, 0.1, 0.1);
+        player.playSound(player.getLocation(), Sound.BLOCK_PORTAL_TRAVEL, 0.2F, 0.8F);
       }
     }.runTaskLater(this, (player.hasPermission(data.PERM_BYPASSCOOLDOWN) ? data.TELEPORT_WARMUP_DONOR : data
       .TELEPORT_WARMUP));
