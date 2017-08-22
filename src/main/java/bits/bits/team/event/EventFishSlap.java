@@ -1,6 +1,7 @@
 package bits.bits.team.event;
 
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,6 +44,7 @@ public class EventFishSlap implements Listener {
     entity.setVelocity(entity.getVelocity()
       .add(launch));
 
+    damager.getWorld().playSound(damager.getLocation(), Sound.BLOCK_NOTE_BELL, 0.2F, 1.5F);
     damager.getInventory().removeItem(fish);
   }
 }
