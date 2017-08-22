@@ -12,6 +12,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CommandColorName implements CommandExecutor {
   private Main main;
@@ -41,11 +42,12 @@ public class CommandColorName implements CommandExecutor {
     colors.put("yellow", "&e");
     colors.put("white", "&f");
 
-    scoreboard = main.getServer().getScoreboardManager().getNewScoreboard();
+    scoreboard = main.getServer().getScoreboardManager().getMainScoreboard();
 
-    for (String color : colors.keySet()) {
-      Team team = scoreboard.registerNewTeam(color);
-      team.setPrefix(ChatColor.translateAlternateColorCodes('&', colors.get(color)));
+    for (Map.Entry<String, String> color : colors.entrySet()) {
+      if (scoreboard.getTeam(color.getKey()) != null) continue;
+      Team team = scoreboard.registerNewTeam(color.getKey());
+      team.setPrefix(ChatColor.translateAlternateColorCodes('&', color.getValue()));
     }
   }
 
@@ -72,14 +74,14 @@ public class CommandColorName implements CommandExecutor {
 
     boolean invalidColor = true;
 
-    for (String color : colors.keySet()) {
-      if (color.equalsIgnoreCase(value)) {
+    for (Map.Entry<String, String> color : colors.entrySet()) {
+      if (color.getKey().equalsIgnoreCase(value)) {
         invalidColor = false;
 
-        player.sendMessage(main.d().POSITIVE_COLOR_CHANGE.replace("{color}", color));
-        user.setPrefix(colors.get(color));
+        player.sendMessage(main.d().POSITIVE_COLOR_CHANGE.replace("{color}", color.getKey()));
+        user.setPrefix(color.getValue());
 
-        scoreboard.getTeam(color).addEntry(player.getName());
+        scoreboard.getTeam(color.getKey()).addEntry(player.getName());
       }
     }
 
