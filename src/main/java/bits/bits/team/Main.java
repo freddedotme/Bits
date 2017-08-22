@@ -74,6 +74,7 @@ public class Main extends JavaPlugin {
     location.getChunk().load(true);
     player.sendMessage(data.NEUTRAL_TELEPORTING);
     player.getWorld().spawnParticle(Particle.PORTAL, player.getLocation(), 250, 0.5, 0.5, 0.5);
+    player.getWorld().spawnParticle(Particle.PORTAL, location, 250, 0.5, 0.5, 0.5);
     player.getWorld().playSound(player.getLocation(), Sound.BLOCK_PORTAL_TRIGGER, 0.2F, 1.5F);
     new BukkitRunnable() {
       @Override
