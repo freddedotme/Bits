@@ -31,6 +31,7 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventVote(this), this);
     getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
     getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
+    getServer().getPluginManager().registerEvents(new EventChatMention(this), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
 
@@ -58,7 +59,7 @@ public class Main extends JavaPlugin {
     getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
     getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
 
-    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 360000);
+    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 288000);
   }
 
   public Data d() {
