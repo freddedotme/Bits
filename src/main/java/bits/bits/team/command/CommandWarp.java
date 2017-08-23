@@ -60,7 +60,8 @@ public class CommandWarp implements CommandExecutor, TabCompleter {
       for (Warp warp : data.getWarps()) {
         warps.add(warp.getName());
       }
-    } else {
+    }
+    else {
       for (Warp warp : data.getWarps()) {
         if (warp.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
           warps.add(warp.getName());

@@ -2,7 +2,6 @@ package bits.bits.team.command;
 
 import bits.bits.team.Main;
 import bits.bits.team.User;
-import bits.bits.team.Warp;
 import bits.bits.team.data.DataUser;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -104,7 +103,8 @@ public class CommandColorName implements CommandExecutor, TabCompleter {
 
     if (args.length == 0) {
       colors.addAll(this.colors.keySet());
-    } else {
+    }
+    else {
       for (String color : this.colors.keySet()) {
         if (color.startsWith(args[0])) {
           colors.add(color);
