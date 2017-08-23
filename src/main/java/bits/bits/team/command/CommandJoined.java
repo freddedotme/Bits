@@ -1,7 +1,6 @@
 package bits.bits.team.command;
 
 import bits.bits.team.Main;
-import bits.bits.team.User;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -71,7 +70,8 @@ public class CommandJoined implements CommandExecutor, TabCompleter {
       for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
         offlinePlayers.add(op.getName());
       }
-    } else {
+    }
+    else {
       for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
         if (op.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
           offlinePlayers.add(op.getName());

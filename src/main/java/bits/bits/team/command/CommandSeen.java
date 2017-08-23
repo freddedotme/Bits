@@ -70,7 +70,8 @@ public class CommandSeen implements CommandExecutor, TabCompleter {
       for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
         offlinePlayers.add(op.getName());
       }
-    } else {
+    }
+    else {
       for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
         if (op.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
           offlinePlayers.add(op.getName());
