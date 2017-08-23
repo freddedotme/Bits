@@ -9,9 +9,13 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-public class CommandWarp implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.List;
+
+public class CommandWarp implements CommandExecutor, TabCompleter {
   private Main main;
   private DataWarp data;
 
@@ -44,5 +48,26 @@ public class CommandWarp implements CommandExecutor {
 
     main.teleport(player, warp.getLocation());
     return true;
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args) {
+    if (!(commandSender instanceof Player)) return null;
+
+    List<String> warps = new ArrayList<>();
+
+    if (args.length == 0) {
+      for (Warp warp : data.getWarps()) {
+        warps.add(warp.getName());
+      }
+    } else {
+      for (Warp warp : data.getWarps()) {
+        if (warp.getName().startsWith(args[0])) {
+          warps.add(warp.getName());
+        }
+      }
+    }
+
+    return warps;
   }
 }
