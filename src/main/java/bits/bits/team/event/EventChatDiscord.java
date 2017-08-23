@@ -15,7 +15,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  * Created: 2017-08-23
  */
 public class EventChatDiscord implements Listener {
-  private static final TemmieWebhook WEBHOOK = new TemmieWebhook("https://discordapp.com/api/webhooks/349965904899211265/rnWSXe4J3nWys68bHGV3ubtV3kghQU0WkKNMcGP_QckUINGi5mxr7qNtkbKX8sk9yJt0");
+  private static final TemmieWebhook WEBHOOK = new TemmieWebhook("https://discordapp.com/api/webhooks/349972577277706242/tlJuGH4P1G7WuvdwMDjEXuHVQZTtgQY9TbEVupIgIsOML5Z0j4SQsppZ6J_lUgjchbio");
   private Main main;
 
   public EventChatDiscord(Main main) {
