@@ -5,17 +5,20 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Bits
  * Author: freddedotme
  * Created: 2017-08-13
  */
-public class CommandSeen implements CommandExecutor {
+public class CommandSeen implements CommandExecutor, TabCompleter {
   private Main main;
 
   public CommandSeen(Main main) {
@@ -55,5 +58,26 @@ public class CommandSeen implements CommandExecutor {
     player.sendMessage(message);
 
     return true;
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args) {
+    if (!(commandSender instanceof Player)) return null;
+
+    List<String> offlinePlayers = new ArrayList<>();
+
+    if (args.length == 0) {
+      for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
+        offlinePlayers.add(op.getName());
+      }
+    } else {
+      for (OfflinePlayer op : main.getServer().getOfflinePlayers()) {
+        if (op.getName().toLowerCase().startsWith(args[0].toLowerCase())) {
+          offlinePlayers.add(op.getName());
+        }
+      }
+    }
+
+    return offlinePlayers;
   }
 }

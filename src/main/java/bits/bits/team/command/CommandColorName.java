@@ -2,19 +2,23 @@ package bits.bits.team.command;
 
 import bits.bits.team.Main;
 import bits.bits.team.User;
+import bits.bits.team.Warp;
 import bits.bits.team.data.DataUser;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CommandColorName implements CommandExecutor {
+public class CommandColorName implements CommandExecutor, TabCompleter {
   private Main main;
   private DataUser data;
   private HashMap<String, String> colors;
@@ -86,5 +90,28 @@ public class CommandColorName implements CommandExecutor {
     }
 
     return !invalidColor || main.invalidAction(player, main.d().NEGATIVE_INVALID_COLOR);
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args) {
+    if (!(commandSender instanceof Player)) return null;
+
+    User user = data.getUser(((Player) commandSender).getUniqueId());
+    if (user == null) return null;
+    if (!user.isDonor() && !user.isGuard()) return null;
+
+    List<String> colors = new ArrayList<>();
+
+    if (args.length == 0) {
+      colors.addAll(this.colors.keySet());
+    } else {
+      for (String color : this.colors.keySet()) {
+        if (color.startsWith(args[0])) {
+          colors.add(color);
+        }
+      }
+    }
+
+    return colors;
   }
 }
