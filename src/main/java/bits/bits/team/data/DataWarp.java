@@ -78,4 +78,8 @@ public class DataWarp {
   private void sort() {
     warps.sort(Comparator.comparing(Warp::getName));
   }
+
+  public List<Warp> getWarps() {
+    return warps;
+  }
 }
