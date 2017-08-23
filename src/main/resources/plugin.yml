@@ -1,6 +1,6 @@
 name: Bits
 version: 2.2
-authors: [freddedotme, AlbinEriksson]
+authors: [freddedotme, AlbinEriksson, Koenn]
 website: https://www.bits.team
 main: bits.bits.team.Main
 database: false
