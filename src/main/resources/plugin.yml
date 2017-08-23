@@ -1,0 +1,94 @@
+name: Bits
+version: 2.2
+authors: [freddedotme, AlbinEriksson]
+website: https://www.bits.team
+main: bits.bits.team.Main
+database: false
+depends: [Votifier]
+
+commands:
+  bed:
+    description: Teleport to your bed.
+    aliases: b
+    usage: "/b"
+  delwarp:
+    description: Staff only.
+    aliases: dw
+    usage: "/dw <player>"
+  setwarp:
+    description: Staff only.
+    aliases: sw
+    usage: "/sw <player>"
+  setguard:
+    description: Staff only.
+    aliases: sg
+    usage: "/sg <player>"
+  delguard:
+    description: Staff only.
+    aliases: dg
+    usage: "/dg <player>"
+  guards:
+    description: View all guards.
+    aliases: gs
+    usage: "/gs"
+  donors:
+    description: View all donors.
+    aliases: ds
+    usage: "/ds"
+  setdonor:
+    description: Staff only.
+    aliases: sd
+    usage: "/sd"
+  deldonor:
+    description: Staff only.
+    aliases: dd
+    usage: "/dd"
+  warp:
+    description: Warp to a location.
+    usage: "/warp <warp>"
+  warps:
+    description: View all warps.
+    aliases: ws
+    usage: "/ws"
+  info:
+    description: Gives you a book about Bits.
+    aliases: i
+    usage: "/i"
+  colorname:
+    description: Set a colored name.
+    aliases: cn
+    usage: "/cn <color>"
+  vote:
+    description: View the vote address.
+    aliases: v
+    usage: "/v"
+  hat:
+    description: Set the item you currently hold as your hat.
+    aliases: h
+    usage: "/h"
+  donate:
+    description: View the donate address.
+    aliases: d
+    usage: "/d"
+  seen:
+    description: View when a player last played.
+    aliases: s
+    usage: "/s <player>"
+  joined:
+    description: View when a player first played.
+    aliases: j
+    usage: "/j <player>"
+  broadcast:
+    description: Broadcast a message.
+    usage: "/broadcast <messages>"
+  randomteleport:
+    description: Teleports you to a random location.
+    aliases: rtp
+    usage: "/rtp"
+  playerhead:
+    description: Gives you a playerhead with a certain name.
+    aliases: ph
+    usage: "/ph <player>"
+  beam:
+    description: Beams (teleports) you to a player.
+    usage: "/beam <player>"
