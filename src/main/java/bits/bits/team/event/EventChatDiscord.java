@@ -1,6 +1,8 @@
 package bits.bits.team.event;
 
 import bits.bits.team.Main;
+import com.mrpowergamerbr.temmiewebhook.DiscordMessage;
+import com.mrpowergamerbr.temmiewebhook.TemmieWebhook;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,16 +14,19 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  * Author: freddedotme
  * Created: 2017-08-23
  */
-public class EventChatMention implements Listener {
+public class EventChatDiscord implements Listener {
+  private static final TemmieWebhook WEBHOOK = new TemmieWebhook("https://discordapp.com/api/webhooks/349965904899211265/rnWSXe4J3nWys68bHGV3ubtV3kghQU0WkKNMcGP_QckUINGi5mxr7qNtkbKX8sk9yJt0");
   private Main main;
 
-  public EventChatMention(Main main) {
+  public EventChatDiscord(Main main) {
     this.main = main;
   }
 
   @EventHandler
   public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
     String message = e.getMessage();
+    String avatar = String.format("https://crafatar.com/avatars/%s", String.valueOf(e.getPlayer().getName()));
+    WEBHOOK.sendMessage(new DiscordMessage(e.getPlayer().getName(), message, avatar));
 
     for (Player player : main.getServer().getOnlinePlayers()) {
       String name = player.getName();
