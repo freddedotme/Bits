@@ -95,8 +95,18 @@ public class RunnableWorldEvent extends BukkitRunnable {
     monsters.put(EntityType.WITCH, 20);
 
     events.add(new WorldEvent(
-      "&Stupefy! A pact of witches are marching through our lands. This can't be good. Head over and keep an eye on " +
+      "&cStupefy! A pact of witches are marching through our lands. This can't be good. Head over and keep an eye on " +
         "them. They were last seen close to {location}.",
+      monsters,
+      null
+    ));
+
+    monsters = new HashMap<>();
+    monsters.put(EntityType.PARROT, 20);
+
+    events.add(new WorldEvent(
+      "&cWow, they are so colorful and cute! A pack of parrots have been spotted. They were last seen close to " +
+        "{location}.",
       monsters,
       null
     ));
