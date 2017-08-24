@@ -12,14 +12,18 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-20
+ * The type Command beam.
  */
 public class CommandBeam implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command beam.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandBeam(Main main, DataUser data) {
     this.main = main;
     this.data = data;

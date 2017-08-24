@@ -12,11 +12,19 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * The type Data warp.
+ */
 public class DataWarp {
   private FileManager file;
   private Main main;
   private List<Warp> warps;
 
+  /**
+   * Instantiates a new Data warp.
+   *
+   * @param main the main
+   */
   public DataWarp(Main main) {
     this.main = main;
 
@@ -42,18 +50,35 @@ public class DataWarp {
     }
   }
 
+  /**
+   * Add warp.
+   *
+   * @param name     the name
+   * @param location the location
+   */
   public void addWarp(String name, Location location) {
     Warp warp = new Warp(name, location, file);
     warps.add(warp);
     sort();
   }
 
+  /**
+   * Delete warp.
+   *
+   * @param warp the warp
+   */
   public void deleteWarp(Warp warp) {
     warp.delete();
     warps.remove(warp);
     sort();
   }
 
+  /**
+   * Gets warp.
+   *
+   * @param name the name
+   * @return the warp
+   */
   public Warp getWarp(String name) {
     for (Warp warp : warps) {
       if (warp.getName().equalsIgnoreCase(name)) return warp;
@@ -61,6 +86,12 @@ public class DataWarp {
     return null;
   }
 
+  /**
+   * Is warp inside chunk boolean.
+   *
+   * @param chunk the chunk
+   * @return the boolean
+   */
   public boolean isWarpInsideChunk(Chunk chunk) {
     for (Warp warp : warps) {
       if (warp.getLocation().getChunk().equals(chunk)) return true;
@@ -68,6 +99,11 @@ public class DataWarp {
     return false;
   }
 
+  /**
+   * Print warps.
+   *
+   * @param player the player
+   */
   public void printWarps(Player player) {
     player.sendMessage(main.d().HEADER_WARPS);
     for (Warp warp : warps) {
@@ -79,6 +115,11 @@ public class DataWarp {
     warps.sort(Comparator.comparing(Warp::getName));
   }
 
+  /**
+   * Gets warps.
+   *
+   * @return the warps
+   */
   public List<Warp> getWarps() {
     return warps;
   }

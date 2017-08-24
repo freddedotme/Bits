@@ -14,13 +14,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-13
+ * The type Command joined.
  */
 public class CommandJoined implements CommandExecutor, TabCompleter {
   private Main main;
 
+  /**
+   * Instantiates a new Command joined.
+   *
+   * @param main the main
+   */
   public CommandJoined(Main main) {
     this.main = main;
   }

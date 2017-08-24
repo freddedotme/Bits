@@ -12,14 +12,18 @@ import org.bukkit.entity.Player;
 import java.util.Date;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-19
+ * The type Command random teleport.
  */
 public class CommandRandomTeleport implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command random teleport.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandRandomTeleport(Main main, DataUser data) {
     this.main = main;
     this.data = data;

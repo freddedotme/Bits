@@ -12,9 +12,17 @@ import org.bukkit.inventory.meta.BookMeta;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Command info.
+ */
 public class CommandInfo implements CommandExecutor {
   private Main main;
 
+  /**
+   * Instantiates a new Command info.
+   *
+   * @param main the main
+   */
   public CommandInfo(Main main) {
     this.main = main;
   }

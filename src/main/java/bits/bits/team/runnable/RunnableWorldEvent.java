@@ -17,14 +17,17 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-15
+ * The type Runnable world event.
  */
 public class RunnableWorldEvent extends BukkitRunnable {
   private Main main;
   private List<WorldEvent> events;
 
+  /**
+   * Instantiates a new Runnable world event.
+   *
+   * @param main the main
+   */
   public RunnableWorldEvent(Main main) {
     this.main = main;
 

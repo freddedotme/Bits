@@ -17,12 +17,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Command color name.
+ */
 public class CommandColorName implements CommandExecutor, TabCompleter {
   private Main main;
   private DataUser data;
   private HashMap<String, String> colors;
   private Scoreboard scoreboard;
 
+  /**
+   * Instantiates a new Command color name.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandColorName(Main main, DataUser data) {
     this.main = main;
     this.data = data;

@@ -6,17 +6,25 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-23
+ * The type Event discord.
  */
 public class EventDiscord implements Listener {
   private Discord discord;
 
+  /**
+   * Instantiates a new Event discord.
+   *
+   * @param discord the discord
+   */
   public EventDiscord(Discord discord) {
     this.discord = discord;
   }
 
+  /**
+   * On async player chat.
+   *
+   * @param e the e
+   */
   @EventHandler
   public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
     String name = e.getPlayer().getName();

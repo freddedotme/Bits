@@ -7,9 +7,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command bed.
+ */
 public class CommandBed implements CommandExecutor {
   private Main main;
 
+  /**
+   * Instantiates a new Command bed.
+   *
+   * @param main the main
+   */
   public CommandBed(Main main) {
     this.main = main;
   }

@@ -4,14 +4,17 @@ import bits.bits.team.Main;
 import bits.bits.team.file.FileManager;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-23
+ * The type Data discord.
  */
 public class DataDiscord {
   private String token;
   private long id;
 
+  /**
+   * Instantiates a new Data discord.
+   *
+   * @param main the main
+   */
   public DataDiscord(Main main) {
     String DEFAULT_TOKEN = "42";
     long DEFAULT_ID = 42L;
@@ -26,18 +29,38 @@ public class DataDiscord {
     id = (long) file.read("id");
   }
 
+  /**
+   * Gets token.
+   *
+   * @return the token
+   */
   public String getToken() {
     return token;
   }
 
+  /**
+   * Sets token.
+   *
+   * @param token the token
+   */
   public void setToken(String token) {
     this.token = token;
   }
 
+  /**
+   * Gets id.
+   *
+   * @return the id
+   */
   public long getId() {
     return id;
   }
 
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
   public void setId(long id) {
     this.id = id;
   }

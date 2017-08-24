@@ -17,12 +17,23 @@ import org.bukkit.inventory.ItemStack;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * The type Event player join quit.
+ */
 public class EventPlayerJoinQuit implements Listener {
   private Main main;
   private DataUser data;
   private Discord discord;
   private Reader reader;
 
+  /**
+   * Instantiates a new Event player join quit.
+   *
+   * @param main    the main
+   * @param data    the data
+   * @param discord the discord
+   * @param reader  the reader
+   */
   public EventPlayerJoinQuit(Main main, DataUser data, Discord discord, Reader reader) {
     this.main = main;
     this.data = data;
@@ -30,6 +41,11 @@ public class EventPlayerJoinQuit implements Listener {
     this.reader = reader;
   }
 
+  /**
+   * On player join.
+   *
+   * @param e the e
+   */
   @EventHandler
   void onPlayerJoin(PlayerJoinEvent e) {
     Player player = e.getPlayer();
@@ -78,6 +94,11 @@ public class EventPlayerJoinQuit implements Listener {
     discord.sendToDiscord("BOT", main.getServer().getOnlinePlayers().size() + " players online.");
   }
 
+  /**
+   * On player quit.
+   *
+   * @param e the e
+   */
   @EventHandler
   void onPlayerQuit(PlayerQuitEvent e) {
     Player player = e.getPlayer();

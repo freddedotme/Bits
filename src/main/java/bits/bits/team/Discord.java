@@ -8,6 +8,7 @@ import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.DisconnectEvent;
 import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.ReconnectedEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -16,15 +17,19 @@ import javax.security.auth.login.LoginException;
 import java.util.Calendar;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-23
+ * The type Discord.
  */
 public class Discord extends ListenerAdapter {
   private Main main;
   private DataDiscord data;
   private TextChannel channel;
 
+  /**
+   * Instantiates a new Discord.
+   *
+   * @param main the main
+   * @param data the data
+   */
   Discord(Main main, DataDiscord data) {
     this.main = main;
     this.data = data;
@@ -43,6 +48,15 @@ public class Discord extends ListenerAdapter {
     sendToDiscord("BOT", "Connected.");
   }
 
+  /**
+   * On reconnected.
+   *
+   * @param e the e
+   */
+  public void onReconnected(ReconnectedEvent e) {
+    sendToDiscord("BOT", "Reconnected.");
+  }
+
   @Override
   public void onDisconnect(DisconnectEvent e) {
     sendToDiscord("BOT", "Disconnected.");
@@ -59,6 +73,12 @@ public class Discord extends ListenerAdapter {
       message));
   }
 
+  /**
+   * Send to discord.
+   *
+   * @param name    the name
+   * @param message the message
+   */
   public void sendToDiscord(String name, String message) {
     for (Member member : channel.getMembers()) {
       String mention = "@" + member.getEffectiveName();

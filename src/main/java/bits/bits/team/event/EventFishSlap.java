@@ -11,11 +11,14 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 /**
- * Bits
- * Authors: freddedotme, AlbinEriksson
- * Created: 2017-08-17
+ * The type Event fish slap.
  */
 public class EventFishSlap implements Listener {
+  /**
+   * On entity damage by entity.
+   *
+   * @param e the e
+   */
   @EventHandler
   public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
     if (!(e.getDamager() instanceof Player)) return;

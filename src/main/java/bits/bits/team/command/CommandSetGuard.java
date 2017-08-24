@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command set guard.
+ */
 public class CommandSetGuard implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command set guard.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandSetGuard(Main main, DataUser data) {
     this.main = main;
     this.data = data;

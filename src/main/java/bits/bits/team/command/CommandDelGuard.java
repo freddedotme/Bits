@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command del guard.
+ */
 public class CommandDelGuard implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command del guard.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandDelGuard(Main main, DataUser data) {
     this.main = main;
     this.data = data;

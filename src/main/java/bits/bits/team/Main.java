@@ -19,6 +19,11 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * The type Main.
+ *
+ * @author freddedotme
+ */
 public class Main extends JavaPlugin {
   private Data data;
 
@@ -78,15 +83,33 @@ public class Main extends JavaPlugin {
     getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
   }
 
+  /**
+   * D data.
+   *
+   * @return the data
+   */
   public Data d() {
     return data;
   }
 
+  /**
+   * Invalid action boolean.
+   *
+   * @param player  the player
+   * @param message the message
+   * @return the boolean
+   */
   public boolean invalidAction(Player player, String message) {
     player.sendMessage(message);
     return false;
   }
 
+  /**
+   * Teleport.
+   *
+   * @param player   the player
+   * @param location the location
+   */
   public void teleport(final Player player, final Location location) {
     location.getChunk().load(true);
     player.sendMessage(data.NEUTRAL_TELEPORTING);

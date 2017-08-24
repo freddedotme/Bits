@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command del warp.
+ */
 public class CommandDelWarp implements CommandExecutor {
   private Main main;
   private DataWarp data;
 
+  /**
+   * Instantiates a new Command del warp.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandDelWarp(Main main, DataWarp data) {
     this.main = main;
     this.data = data;

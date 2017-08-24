@@ -7,13 +7,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-10
+ * The type Command vote.
  */
 public class CommandVote implements CommandExecutor {
   private Main main;
 
+  /**
+   * Instantiates a new Command vote.
+   *
+   * @param main the main
+   */
   public CommandVote(Main main) {
     this.main = main;
   }

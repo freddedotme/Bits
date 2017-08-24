@@ -7,9 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-11
+ * The type Command hat.
  */
 public class CommandHat implements CommandExecutor {
   @Override

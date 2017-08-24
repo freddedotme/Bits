@@ -10,13 +10,16 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-19
+ * The type Command player head.
  */
 public class CommandPlayerHead implements CommandExecutor {
   private Main main;
 
+  /**
+   * Instantiates a new Command player head.
+   *
+   * @param main the main
+   */
   public CommandPlayerHead(Main main) {
     this.main = main;
   }

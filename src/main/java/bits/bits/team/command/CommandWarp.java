@@ -15,10 +15,19 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Command warp.
+ */
 public class CommandWarp implements CommandExecutor, TabCompleter {
   private Main main;
   private DataWarp data;
 
+  /**
+   * Instantiates a new Command warp.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandWarp(Main main, DataWarp data) {
     this.main = main;
     this.data = data;

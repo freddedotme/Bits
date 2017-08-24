@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command set warp.
+ */
 public class CommandSetWarp implements CommandExecutor {
   private Main main;
   private DataWarp data;
 
+  /**
+   * Instantiates a new Command set warp.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandSetWarp(Main main, DataWarp data) {
     this.main = main;
     this.data = data;

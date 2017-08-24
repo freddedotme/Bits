@@ -8,12 +8,21 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * The type File manager.
+ */
 public class FileManager {
   private Main main;
   private String path;
   private FileConfiguration configuration;
   private File file;
 
+  /**
+   * Instantiates a new File manager.
+   *
+   * @param main the main
+   * @param path the path
+   */
   public FileManager(Main main, String path) {
     this.main = main;
     this.path = path;
@@ -39,6 +48,12 @@ public class FileManager {
     configuration = YamlConfiguration.loadConfiguration(file);
   }
 
+  /**
+   * Write.
+   *
+   * @param path  the path
+   * @param value the value
+   */
   public void write(String path, Object value) {
     configuration.set(path, value);
     try {
@@ -48,10 +63,22 @@ public class FileManager {
     }
   }
 
+  /**
+   * Read object.
+   *
+   * @param path the path
+   * @return the object
+   */
   public Object read(String path) {
     return configuration.get(path);
   }
 
+  /**
+   * Gets keys.
+   *
+   * @param path the path
+   * @return the keys
+   */
   public Set<String> getKeys(String path) {
     if (configuration.getConfigurationSection(path) == null) return null;
     return configuration.getConfigurationSection(path).getKeys(false);

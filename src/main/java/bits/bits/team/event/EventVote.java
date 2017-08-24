@@ -13,10 +13,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The type Event vote.
+ */
 public class EventVote implements Listener {
   private Main main;
   private List<PotionEffectType> effects;
 
+  /**
+   * Instantiates a new Event vote.
+   *
+   * @param main the main
+   */
   public EventVote(Main main) {
     this.main = main;
 
@@ -33,6 +41,11 @@ public class EventVote implements Listener {
     effects.add(PotionEffectType.WATER_BREATHING);
   }
 
+  /**
+   * On votifier.
+   *
+   * @param e the e
+   */
   @EventHandler
   public void onVotifier(VotifierEvent e) {
     Vote vote = e.getVote();

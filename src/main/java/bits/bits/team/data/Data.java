@@ -2,69 +2,231 @@ package bits.bits.team.data;
 
 import org.bukkit.ChatColor;
 
+/**
+ * The type Data.
+ */
 public class Data {
+  /**
+   * The Root path.
+   */
   public String ROOT_PATH = "plugins/Bits";
 
+  /**
+   * The Msg join.
+   */
   public String MSG_JOIN;
+  /**
+   * The Msg join new.
+   */
   public String MSG_JOIN_NEW;
+  /**
+   * The Msg quit.
+   */
   public String MSG_QUIT;
+  /**
+   * The Msg voting.
+   */
   public String MSG_VOTING;
+  /**
+   * The Msg sleeping.
+   */
   public String MSG_SLEEPING;
 
+  /**
+   * The Book title.
+   */
   public String BOOK_TITLE;
+  /**
+   * The Book author.
+   */
   public String BOOK_AUTHOR;
 
+  /**
+   * The Header donors.
+   */
   public String HEADER_DONORS;
+  /**
+   * The Header guards.
+   */
   public String HEADER_GUARDS;
+  /**
+   * The Header colors.
+   */
   public String HEADER_COLORS;
+  /**
+   * The Header warps.
+   */
   public String HEADER_WARPS;
 
+  /**
+   * The Neutral teleporting.
+   */
   public String NEUTRAL_TELEPORTING;
+  /**
+   * The Neutral randomspawn.
+   */
   public String NEUTRAL_RANDOMSPAWN;
+  /**
+   * The Neutral randomspawn looking.
+   */
   public String NEUTRAL_RANDOMSPAWN_LOOKING;
+  /**
+   * The Neutral joined.
+   */
   public String NEUTRAL_JOINED;
+  /**
+   * The Neutral seen.
+   */
   public String NEUTRAL_SEEN;
+  /**
+   * The Neutral beamedto.
+   */
   public String NEUTRAL_BEAMEDTO;
 
+  /**
+   * The Negative no bed.
+   */
   public String NEGATIVE_NO_BED;
+  /**
+   * The Negative arguments.
+   */
   public String NEGATIVE_ARGUMENTS;
+  /**
+   * The Negative warp not found.
+   */
   public String NEGATIVE_WARP_NOT_FOUND;
+  /**
+   * The Negative permission.
+   */
   public String NEGATIVE_PERMISSION;
+  /**
+   * The Negative player not found.
+   */
   public String NEGATIVE_PLAYER_NOT_FOUND;
+  /**
+   * The Negative already guard.
+   */
   public String NEGATIVE_ALREADY_GUARD;
+  /**
+   * The Negative already donor.
+   */
   public String NEGATIVE_ALREADY_DONOR;
+  /**
+   * The Negative not guard.
+   */
   public String NEGATIVE_NOT_GUARD;
+  /**
+   * The Negative not donor.
+   */
   public String NEGATIVE_NOT_DONOR;
+  /**
+   * The Negative invalid color.
+   */
   public String NEGATIVE_INVALID_COLOR;
+  /**
+   * The Negative error.
+   */
   public String NEGATIVE_ERROR;
+  /**
+   * The Negative the end.
+   */
   public String NEGATIVE_THE_END;
+  /**
+   * The Negative nether.
+   */
   public String NEGATIVE_NETHER;
+  /**
+   * The Negative rtp.
+   */
   public String NEGATIVE_RTP;
+  /**
+   * The Negative playerhead.
+   */
   public String NEGATIVE_PLAYERHEAD;
+  /**
+   * The Negative beam.
+   */
   public String NEGATIVE_BEAM;
+  /**
+   * The Negative beamedfrom.
+   */
   public String NEGATIVE_BEAMEDFROM;
+  /**
+   * The Negative beamedto.
+   */
   public String NEGATIVE_BEAMEDTO;
+  /**
+   * The Negative beamworlds.
+   */
   public String NEGATIVE_BEAMWORLDS;
 
+  /**
+   * The Positive teleported.
+   */
   public String POSITIVE_TELEPORTED;
+  /**
+   * The Positive vote.
+   */
   public String POSITIVE_VOTE;
+  /**
+   * The Positive donate.
+   */
   public String POSITIVE_DONATE;
+  /**
+   * The Positive color change.
+   */
   public String POSITIVE_COLOR_CHANGE;
+  /**
+   * The Positive beam sent.
+   */
   public String POSITIVE_BEAM_SENT;
+  /**
+   * The Positive beam cancelled.
+   */
   public String POSITIVE_BEAM_CANCELLED;
+  /**
+   * The Positive beam accepted.
+   */
   public String POSITIVE_BEAM_ACCEPTED;
 
+  /**
+   * The Perm coloredname.
+   */
   public String PERM_COLOREDNAME;
+  /**
+   * The Perm bypasscooldown.
+   */
   public String PERM_BYPASSCOOLDOWN;
 
+  /**
+   * The Discord to minecraft.
+   */
   public String DISCORD_TO_MINECRAFT;
 
+  /**
+   * The Teleport warmup.
+   */
   public int TELEPORT_WARMUP = 100;
+  /**
+   * The Teleport warmup donor.
+   */
   public int TELEPORT_WARMUP_DONOR = 50;
+  /**
+   * The Effect duration.
+   */
   public int EFFECT_DURATION = 20 * 180;
+  /**
+   * The Wb margin.
+   */
   public int WB_MARGIN = 250;
+  /**
+   * The Randomspawn attempts.
+   */
   public int RANDOMSPAWN_ATTEMPTS = 20;
 
+  /**
+   * Instantiates a new Data.
+   */
   public Data() {
     MSG_JOIN = "+ [{ISO}] {player}";
     MSG_JOIN_NEW = "+ [NEW] [{ISO}] {player}";

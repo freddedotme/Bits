@@ -9,17 +9,25 @@ import org.bukkit.event.entity.EntityCombustByEntityEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 /**
- * Bits
- * Authors: AlbinEriksson
- * Created: 2017-08-17
+ * The type Event disable pvp.
  */
 public class EventDisablePvP implements Listener {
+  /**
+   * On entity damage by entity.
+   *
+   * @param e the e
+   */
   @EventHandler
   public void onEntityDamageByEntity(EntityDamageByEntityEvent e) {
     if (isPvpDamage(e.getDamager(), e.getEntity()))
       e.setCancelled(true);
   }
 
+  /**
+   * On entity combust by entity.
+   *
+   * @param e the e
+   */
   @EventHandler
   public void onEntityCombustByEntity(EntityCombustByEntityEvent e) {
     if (isPvpDamage(e.getCombuster(), e.getEntity()))

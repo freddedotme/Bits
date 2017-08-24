@@ -6,9 +6,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command guards.
+ */
 public class CommandGuards implements CommandExecutor {
   private DataUser data;
 
+  /**
+   * Instantiates a new Command guards.
+   *
+   * @param data the data
+   */
   public CommandGuards(DataUser data) {
     this.data = data;
   }

@@ -11,11 +11,20 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * The type Runnable random teleport.
+ */
 public class RunnableRandomTeleport extends BukkitRunnable {
   private Main main;
   private Player player;
   private int attempts = 0;
 
+  /**
+   * Instantiates a new Runnable random teleport.
+   *
+   * @param main   the main
+   * @param player the player
+   */
   public RunnableRandomTeleport(Main main, Player player) {
     this.main = main;
     this.player = player;

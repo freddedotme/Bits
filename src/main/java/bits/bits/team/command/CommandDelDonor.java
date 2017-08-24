@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command del donor.
+ */
 public class CommandDelDonor implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command del donor.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandDelDonor(Main main, DataUser data) {
     this.main = main;
     this.data = data;

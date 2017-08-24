@@ -8,10 +8,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command set donor.
+ */
 public class CommandSetDonor implements CommandExecutor {
   private Main main;
   private DataUser data;
 
+  /**
+   * Instantiates a new Command set donor.
+   *
+   * @param main the main
+   * @param data the data
+   */
   public CommandSetDonor(Main main, DataUser data) {
     this.main = main;
     this.data = data;

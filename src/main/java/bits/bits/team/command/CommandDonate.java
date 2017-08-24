@@ -7,13 +7,16 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-12
+ * The type Command donate.
  */
 public class CommandDonate implements CommandExecutor {
   private Main main;
 
+  /**
+   * Instantiates a new Command donate.
+   *
+   * @param main the main
+   */
   public CommandDonate(Main main) {
     this.main = main;
   }

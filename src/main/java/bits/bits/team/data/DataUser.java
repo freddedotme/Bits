@@ -11,15 +11,18 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-14
+ * The type Data user.
  */
 public class DataUser {
   private FileManager file;
   private Main main;
   private List<User> users;
 
+  /**
+   * Instantiates a new Data user.
+   *
+   * @param main the main
+   */
   public DataUser(Main main) {
     this.main = main;
 
@@ -44,6 +47,14 @@ public class DataUser {
     }
   }
 
+  /**
+   * Add user.
+   *
+   * @param uuid   the uuid
+   * @param donor  the donor
+   * @param guard  the guard
+   * @param prefix the prefix
+   */
   public void addUser(UUID uuid, boolean donor, boolean guard, String prefix) {
     users.add(new User(file, main, uuid, donor, guard, prefix, null));
 
@@ -53,6 +64,11 @@ public class DataUser {
     file.write(root + ".prefix", prefix);
   }
 
+  /**
+   * Remove user.
+   *
+   * @param uuid the uuid
+   */
   public void removeUser(UUID uuid) {
     User user = getUser(uuid);
     if (user == null) return;
@@ -63,12 +79,23 @@ public class DataUser {
     file.write(root, null);
   }
 
+  /**
+   * Gets user.
+   *
+   * @param uuid the uuid
+   * @return the user
+   */
   public User getUser(UUID uuid) {
     for (User user : users)
       if (user.getUuid().equals(uuid)) return user;
     return null;
   }
 
+  /**
+   * Print donors.
+   *
+   * @param player the player
+   */
   public void printDonors(Player player) {
     player.sendMessage(main.d().HEADER_DONORS);
     for (User user : users) {
@@ -79,6 +106,11 @@ public class DataUser {
     }
   }
 
+  /**
+   * Print guards.
+   *
+   * @param player the player
+   */
   public void printGuards(Player player) {
     player.sendMessage(main.d().HEADER_GUARDS);
     for (User user : users) {

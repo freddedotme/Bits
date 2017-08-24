@@ -9,9 +9,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-14
+ * The type User.
  */
 public class User {
   private FileManager file;
@@ -25,6 +23,17 @@ public class User {
   private PermissionAttachment permissions;
   private String root;
 
+  /**
+   * Instantiates a new User.
+   *
+   * @param file        the file
+   * @param main        the main
+   * @param uuid        the uuid
+   * @param donor       the donor
+   * @param guard       the guard
+   * @param prefix      the prefix
+   * @param permissions the permissions
+   */
   public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix,
               PermissionAttachment permissions) {
     this.file = file;
@@ -38,18 +47,38 @@ public class User {
     root = "users." + uuid.toString();
   }
 
+  /**
+   * Gets uuid.
+   *
+   * @return the uuid
+   */
   public UUID getUuid() {
     return uuid;
   }
 
+  /**
+   * Sets uuid.
+   *
+   * @param uuid the uuid
+   */
   public void setUuid(UUID uuid) {
     this.uuid = uuid;
   }
 
+  /**
+   * Is donor boolean.
+   *
+   * @return the boolean
+   */
   public boolean isDonor() {
     return donor;
   }
 
+  /**
+   * Sets donor.
+   *
+   * @param donor the donor
+   */
   public void setDonor(boolean donor) {
     this.donor = donor;
     file.write(root + ".donor", donor);
@@ -57,10 +86,20 @@ public class User {
     if (donor) addDonorPermissions();
   }
 
+  /**
+   * Is guard boolean.
+   *
+   * @return the boolean
+   */
   public boolean isGuard() {
     return guard;
   }
 
+  /**
+   * Sets guard.
+   *
+   * @param guard the guard
+   */
   public void setGuard(boolean guard) {
     this.guard = guard;
     file.write(root + ".guard", guard);
@@ -68,10 +107,20 @@ public class User {
     if (guard) addGuardPermissions();
   }
 
+  /**
+   * Gets prefix.
+   *
+   * @return the prefix
+   */
   public String getPrefix() {
     return prefix;
   }
 
+  /**
+   * Sets prefix.
+   *
+   * @param prefix the prefix
+   */
   public void setPrefix(String prefix) {
     this.prefix = prefix;
     file.write(root + ".prefix", prefix);
@@ -83,34 +132,74 @@ public class User {
     player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', prefix + player.getName() + "&r"));
   }
 
+  /**
+   * Gets random teleport.
+   *
+   * @return the random teleport
+   */
   public Date getRandomTeleport() {
     return randomTeleport;
   }
 
+  /**
+   * Sets random teleport.
+   *
+   * @param randomTeleport the random teleport
+   */
   public void setRandomTeleport(Date randomTeleport) {
     this.randomTeleport = randomTeleport;
   }
 
+  /**
+   * Gets beam.
+   *
+   * @return the beam
+   */
   public Date getBeam() {
     return beam;
   }
 
+  /**
+   * Sets beam.
+   *
+   * @param beam the beam
+   */
   public void setBeam(Date beam) {
     this.beam = beam;
   }
 
+  /**
+   * Gets beamed from.
+   *
+   * @return the beamed from
+   */
   public UUID getBeamedFrom() {
     return beamedFrom;
   }
 
+  /**
+   * Sets beamed from.
+   *
+   * @param beamedFrom the beamed from
+   */
   public void setBeamedFrom(UUID beamedFrom) {
     this.beamedFrom = beamedFrom;
   }
 
+  /**
+   * Gets beamed to.
+   *
+   * @return the beamed to
+   */
   public UUID getBeamedTo() {
     return beamedTo;
   }
 
+  /**
+   * Sets beamed to.
+   *
+   * @param beamedTo the beamed to
+   */
   public void setBeamedTo(UUID beamedTo) {
     this.beamedTo = beamedTo;
   }
@@ -138,12 +227,18 @@ public class User {
     permissions.setPermission(main.d().PERM_COLOREDNAME, true);
   }
 
+  /**
+   * Join.
+   */
   public void join() {
     if (prefix != null) setPrefix(prefix);
     if (donor) addDonorPermissions();
     if (guard) addGuardPermissions();
   }
 
+  /**
+   * Quit.
+   */
   public void quit() {
     Player player = main.getServer().getPlayer(uuid);
     if (player == null) return;

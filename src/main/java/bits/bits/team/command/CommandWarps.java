@@ -6,9 +6,17 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+/**
+ * The type Command warps.
+ */
 public class CommandWarps implements CommandExecutor {
   private DataWarp data;
 
+  /**
+   * Instantiates a new Command warps.
+   *
+   * @param data the data
+   */
   public CommandWarps(DataWarp data) {
     this.data = data;
   }

@@ -14,13 +14,16 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Bits
- * Author: freddedotme
- * Created: 2017-08-13
+ * The type Command seen.
  */
 public class CommandSeen implements CommandExecutor, TabCompleter {
   private Main main;
 
+  /**
+   * Instantiates a new Command seen.
+   *
+   * @param main the main
+   */
   public CommandSeen(Main main) {
     this.main = main;
   }
