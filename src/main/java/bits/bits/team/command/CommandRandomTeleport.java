@@ -36,7 +36,7 @@ public class CommandRandomTeleport implements CommandExecutor {
     Date now = new Date();
     Date rtp = user.getRandomTeleport();
 
-    if (rtp != null && now.getTime() - rtp.getTime() < 86400000)
+    if (rtp != null && now.getTime() - rtp.getTime() < 43200000)
       return main.invalidAction(player, main.d().NEGATIVE_RTP);
 
     player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN);

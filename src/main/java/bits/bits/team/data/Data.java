@@ -66,8 +66,8 @@ public class Data {
   public int RANDOMSPAWN_ATTEMPTS = 20;
 
   public Data() {
-    MSG_JOIN = "+ {player}";
-    MSG_JOIN_NEW = "+ [NEW] {player}";
+    MSG_JOIN = "+ [{ISO}] {player}";
+    MSG_JOIN_NEW = "+ [NEW] [{ISO}] {player}";
     MSG_QUIT = "- {player}";
     MSG_VOTING = "&a{player} voted at {service}. Do /vote to vote.";
     MSG_SLEEPING = "&e{sleeping}/{online} player(s) sleeping.";
@@ -102,7 +102,7 @@ public class Data {
     NEGATIVE_INVALID_COLOR = cc(NEGATIVE + "Color not found.");
     NEGATIVE_THE_END = cc(NEGATIVE + "You need to visit the End before using a warp there.");
     NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
-    NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 24 hours between each random teleport.");
+    NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 12 hours between each random teleport.");
     NEGATIVE_PLAYERHEAD = cc(NEGATIVE + "It costs 1 diamond to get a playerhead.");
     NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 2 minutes between each beam.");
     NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");

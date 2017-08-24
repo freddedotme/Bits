@@ -4,6 +4,8 @@ import bits.bits.team.Discord;
 import bits.bits.team.Main;
 import bits.bits.team.User;
 import bits.bits.team.data.DataUser;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.maxmind.db.Reader;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,17 +14,20 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.io.IOException;
 import java.util.UUID;
 
 public class EventPlayerJoinQuit implements Listener {
   private Main main;
   private DataUser data;
   private Discord discord;
+  private Reader reader;
 
-  public EventPlayerJoinQuit(Main main, DataUser data, Discord discord) {
+  public EventPlayerJoinQuit(Main main, DataUser data, Discord discord, Reader reader) {
     this.main = main;
     this.data = data;
     this.discord = discord;
+    this.reader = reader;
   }
 
   @EventHandler
@@ -40,9 +45,22 @@ public class EventPlayerJoinQuit implements Listener {
       user.join();
     }
 
+    String ISO = null;
+
+    try {
+      if (reader == null) return;
+      JsonNode node = reader.get(player.getAddress().getAddress());
+      if (node != null) node = node.get("country").get("iso_code");
+      if (node != null) ISO = node.textValue();
+    } catch (IOException e1) {
+      e1.printStackTrace();
+    }
+
+    if (ISO == null) ISO = "*";
+
     if (!player.hasPlayedBefore()) {
-      e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{player}", player.getName()));
-      discord.sendToDiscord("BOT", main.d().MSG_JOIN_NEW.replace("{player}", player.getName()));
+      e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{ISO}", ISO).replace("{player}", player.getName()));
+      discord.sendToDiscord("BOT", main.d().MSG_JOIN_NEW.replace("{ISO}", ISO).replace("{player}", player.getName()));
 
       player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
       player.getInventory().addItem(new ItemStack(Material.BED, 1));
@@ -53,8 +71,8 @@ public class EventPlayerJoinQuit implements Listener {
       player.performCommand("randomteleport");
     }
     else {
-      e.setJoinMessage(main.d().MSG_JOIN.replace("{player}", player.getDisplayName()));
-      discord.sendToDiscord("BOT", main.d().MSG_JOIN.replace("{player}", player.getName()));
+      e.setJoinMessage(main.d().MSG_JOIN.replace("{ISO}", ISO).replace("{player}", player.getDisplayName()));
+      discord.sendToDiscord("BOT", main.d().MSG_JOIN.replace("{ISO}", ISO).replace("{player}", player.getName()));
     }
 
     discord.sendToDiscord("BOT", main.getServer().getOnlinePlayers().size() + " players online.");

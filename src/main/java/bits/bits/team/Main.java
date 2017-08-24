@@ -7,12 +7,17 @@ import bits.bits.team.data.DataUser;
 import bits.bits.team.data.DataWarp;
 import bits.bits.team.event.*;
 import bits.bits.team.runnable.RunnableWorldEvent;
+import com.maxmind.db.CHMCache;
+import com.maxmind.db.Reader;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Main extends JavaPlugin {
   private Data data;
@@ -29,7 +34,15 @@ public class Main extends JavaPlugin {
     new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 288000);
     Discord discord = new Discord(this, dataDiscord);
 
-    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser, discord), this);
+    File database = new File(data.ROOT_PATH, "GeoLite2-Country.mmdb");
+    Reader reader = null;
+    try {
+      reader = new Reader(database, new CHMCache());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser, discord, reader), this);
     getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
     getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
     getServer().getPluginManager().registerEvents(new EventSignColorize(), this);

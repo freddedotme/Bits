@@ -52,5 +52,10 @@
             <artifactId>JDA</artifactId>
             <version>3.2.0_248</version>
         </dependency>
+        <dependency>
+            <groupId>com.maxmind.db</groupId>
+            <artifactId>maxmind-db</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 </project>
