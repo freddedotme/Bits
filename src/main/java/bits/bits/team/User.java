@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -21,6 +22,8 @@ public class User {
   private Date beam;
   private UUID beamedFrom, beamedTo;
   private PermissionAttachment permissions;
+  private List<Shop> shops;
+  private boolean shopMode;
   private String root;
 
   /**
@@ -33,9 +36,10 @@ public class User {
    * @param guard       the guard
    * @param prefix      the prefix
    * @param permissions the permissions
+   * @param shops       the shops
    */
   public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix,
-              PermissionAttachment permissions) {
+              PermissionAttachment permissions, List<Shop> shops) {
     this.file = file;
     this.main = main;
     this.uuid = uuid;
@@ -43,6 +47,7 @@ public class User {
     this.guard = guard;
     this.prefix = prefix;
     this.permissions = permissions;
+    this.shops = shops;
 
     root = "users." + uuid.toString();
   }
@@ -202,6 +207,57 @@ public class User {
    */
   public void setBeamedTo(UUID beamedTo) {
     this.beamedTo = beamedTo;
+  }
+
+  /**
+   * Gets shops.
+   *
+   * @return the shops
+   */
+  public List<Shop> getShops() {
+    return shops;
+  }
+
+  /**
+   * Sets shops.
+   *
+   * @param shops the shops
+   */
+  public void setShops(List<Shop> shops) {
+    this.shops = shops;
+    if (shops == null) return;
+
+    int index = 0;
+
+    for (Shop shop : shops) {
+      int x = shop.getLocation().getBlockX();
+      int y = shop.getLocation().getBlockY();
+      int z = shop.getLocation().getBlockZ();
+
+      file.write(root + ".shops." + index + ".x", x);
+      file.write(root + ".shops." + index + ".y", y);
+      file.write(root + ".shops." + index + ".z", z);
+
+      index++;
+    }
+  }
+
+  /**
+   * Is shop mode boolean.
+   *
+   * @return the boolean
+   */
+  public boolean isShopMode() {
+    return shopMode;
+  }
+
+  /**
+   * Sets shop mode.
+   *
+   * @param shopMode the shop mode
+   */
+  public void setShopMode(boolean shopMode) {
+    this.shopMode = shopMode;
   }
 
   private void addGuardPermissions() {

@@ -1,9 +1,11 @@
 package bits.bits.team.data;
 
 import bits.bits.team.Main;
+import bits.bits.team.Shop;
 import bits.bits.team.User;
 import bits.bits.team.file.FileManager;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -43,7 +45,21 @@ public class DataUser {
       boolean guard = (boolean) file.read(root + ".guard");
       String prefix = (String) file.read(root + ".prefix");
 
-      users.add(new User(file, main, uuid, donor, guard, prefix, null));
+      List<Shop> shops = new ArrayList<>();
+
+      if (file.getKeys(root + ".shops") != null) {
+        for (String shop : file.getKeys(root + ".shops")) {
+          World world = main.getServer().getWorld("bits");
+
+          int x = (int) file.read(root + ".shops." + shop + ".x");
+          int y = (int) file.read(root + ".shops." + shop + ".y");
+          int z = (int) file.read(root + ".shops." + shop + ".z");
+
+          shops.add(new Shop(uuid, world.getBlockAt(x, y, z).getLocation()));
+        }
+      }
+
+      users.add(new User(file, main, uuid, donor, guard, prefix, null, shops));
     }
   }
 
@@ -56,7 +72,7 @@ public class DataUser {
    * @param prefix the prefix
    */
   public void addUser(UUID uuid, boolean donor, boolean guard, String prefix) {
-    users.add(new User(file, main, uuid, donor, guard, prefix, null));
+    users.add(new User(file, main, uuid, donor, guard, prefix, null, null));
 
     String root = "users." + uuid.toString();
     file.write(root + ".donor", donor);
