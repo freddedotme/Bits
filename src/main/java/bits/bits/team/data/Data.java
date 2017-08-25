@@ -202,6 +202,8 @@ public class Data {
    * The Positive donate.
    */
   public String POSITIVE_DONATE;
+
+  public String POSITIVE_DISCORD;
   /**
    * The Positive color change.
    */
@@ -316,6 +318,7 @@ public class Data {
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");
     POSITIVE_VOTE = cc(POSITIVE + "Vote URL: www.bits.team/vote");
     POSITIVE_DONATE = cc(POSITIVE + "Donate URL: www.bits.team/donate");
+    POSITIVE_DISCORD = cc(POSITIVE + "Discord URL: https://discord.gg/67vHNa3");
     POSITIVE_COLOR_CHANGE = cc(POSITIVE + "You colored your name {color}.");
     POSITIVE_BEAM_SENT = cc(POSITIVE + "Beam request sent.");
     POSITIVE_BEAM_CANCELLED = cc(POSITIVE + "Beam request cancelled.");

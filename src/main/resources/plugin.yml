@@ -95,3 +95,6 @@ commands:
   shop:
     description: Enable/disable shop mode.
     usage: "/shop"
+  discord:
+    description: View the discord address.
+    usage: "/discord"

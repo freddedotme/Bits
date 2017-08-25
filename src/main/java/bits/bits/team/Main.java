@@ -82,6 +82,7 @@ public class Main extends JavaPlugin {
     getCommand("randomteleport").setExecutor(new CommandRandomTeleport(this, dataUser));
     getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
     getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
+    getCommand("discord").setExecutor(new CommandDiscord(this));
     //getCommand("shop").setExecutor(new CommandShop(this, dataUser));
   }
 
