@@ -55,6 +55,7 @@ public class Main extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
     getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
     getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
+    //getServer().getPluginManager().registerEvents(new EventShopCreate(this, dataUser), this);
 
     getCommand("bed").setExecutor(new CommandBed(this));
 
@@ -81,7 +82,7 @@ public class Main extends JavaPlugin {
     getCommand("randomteleport").setExecutor(new CommandRandomTeleport(this, dataUser));
     getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
     getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
-    getCommand("shop").setExecutor(new CommandShop(this, dataUser));
+    //getCommand("shop").setExecutor(new CommandShop(this, dataUser));
   }
 
   /**

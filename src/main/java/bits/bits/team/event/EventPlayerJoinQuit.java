@@ -84,7 +84,7 @@ public class EventPlayerJoinQuit implements Listener {
       player.getInventory().addItem(new ItemStack(Material.STONE_AXE, 1));
 
       player.performCommand("info");
-      player.performCommand("randomteleport");
+      player.performCommand("warp spawn");
     }
     else {
       e.setJoinMessage(main.d().MSG_JOIN.replace("{ISO}", ISO).replace("{player}", player.getDisplayName()));

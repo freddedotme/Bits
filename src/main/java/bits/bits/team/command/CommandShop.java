@@ -35,7 +35,7 @@ public class CommandShop implements CommandExecutor {
     if (user == null) return main.invalidAction(player, main.d().NEGATIVE_ERROR);
 
     user.setShopMode(!user.isShopMode());
-    player.sendMessage(!user.isShopMode() ? main.d().NEUTRAL_SHOP_ENABLED : main.d().NEUTRAL_SHOP_DISABLED);
+    player.sendMessage(user.isShopMode() ? main.d().NEUTRAL_SHOP_ENABLED : main.d().NEUTRAL_SHOP_DISABLED);
 
     return true;
   }

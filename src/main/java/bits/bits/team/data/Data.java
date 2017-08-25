@@ -176,6 +176,16 @@ public class Data {
   public String NEGATIVE_SHOP_EXISTS;
 
   /**
+   * The Negative shop product.
+   */
+  public String NEGATIVE_SHOP_PRODUCT;
+
+  /**
+   * The Negative shop price.
+   */
+  public String NEGATIVE_SHOP_PRICE;
+
+  /**
    * The Negative shop items.
    */
   public String NEGATIVE_SHOP_ITEMS;
@@ -298,7 +308,9 @@ public class Data {
     NEGATIVE_BEAMEDTO = cc(NEGATIVE + "You haven no pending beam requests.");
     NEGATIVE_BEAMWORLDS = cc(NEGATIVE + "You need to be in the same world as your target.");
     NEGATIVE_SHOP_EXISTS = cc(NEGATIVE + "This is already a shop.");
-    NEGATIVE_SHOP_ITEMS = cc(NEGATIVE + "You need to have both a product and price item.");
+    NEGATIVE_SHOP_ITEMS = cc(NEGATIVE + "You need to have both a product and a price item.");
+    NEGATIVE_SHOP_PRODUCT = cc(NEGATIVE + "There has to be a product item on position 1 in your shop.");
+    NEGATIVE_SHOP_PRICE = cc(NEGATIVE + "There has to be a price item on position 2 in your shop.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");
