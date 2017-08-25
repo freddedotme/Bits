@@ -225,7 +225,7 @@ public class User {
    */
   public void setShops(List<Shop> shops) {
     this.shops = shops;
-    if (shops == null) return;
+    if (shops == null || shops.size() == 0) return;
 
     int index = 0;
 

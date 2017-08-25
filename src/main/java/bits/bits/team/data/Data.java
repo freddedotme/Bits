@@ -171,6 +171,16 @@ public class Data {
   public String NEGATIVE_BEAMWORLDS;
 
   /**
+   * The Negative shop exists.
+   */
+  public String NEGATIVE_SHOP_EXISTS;
+
+  /**
+   * The Negative shop items.
+   */
+  public String NEGATIVE_SHOP_ITEMS;
+
+  /**
    * The Positive teleported.
    */
   public String POSITIVE_TELEPORTED;
@@ -198,6 +208,11 @@ public class Data {
    * The Positive beam accepted.
    */
   public String POSITIVE_BEAM_ACCEPTED;
+
+  /**
+   * The Positive shop created.
+   */
+  public String POSITIVE_SHOP_CREATED;
 
   /**
    * The Perm coloredname.
@@ -282,6 +297,8 @@ public class Data {
     NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");
     NEGATIVE_BEAMEDTO = cc(NEGATIVE + "You haven no pending beam requests.");
     NEGATIVE_BEAMWORLDS = cc(NEGATIVE + "You need to be in the same world as your target.");
+    NEGATIVE_SHOP_EXISTS = cc(NEGATIVE + "This is already a shop.");
+    NEGATIVE_SHOP_ITEMS = cc(NEGATIVE + "You need to have both a product and price item.");
 
     String POSITIVE = "&a";
     POSITIVE_TELEPORTED = cc(POSITIVE + "Teleported!");
@@ -291,6 +308,7 @@ public class Data {
     POSITIVE_BEAM_SENT = cc(POSITIVE + "Beam request sent.");
     POSITIVE_BEAM_CANCELLED = cc(POSITIVE + "Beam request cancelled.");
     POSITIVE_BEAM_ACCEPTED = cc(POSITIVE + "Beam request accepted.");
+    POSITIVE_SHOP_CREATED = cc(POSITIVE + "Shop created.");
 
     PERM_COLOREDNAME = "bits.formatname";
     PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";

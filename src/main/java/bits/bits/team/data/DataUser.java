@@ -4,6 +4,7 @@ import bits.bits.team.Main;
 import bits.bits.team.Shop;
 import bits.bits.team.User;
 import bits.bits.team.file.FileManager;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -135,5 +136,21 @@ public class DataUser {
         player.sendMessage(offlinePlayer.getName());
       }
     }
+  }
+
+  /**
+   * Gets shop.
+   *
+   * @param location the location
+   * @return the shop
+   */
+  public Shop getShop(Location location) {
+    for (User user : users) {
+      for (Shop shop : user.getShops()) {
+        if (shop.getLocation().equals(location))
+          return shop;
+      }
+    }
+    return null;
   }
 }
