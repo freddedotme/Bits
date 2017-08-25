@@ -92,3 +92,6 @@ commands:
   beam:
     description: Beams (teleports) you to a player.
     usage: "/beam <player>"
+  shop:
+    description: Enable/disable shop mode.
+    usage: "/shop"
