@@ -12,6 +12,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
  * The type Event disable pvp.
  */
 public class EventDisablePvP implements Listener {
+
   /**
    * On entity damage by entity.
    *

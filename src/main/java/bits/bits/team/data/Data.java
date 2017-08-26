@@ -203,6 +203,9 @@ public class Data {
    */
   public String POSITIVE_DONATE;
 
+  /**
+   * The Positive discord.
+   */
   public String POSITIVE_DISCORD;
   /**
    * The Positive color change.

@@ -1,10 +1,7 @@
 package bits.bits.team;
 
 import bits.bits.team.command.*;
-import bits.bits.team.data.Data;
-import bits.bits.team.data.DataDiscord;
-import bits.bits.team.data.DataUser;
-import bits.bits.team.data.DataWarp;
+import bits.bits.team.data.*;
 import bits.bits.team.event.*;
 import bits.bits.team.runnable.RunnableWorldEvent;
 import com.maxmind.db.CHMCache;
@@ -32,11 +29,12 @@ public class Main extends JavaPlugin {
     super.onEnable();
 
     data = new Data();
+    DataSettings dataSettings = new DataSettings(this);
     DataDiscord dataDiscord = new DataDiscord(this);
     DataWarp dataWarp = new DataWarp(this);
     DataUser dataUser = new DataUser(this);
 
-    new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 288000);
+    if (dataSettings.isRunnableWorldEvent()) new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 288000);
     Discord discord = new Discord(this, dataDiscord);
 
     File database = new File(data.ROOT_PATH, "GeoLite2-Country.mmdb");
@@ -47,42 +45,63 @@ public class Main extends JavaPlugin {
       e.printStackTrace();
     }
 
-    getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser, discord, reader), this);
-    getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
-    getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
-    getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
-    getServer().getPluginManager().registerEvents(new EventVote(this), this);
-    getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
-    getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
-    getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
+    if (dataSettings.isEventPlayerJoinQuit())
+      getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser, dataDiscord, discord,
+        reader), this);
+
+    if (dataSettings.isEventBedEnterLeave())
+      getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
+
+    if (dataSettings.isEventCancelChunkUnload())
+      getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
+
+    if (dataSettings.isEventSignColorize())
+      getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
+
+    if (dataSettings.isEventVote())
+      getServer().getPluginManager().registerEvents(new EventVote(this), this);
+
+    if (dataSettings.isEventFishSlap())
+      getServer().getPluginManager().registerEvents(new EventFishSlap(), this);
+
+    if (dataSettings.isEventDisablePvP())
+      getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
+
+    if (dataSettings.isEventDiscord())
+      getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
+
     //getServer().getPluginManager().registerEvents(new EventShopCreate(this, dataUser), this);
 
-    getCommand("bed").setExecutor(new CommandBed(this));
+    if (dataSettings.isCommandBed()) getCommand("bed").setExecutor(new CommandBed(this));
 
-    getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
-    getCommand("warps").setExecutor(new CommandWarps(dataWarp));
-    getCommand("setwarp").setExecutor(new CommandSetWarp(this, dataWarp));
-    getCommand("delwarp").setExecutor(new CommandDelWarp(this, dataWarp));
+    if (dataSettings.isCommandWarp()) getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
+    if (dataSettings.isCommandWarps()) getCommand("warps").setExecutor(new CommandWarps(dataWarp));
+    if (dataSettings.isCommandSetWarp()) getCommand("setwarp").setExecutor(new CommandSetWarp(this, dataWarp));
+    if (dataSettings.isCommandDelWarp()) getCommand("delwarp").setExecutor(new CommandDelWarp(this, dataWarp));
 
-    getCommand("guards").setExecutor(new CommandGuards(dataUser));
-    getCommand("donors").setExecutor(new CommandDonors(dataUser));
-    getCommand("setguard").setExecutor(new CommandSetGuard(this, dataUser));
-    getCommand("delguard").setExecutor(new CommandDelGuard(this, dataUser));
-    getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataUser));
-    getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataUser));
+    if (dataSettings.isCommandGuards()) getCommand("guards").setExecutor(new CommandGuards(dataUser));
+    if (dataSettings.isCommandDonors()) getCommand("donors").setExecutor(new CommandDonors(dataUser));
 
-    getCommand("info").setExecutor(new CommandInfo(this));
-    getCommand("colorname").setExecutor(new CommandColorName(this, dataUser));
-    getCommand("vote").setExecutor(new CommandVote(this));
-    getCommand("hat").setExecutor(new CommandHat());
-    getCommand("donate").setExecutor(new CommandDonate(this));
-    getCommand("seen").setExecutor(new CommandSeen(this));
-    getCommand("joined").setExecutor(new CommandJoined(this));
-    getCommand("broadcast").setExecutor(new CommandBroadcast(this, dataUser));
-    getCommand("randomteleport").setExecutor(new CommandRandomTeleport(this, dataUser));
-    getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
-    getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
-    getCommand("discord").setExecutor(new CommandDiscord(this));
+    if (dataSettings.isCommandSetGuard()) getCommand("setguard").setExecutor(new CommandSetGuard(this, dataUser));
+    if (dataSettings.isCommandDelGuard()) getCommand("delguard").setExecutor(new CommandDelGuard(this, dataUser));
+    if (dataSettings.isCommandSetDonor()) getCommand("setdonor").setExecutor(new CommandSetDonor(this, dataUser));
+    if (dataSettings.isCommandDelDonor()) getCommand("deldonor").setExecutor(new CommandDelDonor(this, dataUser));
+
+    if (dataSettings.isCommandInfo()) getCommand("info").setExecutor(new CommandInfo(this));
+    if (dataSettings.isCommandColorName()) getCommand("colorname").setExecutor(new CommandColorName(this, dataUser));
+    if (dataSettings.isCommandVote()) getCommand("vote").setExecutor(new CommandVote(this));
+    if (dataSettings.isCommandHat()) getCommand("hat").setExecutor(new CommandHat());
+    if (dataSettings.isCommandDonate()) getCommand("donate").setExecutor(new CommandDonate(this));
+    if (dataSettings.isCommandSeen()) getCommand("seen").setExecutor(new CommandSeen(this));
+    if (dataSettings.isCommandJoined()) getCommand("joined").setExecutor(new CommandJoined(this));
+    if (dataSettings.isCommandBroadcast()) getCommand("broadcast").setExecutor(new CommandBroadcast(this, dataUser));
+
+    if (dataSettings.isCommandRandomTeleport())
+      getCommand("randomteleport").setExecutor(new CommandRandomTeleport(this, dataUser));
+
+    if (dataSettings.isCommandPlayerHead()) getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
+    if (dataSettings.isCommandBeam()) getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
+    if (dataSettings.isCommandDiscord()) getCommand("discord").setExecutor(new CommandDiscord(this));
     //getCommand("shop").setExecutor(new CommandShop(this, dataUser));
   }
 

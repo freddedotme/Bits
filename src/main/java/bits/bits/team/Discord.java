@@ -6,9 +6,7 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Member;
 import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.DisconnectEvent;
 import net.dv8tion.jda.core.events.ReadyEvent;
-import net.dv8tion.jda.core.events.ReconnectedEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.exceptions.RateLimitedException;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -45,21 +43,7 @@ public class Discord extends ListenerAdapter {
   @Override
   public void onReady(ReadyEvent e) {
     channel = e.getJDA().getTextChannelById(data.getId());
-    sendToDiscord("BOT", "Connected.");
-  }
-
-  /**
-   * On reconnected.
-   *
-   * @param e the e
-   */
-  public void onReconnected(ReconnectedEvent e) {
-    sendToDiscord("BOT", "Reconnected.");
-  }
-
-  @Override
-  public void onDisconnect(DisconnectEvent e) {
-    sendToDiscord("BOT", "Disconnected.");
+    sendToDiscord(data.getName(), "Connected.");
   }
 
   @Override
