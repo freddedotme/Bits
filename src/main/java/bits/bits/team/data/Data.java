@@ -181,6 +181,11 @@ public class Data {
   public String NEGATIVE_SHOP_EXISTS;
 
   /**
+   * The Negative nick.
+   */
+  public String NEGATIVE_NICK;
+
+  /**
    * The Negative shop product.
    */
   public String NEGATIVE_SHOP_PRODUCT;
@@ -313,6 +318,7 @@ public class Data {
     NEGATIVE_THE_END = cc(NEGATIVE + "You need to visit the End before using a warp there.");
     NEGATIVE_NETHER = cc(NEGATIVE + "You need to visit the Nether before using a warp there.");
     NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 12 hours between each random teleport.");
+    NEGATIVE_NICK = cc(NEGATIVE + "You need to wait 5 minutes before each nickname change.");
     NEGATIVE_PLAYERHEAD = cc(NEGATIVE + "It costs 1 diamond to get a playerhead.");
     NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 2 minutes between each beam.");
     NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");
