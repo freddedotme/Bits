@@ -78,6 +78,11 @@ public class Data {
    * The Neutral seen.
    */
   public String NEUTRAL_SEEN;
+
+  /**
+   * The Neutral whois.
+   */
+  public String NEUTRAL_WHOIS;
   /**
    * The Neutral beamedto.
    */
@@ -292,6 +297,7 @@ public class Data {
     NEUTRAL_BEAMEDTO = cc(NEUTRAL + "{player} has sent a beam request to you. Write /beam accept to accept it.");
     NEUTRAL_SHOP_ENABLED = cc(NEUTRAL + "Shop mode is enabled.");
     NEUTRAL_SHOP_DISABLED = cc(NEUTRAL + "Shop mode is disabled.");
+    NEUTRAL_WHOIS = cc(NEUTRAL + "{player} has the following nickname: {nickname}.");
 
     String NEGATIVE = "&c";
     NEGATIVE_NO_BED = cc(NEGATIVE + "You don't have a bed.");

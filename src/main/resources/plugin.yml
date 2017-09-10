@@ -98,3 +98,9 @@ commands:
   discord:
     description: View the discord address.
     usage: "/discord"
+  nick:
+    description: Set a nickname.
+    usage: "/nick <name>"
+  whois:
+    description: Get the nickname of a player.
+    usage: "/whois <player>"

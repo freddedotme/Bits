@@ -103,6 +103,9 @@ public class Main extends JavaPlugin {
     if (dataSettings.isCommandBeam()) getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
     if (dataSettings.isCommandDiscord()) getCommand("discord").setExecutor(new CommandDiscord(this));
     //getCommand("shop").setExecutor(new CommandShop(this, dataUser));
+
+    getCommand("nick").setExecutor(new CommandNick(this, dataUser));
+    getCommand("whois").setExecutor(new CommandWhois(this, dataUser));
   }
 
   /**

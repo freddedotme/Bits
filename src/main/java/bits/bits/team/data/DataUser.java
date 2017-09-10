@@ -45,6 +45,7 @@ public class DataUser {
       boolean donor = (boolean) file.read(root + ".donor");
       boolean guard = (boolean) file.read(root + ".guard");
       String prefix = (String) file.read(root + ".prefix");
+      String nickname = (String) file.read(root + ".nickname");
 
       List<Shop> shops = new ArrayList<>();
 
@@ -60,7 +61,7 @@ public class DataUser {
         }
       }
 
-      users.add(new User(file, main, uuid, donor, guard, prefix, null, shops));
+      users.add(new User(file, main, uuid, donor, guard, prefix, nickname, null, shops));
     }
   }
 
@@ -73,7 +74,7 @@ public class DataUser {
    * @param prefix the prefix
    */
   public void addUser(UUID uuid, boolean donor, boolean guard, String prefix) {
-    users.add(new User(file, main, uuid, donor, guard, prefix, null, null));
+    users.add(new User(file, main, uuid, donor, guard, prefix, null, null, null));
 
     String root = "users." + uuid.toString();
     file.write(root + ".donor", donor);
@@ -105,6 +106,18 @@ public class DataUser {
   public User getUser(UUID uuid) {
     for (User user : users)
       if (user.getUuid().equals(uuid)) return user;
+    return null;
+  }
+
+  /**
+   * Gets user by nickname.
+   *
+   * @param nickname the nickname
+   * @return the user by nickname
+   */
+  public User getUserByNickname(String nickname) {
+    for (User user : users)
+      if (user.getNickname() != null && user.getNickname().equalsIgnoreCase(nickname)) return user;
     return null;
   }
 

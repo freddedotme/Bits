@@ -18,8 +18,10 @@ public class User {
   private UUID uuid;
   private boolean donor, guard;
   private String prefix;
+  private String nickname;
   private Date randomTeleport;
   private Date beam;
+  private Date nick;
   private UUID beamedFrom, beamedTo;
   private PermissionAttachment permissions;
   private List<Shop> shops;
@@ -35,10 +37,11 @@ public class User {
    * @param donor       the donor
    * @param guard       the guard
    * @param prefix      the prefix
+   * @param nickname    the nickname
    * @param permissions the permissions
    * @param shops       the shops
    */
-  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix,
+  public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix, String nickname,
               PermissionAttachment permissions, List<Shop> shops) {
     this.file = file;
     this.main = main;
@@ -46,6 +49,7 @@ public class User {
     this.donor = donor;
     this.guard = guard;
     this.prefix = prefix;
+    this.nickname = nickname;
     this.permissions = permissions;
     this.shops = shops;
 
@@ -130,11 +134,38 @@ public class User {
     this.prefix = prefix;
     file.write(root + ".prefix", prefix);
 
+    updateName();
+  }
+
+  /**
+   * Gets nickname.
+   *
+   * @return the nickname
+   */
+  public String getNickname() {
+    return nickname;
+  }
+
+  /**
+   * Sets nickname.
+   *
+   * @param nickname the nickname
+   */
+  public void setNickname(String nickname) {
+    this.nickname = nickname;
+    file.write(root + ".nickname", nickname);
+
+    updateName();
+  }
+
+  private void updateName() {
     Player player = main.getServer().getPlayer(uuid);
     if (player == null) return;
 
-    player.setDisplayName(ChatColor.translateAlternateColorCodes('&', prefix + player.getName() + "&r"));
-    player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', prefix + player.getName() + "&r"));
+    String name = (nickname != null) ? "~" + nickname : player.getName();
+
+    player.setDisplayName(ChatColor.translateAlternateColorCodes('&', prefix + name + "&r"));
+    player.setPlayerListName(ChatColor.translateAlternateColorCodes('&', prefix + name + "&r"));
   }
 
   /**
@@ -171,6 +202,24 @@ public class User {
    */
   public void setBeam(Date beam) {
     this.beam = beam;
+  }
+
+  /**
+   * Gets nick.
+   *
+   * @return the nick
+   */
+  public Date getNick() {
+    return nick;
+  }
+
+  /**
+   * Sets nick.
+   *
+   * @param nick the nick
+   */
+  public void setNick(Date nick) {
+    this.nick = nick;
   }
 
   /**
@@ -287,7 +336,7 @@ public class User {
    * Join.
    */
   public void join() {
-    if (prefix != null) setPrefix(prefix);
+    updateName();
     if (donor) addDonorPermissions();
     if (guard) addGuardPermissions();
   }
