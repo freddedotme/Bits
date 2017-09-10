@@ -40,7 +40,7 @@ public class CommandNick implements CommandExecutor {
     Date nickname = user.getNick();
 
     if (nickname != null && new Date().getTime() - nickname.getTime() < 300000)
-      return main.invalidAction(player, main.d().NEGATIVE_BEAM);
+      return main.invalidAction(player, main.d().NEGATIVE_NICK);
 
     if (strings.length != 1) return main.invalidAction(player, main.d().NEGATIVE_ARGUMENTS);
     String nick = strings[0];
