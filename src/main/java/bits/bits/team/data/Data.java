@@ -99,6 +99,11 @@ public class Data {
   public String NEUTRAL_SHOP_DISABLED;
 
   /**
+   * The Neutral nick clear.
+   */
+  public String NEUTRAL_NICK_CLEAR;
+
+  /**
    * The Negative no bed.
    */
   public String NEGATIVE_NO_BED;
@@ -240,6 +245,11 @@ public class Data {
   public String POSITIVE_SHOP_CREATED;
 
   /**
+   * The Positive nick set.
+   */
+  public String POSITIVE_NICK_SET;
+
+  /**
    * The Perm coloredname.
    */
   public String PERM_COLOREDNAME;
@@ -302,7 +312,8 @@ public class Data {
     NEUTRAL_BEAMEDTO = cc(NEUTRAL + "{player} has sent a beam request to you. Write /beam accept to accept it.");
     NEUTRAL_SHOP_ENABLED = cc(NEUTRAL + "Shop mode is enabled.");
     NEUTRAL_SHOP_DISABLED = cc(NEUTRAL + "Shop mode is disabled.");
-    NEUTRAL_WHOIS = cc(NEUTRAL + "{player} has the following nickname: {nickname}.");
+    NEUTRAL_WHOIS = cc(NEUTRAL + "The player behind the nickname \"{nickname}\" is {player}.");
+    NEUTRAL_NICK_CLEAR = cc(NEUTRAL + "Nickname cleared.");
 
     String NEGATIVE = "&c";
     NEGATIVE_NO_BED = cc(NEGATIVE + "You don't have a bed.");
@@ -320,7 +331,7 @@ public class Data {
     NEGATIVE_RTP = cc(NEGATIVE + "You need to wait 12 hours between each random teleport.");
     NEGATIVE_NICK = cc(NEGATIVE + "You need to wait 5 minutes before each nickname change.");
     NEGATIVE_PLAYERHEAD = cc(NEGATIVE + "It costs 1 diamond to get a playerhead.");
-    NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait 2 minutes between each beam.");
+    NEGATIVE_BEAM = cc(NEGATIVE + "You need to wait {seconds} second(s) until next beam.");
     NEGATIVE_BEAMEDFROM = cc(NEGATIVE + "Nobody has requested to beam to you.");
     NEGATIVE_BEAMEDTO = cc(NEGATIVE + "You haven no pending beam requests.");
     NEGATIVE_BEAMWORLDS = cc(NEGATIVE + "You need to be in the same world as your target.");
@@ -339,6 +350,7 @@ public class Data {
     POSITIVE_BEAM_CANCELLED = cc(POSITIVE + "Beam request cancelled.");
     POSITIVE_BEAM_ACCEPTED = cc(POSITIVE + "Beam request accepted.");
     POSITIVE_SHOP_CREATED = cc(POSITIVE + "Shop created.");
+    POSITIVE_NICK_SET = cc(POSITIVE + "Nickname set to \"{name}\".");
 
     PERM_COLOREDNAME = "bits.formatname";
     PERM_BYPASSCOOLDOWN = "bits.bypasscooldown";

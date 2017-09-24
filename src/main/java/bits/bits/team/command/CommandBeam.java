@@ -58,8 +58,6 @@ public class CommandBeam implements CommandExecutor {
       user.setBeamedTo(null);
     }
     else if (argument.equalsIgnoreCase("cancel")) {
-      if (!user.isDonor() && !user.isGuard()) return main.invalidAction(player, main.d().NEGATIVE_PERMISSION);
-
       if (user.getBeamedTo() == null) return main.invalidAction(player, main.d().NEGATIVE_BEAMEDTO);
 
       UUID temporary = user.getBeamedTo();
@@ -73,12 +71,17 @@ public class CommandBeam implements CommandExecutor {
       player.sendMessage(main.d().POSITIVE_BEAM_CANCELLED);
     }
     else {
-      if (!user.isDonor() && !user.isGuard()) return main.invalidAction(player, main.d().NEGATIVE_PERMISSION);
-
       Date beam = user.getBeam();
 
-      if (beam != null && new Date().getTime() - beam.getTime() < 120000)
-        return main.invalidAction(player, main.d().NEGATIVE_BEAM);
+      if (beam != null) {
+        int limit = user.isDonor() ? 60000 : 120000;
+        long diff = new Date().getTime() - beam.getTime();
+
+        if (diff < limit) {
+          long seconds = (limit - diff) / 1000;
+          return main.invalidAction(player, main.d().NEGATIVE_BEAM.replace("{seconds}", String.valueOf(seconds)));
+        }
+      }
 
       Player temporary = main.getServer().getPlayer(argument);
       if (temporary == null) return main.invalidAction(player, main.d().NEGATIVE_PLAYER_NOT_FOUND);

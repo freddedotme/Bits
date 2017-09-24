@@ -37,11 +37,6 @@ public class CommandNick implements CommandExecutor {
     User user = data.getUser(player.getUniqueId());
     if (user == null) return main.invalidAction(player, main.d().NEGATIVE_ERROR);
 
-    Date nickname = user.getNick();
-
-    if (nickname != null && new Date().getTime() - nickname.getTime() < 300000)
-      return main.invalidAction(player, main.d().NEGATIVE_NICK);
-
     if (strings.length != 1) return main.invalidAction(player, main.d().NEGATIVE_ARGUMENTS);
     String nick = strings[0];
 
@@ -49,8 +44,14 @@ public class CommandNick implements CommandExecutor {
 
     if (nick.equalsIgnoreCase("clear")) {
       user.setNickname(null);
+      player.sendMessage(main.d().NEUTRAL_NICK_CLEAR);
       return true;
     }
+
+    Date nickname = user.getNick();
+
+    if (nickname != null && new Date().getTime() - nickname.getTime() < 300000)
+      return main.invalidAction(player, main.d().NEGATIVE_NICK);
 
     if (data.getUserByNickname(nick) != null) return false;
 
@@ -61,6 +62,8 @@ public class CommandNick implements CommandExecutor {
 
     user.setNickname(nick);
     user.setNick(new Date());
+
+    player.sendMessage(main.d().POSITIVE_NICK_SET.replace("{name}", nick));
 
     return true;
   }
