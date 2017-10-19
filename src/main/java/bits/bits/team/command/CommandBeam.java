@@ -3,18 +3,22 @@ package bits.bits.team.command;
 import bits.bits.team.Main;
 import bits.bits.team.User;
 import bits.bits.team.data.DataUser;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
  * The type Command beam.
  */
-public class CommandBeam implements CommandExecutor {
+public class CommandBeam implements CommandExecutor, TabCompleter {
   private Main main;
   private DataUser data;
 
@@ -101,5 +105,27 @@ public class CommandBeam implements CommandExecutor {
     }
 
     return true;
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender commandSender, Command command, String alias, String[] args) {
+    if (!(commandSender instanceof Player)) return null;
+
+    List<String> result = new ArrayList<>();
+
+    if (args.length == 0) {
+      Bukkit.getOnlinePlayers().forEach(player -> result.add(player.getName()));
+    } else {
+      if (args[0].startsWith("a")) {
+        result.add("accept");
+      } else if (args[0].startsWith("c")) {
+        result.add("cancel");
+      }
+      Bukkit.getOnlinePlayers().stream()
+              .filter(player -> player.getName().toLowerCase().startsWith(args[0].toLowerCase()))
+              .forEach(player -> result.add(player.getName()));
+    }
+
+    return result;
   }
 }
