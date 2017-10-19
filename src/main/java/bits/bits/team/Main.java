@@ -70,6 +70,8 @@ public class Main extends JavaPlugin {
     if (dataSettings.isEventDiscord())
       getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
 
+    getServer().getPluginManager().registerEvents(new EventChat(), this);
+
     //getServer().getPluginManager().registerEvents(new EventShopCreate(this, dataUser), this);
 
     if (dataSettings.isCommandBed()) getCommand("bed").setExecutor(new CommandBed(this));
