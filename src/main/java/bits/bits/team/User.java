@@ -321,6 +321,9 @@ public class User {
     permissions.setPermission("minecraft.command.pardon", true);
     permissions.setPermission("coreprotect.lookup", true);
     permissions.setPermission("coreprotect.inspect", true);
+    permissions.setPermission("griefprevention.softmute", true);
+    permissions.setPermission("griefprevention.separate", true);
+    permissions.setPermission("griefprevention.claimslistother", true);
   }
 
   private void addDonorPermissions() {

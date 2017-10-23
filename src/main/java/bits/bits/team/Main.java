@@ -3,7 +3,6 @@ package bits.bits.team;
 import bits.bits.team.command.*;
 import bits.bits.team.data.*;
 import bits.bits.team.event.*;
-import bits.bits.team.runnable.RunnableWorldEvent;
 import com.maxmind.db.CHMCache;
 import com.maxmind.db.Reader;
 import org.bukkit.Location;
@@ -33,8 +32,6 @@ public class Main extends JavaPlugin {
     DataDiscord dataDiscord = new DataDiscord(this);
     DataWarp dataWarp = new DataWarp(this);
     DataUser dataUser = new DataUser(this);
-
-    if (dataSettings.isRunnableWorldEvent()) new RunnableWorldEvent(this).runTaskTimerAsynchronously(this, 400, 288000);
     Discord discord = new Discord(this, dataDiscord);
 
     File database = new File(data.ROOT_PATH, "GeoLite2-Country.mmdb");
@@ -52,9 +49,6 @@ public class Main extends JavaPlugin {
     if (dataSettings.isEventBedEnterLeave())
       getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
 
-    if (dataSettings.isEventCancelChunkUnload())
-      getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
-
     if (dataSettings.isEventSignColorize())
       getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
 
@@ -69,8 +63,6 @@ public class Main extends JavaPlugin {
 
     if (dataSettings.isEventDiscord())
       getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
-
-    //getServer().getPluginManager().registerEvents(new EventShopCreate(this, dataUser), this);
 
     if (dataSettings.isCommandBed()) getCommand("bed").setExecutor(new CommandBed(this));
 
@@ -102,7 +94,6 @@ public class Main extends JavaPlugin {
     if (dataSettings.isCommandPlayerHead()) getCommand("playerhead").setExecutor(new CommandPlayerHead(this));
     if (dataSettings.isCommandBeam()) getCommand("beam").setExecutor(new CommandBeam(this, dataUser));
     if (dataSettings.isCommandDiscord()) getCommand("discord").setExecutor(new CommandDiscord(this));
-    //getCommand("shop").setExecutor(new CommandShop(this, dataUser));
 
     getCommand("nick").setExecutor(new CommandNick(this, dataUser));
     getCommand("whois").setExecutor(new CommandWhois(this, dataUser));
