@@ -115,15 +115,17 @@ public class CommandBeam implements CommandExecutor, TabCompleter {
 
     if (args.length == 0) {
       Bukkit.getOnlinePlayers().forEach(player -> result.add(player.getName()));
-    } else {
+    }
+    else {
       if (args[0].startsWith("a")) {
         result.add("accept");
-      } else if (args[0].startsWith("c")) {
+      }
+      else if (args[0].startsWith("c")) {
         result.add("cancel");
       }
       Bukkit.getOnlinePlayers().stream()
-              .filter(player -> player.getName().toLowerCase().startsWith(args[0].toLowerCase()))
-              .forEach(player -> result.add(player.getName()));
+        .filter(player -> player.getName().toLowerCase().startsWith(args[0].toLowerCase()))
+        .forEach(player -> result.add(player.getName()));
     }
 
     return result;
