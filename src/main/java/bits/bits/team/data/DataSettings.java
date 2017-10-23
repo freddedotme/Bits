@@ -15,6 +15,7 @@ public class DataSettings {
   private boolean eventPlayerJoinQuit;
   private boolean eventSignColorize;
   private boolean eventVote;
+  private boolean eventEntitySpawn;
 
   private boolean commandBeam;
   private boolean commandBed;
@@ -59,6 +60,7 @@ public class DataSettings {
     if (file.read("eventPlayerJoinQuit") == null) file.write("eventPlayerJoinQuit", true);
     if (file.read("eventSignColorize") == null) file.write("eventSignColorize", true);
     if (file.read("eventVote") == null) file.write("eventVote", true);
+    if (file.read("eventEntitySpawn") == null) file.write("eventEntitySpawn", true);
 
     if (file.read("commandBeam") == null) file.write("commandBeam", true);
     if (file.read("commandBed") == null) file.write("commandBed", true);
@@ -94,6 +96,7 @@ public class DataSettings {
     eventPlayerJoinQuit = (boolean) file.read("eventPlayerJoinQuit");
     eventSignColorize = (boolean) file.read("eventSignColorize");
     eventVote = (boolean) file.read("eventVote");
+    eventEntitySpawn = (boolean) file.read("eventEntitySpawn");
 
     commandBeam = (boolean) file.read("commandBeam");
     commandBed = (boolean) file.read("commandBed");
@@ -264,6 +267,24 @@ public class DataSettings {
    */
   public void setEventVote(boolean eventVote) {
     this.eventVote = eventVote;
+  }
+
+  /**
+   * Is event entity spawn boolean.
+   *
+   * @return the boolean
+   */
+  public boolean isEventEntitySpawn() {
+    return eventEntitySpawn;
+  }
+
+  /**
+   * Sets event entity spawn.
+   *
+   * @param eventEntitySpawn the event entity spawn
+   */
+  public void setEventEntitySpawn(boolean eventEntitySpawn) {
+    this.eventEntitySpawn = eventEntitySpawn;
   }
 
   /**

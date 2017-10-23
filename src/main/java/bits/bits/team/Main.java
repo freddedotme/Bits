@@ -64,6 +64,9 @@ public class Main extends JavaPlugin {
     if (dataSettings.isEventDiscord())
       getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
 
+    if (dataSettings.isEventEntitySpawn())
+      getServer().getPluginManager().registerEvents(new EventEntitySpawn(128), this);
+
     if (dataSettings.isCommandBed()) getCommand("bed").setExecutor(new CommandBed(this));
 
     if (dataSettings.isCommandWarp()) getCommand("warp").setExecutor(new CommandWarp(this, dataWarp));
