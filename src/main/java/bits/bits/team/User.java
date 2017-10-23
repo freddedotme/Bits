@@ -6,7 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.permissions.PermissionAttachment;
 
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -24,7 +23,6 @@ public class User {
   private Date nick;
   private UUID beamedFrom, beamedTo;
   private PermissionAttachment permissions;
-  private List<Shop> shops;
   private boolean shopMode;
   private String root;
 
@@ -39,10 +37,9 @@ public class User {
    * @param prefix      the prefix
    * @param nickname    the nickname
    * @param permissions the permissions
-   * @param shops       the shops
    */
   public User(FileManager file, Main main, UUID uuid, boolean donor, boolean guard, String prefix, String nickname,
-              PermissionAttachment permissions, List<Shop> shops) {
+              PermissionAttachment permissions) {
     this.file = file;
     this.main = main;
     this.uuid = uuid;
@@ -51,7 +48,6 @@ public class User {
     this.prefix = prefix;
     this.nickname = nickname;
     this.permissions = permissions;
-    this.shops = shops;
 
     root = "users." + uuid.toString();
   }
@@ -256,39 +252,6 @@ public class User {
    */
   public void setBeamedTo(UUID beamedTo) {
     this.beamedTo = beamedTo;
-  }
-
-  /**
-   * Gets shops.
-   *
-   * @return the shops
-   */
-  public List<Shop> getShops() {
-    return shops;
-  }
-
-  /**
-   * Sets shops.
-   *
-   * @param shops the shops
-   */
-  public void setShops(List<Shop> shops) {
-    this.shops = shops;
-    if (shops == null || shops.size() == 0) return;
-
-    int index = 0;
-
-    for (Shop shop : shops) {
-      int x = shop.getLocation().getBlockX();
-      int y = shop.getLocation().getBlockY();
-      int z = shop.getLocation().getBlockZ();
-
-      file.write(root + ".shops." + index + ".x", x);
-      file.write(root + ".shops." + index + ".y", y);
-      file.write(root + ".shops." + index + ".z", z);
-
-      index++;
-    }
   }
 
   /**
