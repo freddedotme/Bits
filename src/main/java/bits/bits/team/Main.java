@@ -49,6 +49,9 @@ public class Main extends JavaPlugin {
     if (dataSettings.isEventBedEnterLeave())
       getServer().getPluginManager().registerEvents(new EventBedEnterLeave(this), this);
 
+    if (dataSettings.isEventCancelChunkUnload())
+      getServer().getPluginManager().registerEvents(new EventCancelChunkUnload(dataWarp), this);
+
     if (dataSettings.isEventSignColorize())
       getServer().getPluginManager().registerEvents(new EventSignColorize(), this);
 
@@ -65,7 +68,7 @@ public class Main extends JavaPlugin {
       getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
 
     if (dataSettings.isEventEntitySpawn())
-      getServer().getPluginManager().registerEvents(new EventEntitySpawn(128), this);
+      getServer().getPluginManager().registerEvents(new EventEntitySpawn(256), this);
 
     if (dataSettings.isCommandBed()) getCommand("bed").setExecutor(new CommandBed(this));
 
