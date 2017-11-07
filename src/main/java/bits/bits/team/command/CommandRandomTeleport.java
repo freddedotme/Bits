@@ -44,8 +44,8 @@ public class CommandRandomTeleport implements CommandExecutor {
 
     double size = main.getServer().getWorld("bits").getWorldBorder().getSize() - 1000.0;
 
-    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "spreadplayers 0 0 1 " + size + " false " +
-      player.getName());
+    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), String.format("spreadplayers 0 0 1 %s false" +
+      " %s", size, player.getName()));
     user.setRandomTeleport(now);
 
     return true;
