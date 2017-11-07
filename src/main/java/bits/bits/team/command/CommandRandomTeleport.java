@@ -42,7 +42,7 @@ public class CommandRandomTeleport implements CommandExecutor {
     if (rtp != null && now.getTime() - rtp.getTime() < 43200000)
       return main.invalidAction(player, main.d().NEGATIVE_RTP);
 
-    double size = main.getServer().getWorld("bits").getWorldBorder().getSize() - 1000.0;
+    double size = (main.getServer().getWorld("bits").getWorldBorder().getSize() / 2) - 1000.0;
 
     main.getServer().dispatchCommand(main.getServer().getConsoleSender(), String.format("spreadplayers 0 0 1 %s false" +
       " %s", size, player.getName()));
