@@ -3,7 +3,6 @@ package bits.bits.team.command;
 import bits.bits.team.Main;
 import bits.bits.team.User;
 import bits.bits.team.data.DataUser;
-import bits.bits.team.runnable.RunnableRandomTeleport;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -43,8 +42,10 @@ public class CommandRandomTeleport implements CommandExecutor {
     if (rtp != null && now.getTime() - rtp.getTime() < 43200000)
       return main.invalidAction(player, main.d().NEGATIVE_RTP);
 
-    player.sendMessage(main.d().NEUTRAL_RANDOMSPAWN);
-    new RunnableRandomTeleport(main, player).runTaskTimerAsynchronously(main, 0, 20);
+    double size = main.getServer().getWorld("bits").getWorldBorder().getSize() - 1000.0;
+
+    main.getServer().dispatchCommand(main.getServer().getConsoleSender(), "spreadplayers 0 0 1 " + size + " false " +
+      player.getName());
     user.setRandomTeleport(now);
 
     return true;
