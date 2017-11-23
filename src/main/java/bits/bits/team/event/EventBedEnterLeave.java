@@ -39,8 +39,10 @@ public class EventBedEnterLeave implements Listener {
 
     int online = 0;
 
+    long currentTime = world.getFullTime();
     for (Player player : main.getServer().getOnlinePlayers())
-      if (player.getGameMode().equals(GameMode.SURVIVAL)) online++;
+      if (player.getGameMode().equals(GameMode.SURVIVAL)
+              && currentTime - EventPlayerMove.lastMoveTimes.get(player) < 6000) online++;
 
     if ((double) sleeping / online >= 0.5) world.setTime(0);
 
