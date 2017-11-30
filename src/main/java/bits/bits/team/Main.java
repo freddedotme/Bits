@@ -29,10 +29,8 @@ public class Main extends JavaPlugin {
 
     data = new Data();
     DataSettings dataSettings = new DataSettings(this);
-    DataDiscord dataDiscord = new DataDiscord(this);
     DataWarp dataWarp = new DataWarp(this);
     DataUser dataUser = new DataUser(this);
-    Discord discord = new Discord(this, dataDiscord);
 
     File database = new File(data.ROOT_PATH, "GeoLite2-Country.mmdb");
     Reader reader = null;
@@ -43,7 +41,7 @@ public class Main extends JavaPlugin {
     }
 
     if (dataSettings.isEventPlayerJoinQuit())
-      getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser, dataDiscord, discord,
+      getServer().getPluginManager().registerEvents(new EventPlayerJoinQuit(this, dataUser,
         reader), this);
 
     if (dataSettings.isEventBedEnterLeave())
@@ -63,9 +61,6 @@ public class Main extends JavaPlugin {
 
     if (dataSettings.isEventDisablePvP())
       getServer().getPluginManager().registerEvents(new EventDisablePvP(), this);
-
-    if (dataSettings.isEventDiscord())
-      getServer().getPluginManager().registerEvents(new EventDiscord(discord), this);
 
     if (dataSettings.isEventEntitySpawn())
       getServer().getPluginManager().registerEvents(new EventEntitySpawn(256), this);
