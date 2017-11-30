@@ -33,7 +33,6 @@ public class Main extends JavaPlugin {
     DataUser dataUser = new DataUser(this);
 
     File database = new File(data.ROOT_PATH, "GeoLite2-Country.mmdb");
-
     Reader reader = null;
     try {
       reader = new Reader(database, new CHMCache());
