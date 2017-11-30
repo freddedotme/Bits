@@ -1,9 +1,7 @@
 package bits.bits.team.event;
 
-import bits.bits.team.Discord;
 import bits.bits.team.Main;
 import bits.bits.team.User;
-import bits.bits.team.data.DataDiscord;
 import bits.bits.team.data.DataUser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.maxmind.db.Reader;
@@ -24,8 +22,6 @@ import java.util.UUID;
 public class EventPlayerJoinQuit implements Listener {
   private Main main;
   private DataUser data;
-  private DataDiscord data1;
-  private Discord discord;
   private Reader reader;
 
   /**
@@ -33,15 +29,11 @@ public class EventPlayerJoinQuit implements Listener {
    *
    * @param main    the main
    * @param data    the data
-   * @param data1   the data 1
-   * @param discord the discord
    * @param reader  the reader
    */
-  public EventPlayerJoinQuit(Main main, DataUser data, DataDiscord data1, Discord discord, Reader reader) {
+  public EventPlayerJoinQuit(Main main, DataUser data, Reader reader) {
     this.main = main;
     this.data = data;
-    this.data1 = data1;
-    this.discord = discord;
     this.reader = reader;
   }
 
@@ -80,8 +72,6 @@ public class EventPlayerJoinQuit implements Listener {
 
     if (!player.hasPlayedBefore()) {
       e.setJoinMessage(main.d().MSG_JOIN_NEW.replace("{ISO}", ISO).replace("{player}", player.getName()));
-      discord.sendToDiscord(data1.getName(), main.d().MSG_JOIN_NEW.replace("{ISO}", ISO).replace("{player}", player
-        .getName()));
 
       player.getInventory().addItem(new ItemStack(Material.CAKE, 1));
       player.getInventory().addItem(new ItemStack(Material.BED, 1));
@@ -93,11 +83,7 @@ public class EventPlayerJoinQuit implements Listener {
     }
     else {
       e.setJoinMessage(main.d().MSG_JOIN.replace("{ISO}", ISO).replace("{player}", player.getDisplayName()));
-      discord.sendToDiscord(data1.getName(), main.d().MSG_JOIN.replace("{ISO}", ISO).replace("{player}", player
-        .getName()));
     }
-
-    discord.sendToDiscord(data1.getName(), main.getServer().getOnlinePlayers().size() + " players online.");
   }
 
   /**
@@ -114,6 +100,5 @@ public class EventPlayerJoinQuit implements Listener {
     if (user != null) user.quit();
 
     e.setQuitMessage(main.d().MSG_QUIT.replace("{player}", e.getPlayer().getDisplayName()));
-    discord.sendToDiscord(data1.getName(), main.d().MSG_QUIT.replace("{player}", player.getName()));
   }
 }
