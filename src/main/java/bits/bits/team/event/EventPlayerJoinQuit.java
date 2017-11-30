@@ -1,9 +1,7 @@
 package bits.bits.team.event;
 
-import bits.bits.team.Discord;
 import bits.bits.team.Main;
 import bits.bits.team.User;
-import bits.bits.team.data.DataDiscord;
 import bits.bits.team.data.DataUser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.maxmind.db.Reader;
